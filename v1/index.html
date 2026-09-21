@@ -175,14 +175,13 @@
     <section class="section section--navy hero" id="hero" aria-labelledby="hero-title">
       <!-- IMAGE: images/hero-bg.webp — Mumbai skyline at dusk (client-supplied, source in images/user-uploads/hero-bg.png) -->
       <img class="hero__bg" src="images/hero-bg.webp" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
-      <div class="container">
+      <div class="container hero__inner">
         <div class="hero__content">
-          <span class="eyebrow">SME IPO Advisory · NSE Emerge &amp; BSE SME</span>
-          <h1 id="hero-title">List your company on NSE Emerge / BSE SME with <span class="text-accent">one advisor</span></h1>
+          <h1 id="hero-title">List your company on NSE Emerge / BSE SME with <span class="hero__highlight">one advisor<svg class="hero__underline" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 12 C 70 3, 160 2, 297 9" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
           <p class="lead">Every intermediary coordinated. From readiness check to listing day.</p>
           <div class="btn-row">
-            <a class="btn btn--accent btn--lg" href="sme-ipo-eligibility.html">Check eligibility in 60 sec</a>
-            <a class="btn btn--outline-light btn--lg" href="book.html">Book a readiness call</a>
+            <a class="btn btn--accent btn--lg" href="sme-ipo-eligibility.html">Check eligibility in 60 sec<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--outline-light btn--lg" href="book.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Book a readiness call</a>
           </div>
           <ul class="trust-list" aria-label="What to expect">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free assessment</li>
@@ -191,20 +190,22 @@
           </ul>
         </div>
       </div>
+
+      <a class="hero__scroll" href="#qualify" aria-label="Scroll to content"><span class="hero__scroll-mouse" aria-hidden="true"></span><span class="hero__scroll-text" aria-hidden="true">Scroll</span></a>
     </section>
 
     <!-- ========================= 2 · PROOF STRIP ========================= -->
-    <section class="section proof" id="proof" aria-label="Track record">
+    <section class="section section--navy proof" id="proof" aria-label="Track record">
       <div class="container">
         <!-- PLACEHOLDER: client to confirm numbers. If unavailable at launch, replace with
              "Partners with SEBI-registered merchant bankers" style copy per brief. -->
-        <div class="proof__card" data-reveal>
+        <div class="proof__grid" data-reveal>
           <div class="stat"><span class="stat__value"><span data-placeholder title="Client to confirm">[X]</span></span><span class="stat__label">mandates advised</span></div>
           <div class="stat"><span class="stat__value"><span class="rupee">₹</span><span data-placeholder title="Client to confirm">[X]</span> Cr</span><span class="stat__label">raised for promoters</span></div>
           <div class="stat"><span class="stat__value"><span data-placeholder title="Client to confirm">[X]</span>+</span><span class="stat__label">years in capital markets</span></div>
           <div class="stat"><span class="stat__value"><span data-placeholder title="Client to confirm">[X]</span></span><span class="stat__label">intermediary partners</span></div>
-        </div>
-        <p class="note proof__note">Working with SEBI-registered merchant bankers and exchange-empanelled intermediaries.</p>
+          </div>
+        <p class="proof__note">Working with SEBI-registered merchant bankers and exchange-empanelled intermediaries.</p>
       </div>
     </section>
 

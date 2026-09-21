@@ -94,12 +94,18 @@ BEM-lite naming; mobile-first media queries grouped per component; colours only 
 Matches brief §3 exactly:
 
 1. **Hero** — full first fold (`min-height: 100dvh`, starts at the top of the page under the
-   transparent overlay header). Single text column (`.hero__content`, max 640px) on the left:
-   H1 "List your company on NSE Emerge / BSE SME with *one advisor*", two CTAs, trust line.
-   The right half is left clear for the skyline photo (`hero-bg.webp`, client-supplied, source
-   PNG in `images/user-uploads/`). Navy gradient overlay is heavy on the left / light on the right;
-   on phones it is uniform. **No right-column card** — the client removed the roadmap card from the hero.
-2. **Proof strip** — 4 stats, overlapping the hero. All values are `[X]` placeholders.
+   transparent overlay header; nothing overlaps it). Single text column (`.hero__content`,
+   max 660px, vertically centred) on the left: H1 "List your company on NSE Emerge / BSE SME
+   with *one advisor*" (lime text + hand-drawn SVG underline that draws itself in), lead, two
+   icon CTAs, trust line — all with a staggered entrance animation. Background: the client's
+   skyline photo (`hero-bg.webp`, source PNG in `images/user-uploads/`) with a slow 18 s zoom-out,
+   a left-heavy navy gradient, a soft lime glow behind the headline and a faint dotted grid on the
+   text side. A "Scroll" mouse cue sits at the bottom centre (desktop only). A `max-height: 860px`
+   media query compresses type and spacing so the fold still fits on 13" laptops.
+   **Removed by the client:** the right-column roadmap card, the eyebrow badge, and the in-hero
+   stats bar — do not add elements to the right side of the hero.
+2. **Proof strip** — its own `#proof` section directly under the hero: dark `navy-950` band,
+   4 stats with a lime left rule, credibility note. All values are `[X]` placeholders.
 3. **Who it's for** — 3 qualifying-criteria cards → "See if you qualify".
 4. **Roadmap** — 10 steps. Desktop: horizontal track + hover/keyboard detail panel.
    Tablet: horizontal scroll-snap cards. Mobile: vertical list with details inline.
@@ -203,3 +209,9 @@ step sequence · legal review of the footer disclaimer · real images for every 
   (its CSS/JS deleted; the accessible roadmap remains in section 4); hero made **100dvh** and the
   header turned into a **transparent overlay** (`site-header--overlay`) that goes white on scroll.
   Fixed a mobile-menu clipping bug caused by the header's `backdrop-filter`.
+- **2026-09-21 (hero polish)** — Hero made "more attractive" per client: animated lime
+  underline on *one advisor*, staggered entrance, icon buttons with glow, slow background
+  zoom, lime glow + dotted grid, scroll cue; wider vertical spacing in the text column.
+  Client then asked to **remove the eyebrow badge** and to **move the stats out of the hero**
+  into a separate section (`#proof`, navy-950 band). Hero verified to end exactly at the fold
+  at 375×812, 768×1024, 1366×768, 1440×900 and 1920×910.
