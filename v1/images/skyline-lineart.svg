@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220" width="1200" height="220" aria-hidden="true" focusable="false">
+  <!-- Decorative exchange-building + skyline line-art. Colour inherits from currentColor. -->
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+    <!-- ground line -->
+    <path d="M0 210 H1200"/>
+    <!-- left skyline -->
+    <path d="M20 210 V150 H60 V120 H90 V210"/>
+    <path d="M110 210 V90 H130 V70 H150 V90 H170 V210"/>
+    <path d="M190 210 V130 H240 V210"/>
+    <path d="M260 210 V60 H280 V40 H300 V60 H320 V210"/>
+    <path d="M340 210 V110 H380 V210"/>
+    <path d="M400 210 V140 H430 V100 H450 V210"/>
+    <!-- exchange building (centre) -->
+    <path d="M470 210 V120 H730 V210"/>
+    <path d="M460 120 H740"/>
+    <path d="M490 120 V70 H710 V120"/>
+    <path d="M480 70 H720"/>
+    <path d="M600 30 L490 70 M600 30 L710 70"/>
+    <path d="M520 120 V210 M560 120 V210 M600 120 V210 M640 120 V210 M680 120 V210"/>
+    <path d="M520 78 V112 M560 78 V112 M600 78 V112 M640 78 V112 M680 78 V112"/>
+    <path d="M585 160 H615 V210 H585 Z"/>
+    <!-- right skyline -->
+    <path d="M760 210 V130 H800 V210"/>
+    <path d="M820 210 V80 H850 V50 H870 V80 H900 V210"/>
+    <path d="M920 210 V150 H960 V210"/>
+    <path d="M980 210 V100 H1000 V70 H1020 V100 H1040 V210"/>
+    <path d="M1060 210 V140 H1100 V120 H1130 V210"/>
+    <path d="M1150 210 V160 H1190 V210"/>
+    <!-- windows (sparse) -->
+    <path d="M120 110 h10 M140 110 h10 M120 130 h10 M140 130 h10 M270 80 h10 M290 80 h10 M270 100 h10 M290 100 h10 M830 100 h10 M850 100 h10 M870 100 h10 M990 120 h10 M1010 120 h10"/>
+    <!-- rising chart line -->
+    <path d="M40 200 L180 170 L320 185 L480 140 L600 120 L760 130 L900 90 L1040 100 L1160 50" stroke-width="2" stroke-dasharray="6 6" opacity=".7"/>
+    <path d="M1140 50 H1160 V70" stroke-width="2"/>
+  </g>
+</svg>

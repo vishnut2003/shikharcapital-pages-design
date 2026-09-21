@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Shikhar Capital mark">
+  <!-- Summit mark: two peaks + rising bar. Placeholder until client supplies a logo. -->
+  <rect width="48" height="48" rx="10" fill="#0B1F3A"/>
+  <path d="M8 34 L19 16 L26 27 L31 20 L40 34 Z" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M8 34 L19 16 L26 27" fill="none" stroke="#E0FF57" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M30 12 L40 12 L40 22" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 12 L32 20" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
