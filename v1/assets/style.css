@@ -51,7 +51,7 @@
   --accent-text: var(--accent-700);
 
   /* Fonts */
-  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: Poppins, Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Type scale */
@@ -167,14 +167,14 @@ table { border-collapse: collapse; width: 100%; }
    03 TYPOGRAPHY
    ========================================================================== */
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.15;
   color: var(--fg-heading);
 }
 
-h1 { font-size: var(--fs-display); letter-spacing: -.01em; line-height: 1.1; font-weight: 700; }
-h2 { font-size: var(--fs-h2); letter-spacing: -.01em; }
+h1 { font-size: var(--fs-display); letter-spacing: -.025em; line-height: 1.08; font-weight: 700; }
+h2 { font-size: var(--fs-h2); letter-spacing: -.02em; }
 h3 { font-size: var(--fs-h3); }
 h4 { font-size: var(--fs-h4); }
 
@@ -198,8 +198,8 @@ p { color: var(--fg); }
 
 .text-accent { color: var(--accent-text); }
 
-/* Playfair Display has no ₹ glyph — render the rupee sign in the sans face inside serif text */
-.rupee { font-family: var(--font-sans); font-weight: 600; }
+/* Poppins includes the ₹ glyph, so this is a no-op; kept so the markup stays portable if the display font changes */
+.rupee { font-family: inherit; font-weight: inherit; }
 
 .note {
   display: block;
@@ -409,7 +409,8 @@ p { color: var(--fg); }
 .stat { text-align: center; }
 .stat__value {
   display: block;
-  font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display);
   font-size: var(--fs-stat);
   font-weight: 700;
   color: var(--fg-heading);
@@ -451,7 +452,7 @@ p { color: var(--fg); }
 }
 .compare thead th {
   border-top: 0;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-h4);
   color: var(--fg-heading);
   background: var(--paper);
@@ -487,7 +488,7 @@ p { color: var(--fg); }
   .compare tr { border-top: 1px solid var(--border); }
   .compare tr:first-child { border-top: 0; }
   .compare th, .compare td { border-top: 0; padding: var(--sp-3) var(--sp-5); }
-  .compare tbody th { width: auto; padding-top: var(--sp-5); padding-bottom: var(--sp-1); font-family: var(--font-serif); font-size: var(--fs-h4); }
+  .compare tbody th { width: auto; padding-top: var(--sp-5); padding-bottom: var(--sp-1); font-family: var(--font-display); font-size: var(--fs-h4); }
   .compare td::before {
     content: attr(data-label);
     display: block;
@@ -513,7 +514,7 @@ p { color: var(--fg); }
   gap: var(--sp-4);
   padding: var(--sp-5) 0;
   text-align: left;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-h4);
   font-weight: 600;
   color: var(--fg-heading);
@@ -559,7 +560,7 @@ p { color: var(--fg); }
   gap: var(--sp-5);
 }
 .quote blockquote {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   line-height: 1.5;
   color: var(--fg-heading);
@@ -631,7 +632,7 @@ p { color: var(--fg); }
 }
 .brand__mark { width: 36px; height: 36px; flex: none; }
 .brand__name {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -.01em;
@@ -1135,27 +1136,112 @@ p { color: var(--fg); }
 /* --- Proof strip (own section directly under the hero) --- */
 .proof {
   --bg: var(--navy-950);
-  padding-block: clamp(2.5rem, 5vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
   border-top: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
 }
+.proof::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(700px 320px at 8% 0%, rgba(212, 255, 31, .09), transparent 70%),
+    radial-gradient(600px 300px at 95% 100%, rgba(37, 75, 124, .35), transparent 70%);
+}
+.proof .container { position: relative; }
+.proof__head {
+  display: grid;
+  gap: var(--sp-4);
+  align-items: end;
+  margin-bottom: var(--sp-6);
+}
+@media (min-width: 1024px) {
+  .proof__head { grid-template-columns: 1fr auto; gap: var(--sp-8); }
+}
+.proof__head .eyebrow { margin-bottom: var(--sp-2); }
+.proof__title { font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); max-width: 22ch; }
+.proof__note {
+  font-size: var(--fs-sm);
+  color: var(--fg-dark-muted);
+  max-width: 40ch;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.proof__note::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  box-shadow: 0 0 0 4px rgba(212, 255, 31, .15);
+}
+@media (min-width: 1024px) { .proof__note { justify-self: end; text-align: left; } }
+
 .proof__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--sp-5) var(--sp-6);
+  gap: var(--sp-4);
 }
-@media (min-width: 768px) { .proof__grid { grid-template-columns: repeat(4, 1fr); } }
-.proof .stat {
+@media (min-width: 1024px) { .proof__grid { grid-template-columns: repeat(4, 1fr); gap: var(--sp-5); } }
+
+.proof__card {
+  position: relative;
   text-align: left;
-  padding-left: var(--sp-4);
-  border-left: 2px solid var(--accent-500);
+  padding: var(--sp-6) var(--sp-5) var(--sp-5);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+  border: 1px solid rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 40px rgba(6, 20, 40, .35);
+  transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+  overflow: hidden;
 }
-.proof .stat__value { color: var(--fg-dark); }
-.proof .stat__label { color: var(--fg-dark-muted); }
-.proof__note {
-  margin-top: var(--sp-5);
+.proof__card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-500), rgba(212, 255, 31, 0));
+}
+.proof__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 255, 31, .35);
+  box-shadow: 0 24px 50px rgba(6, 20, 40, .5), 0 0 0 1px rgba(212, 255, 31, .12);
+}
+.proof__card .icon-tile {
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--sp-5);
+  background: rgba(212, 255, 31, .12);
+  color: var(--accent-500);
+}
+.proof__card .stat__value {
+  color: var(--fg-dark);
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 2.75rem);
+  letter-spacing: -.02em;
+}
+.proof__card .stat__label {
+  margin-top: var(--sp-1);
+  color: var(--fg-dark);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+}
+.proof__desc {
+  display: block;
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid rgba(255, 255, 255, .08);
   font-size: var(--fs-xs);
   color: var(--fg-dark-muted);
+  line-height: 1.5;
+}
+@media (max-width: 479px) {
+  .proof__grid { grid-template-columns: 1fr; }
 }
 
 /* --- Roadmap --- */
@@ -1179,7 +1265,7 @@ p { color: var(--fg); }
   background: var(--white);
   display: grid;
   place-items: center;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 700;
   color: var(--ink-500);
   position: relative;
@@ -1287,7 +1373,7 @@ p { color: var(--fg); }
   }
   .roadmap__detail dt { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-500); margin-bottom: var(--sp-2); }
   .roadmap__detail dd { margin: 0; color: var(--ink-700); font-size: var(--fs-sm); }
-  .roadmap__detail .roadmap__detail-title { font-family: var(--font-serif); font-size: var(--fs-h3); color: var(--ink-900); }
+  .roadmap__detail .roadmap__detail-title { font-family: var(--font-display); font-size: var(--fs-h3); color: var(--ink-900); }
   .roadmap__detail .roadmap__week { font-size: var(--fs-xs); margin-bottom: var(--sp-2); }
 }
 
@@ -1384,11 +1470,6 @@ p { color: var(--fg); }
 .final-cta .note a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .final-cta .section__head { margin-bottom: 0; }
 
-/* Placeholder marker (visible in mock only) */
-[data-placeholder] {
-  border-bottom: 1px dashed var(--accent-text);
-  cursor: help;
-}
 
 /* ==========================================================================
    08 UTILITIES

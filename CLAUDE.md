@@ -31,7 +31,7 @@ Convention: one flat `.html` per page in `v1/`, shared CSS/JS in `v1/assets/`, a
 ## Stack
 
 Plain HTML + custom CSS (`:root` tokens) + vanilla JS. **No build step, no Tailwind, no
-frameworks.** Only external request is Google Fonts (Inter + Playfair Display).
+frameworks.** Only external request is Google Fonts (Poppins + Inter).
 
 ## Content rules (client decisions — apply to every page)
 
@@ -43,10 +43,17 @@ frameworks.** Only external request is Google Fonts (Inter + Playfair Display).
 2. Images are **placeholders**; the client will supply real files with the same filenames
    (see *Image slots*). Do not fetch stock photos. Brief rule: no stock "handshake" photos —
    use skyline/exchange imagery, the founder's real photo, and the roadmap graphic.
-3. Unconfirmed facts are marked `<span data-placeholder title="Client to confirm">[X]</span>`
-   (dashed underline in the mock) plus an HTML comment `<!-- PLACEHOLDER: ... -->`.
-   Keep this convention so the outstanding-inputs list can be produced by grepping
-   `[X]`, `XXXXXXXXXX`, `PLACEHOLDER`, `TODO`.
+3. **Sample data, not visible placeholders.** The client asked for realistic numbers/names in
+   place of `[X]` markers and no placeholder styling ("I will update it later"). Every sample
+   value is wrapped in an invisible `<span data-placeholder>…</span>` (no CSS, no tooltip) and
+   the nearby HTML comment says `SAMPLE DATA`. To list what still needs real values:
+   `grep -n "data-placeholder\|SAMPLE DATA\|TODO" v1/index.html`. Current sample values:
+   40+ mandates · ₹620 Cr raised · 15+ years · 25+ partners · cost band 7–10% · merchant-banker
+   fees ₹30–60 L · founder "Vikram Mehta, 18 years" + bio · three promoter quotes (Deshmukh
+   Polymers, Coastal Agro Foods, Agarwal Precision Tools) · five client-logo names · phone
+   +91 98200 12345 / WhatsApp 919820012345 · hello@shikharcapital.com · office at Peninsula
+   Business Park, Lower Parel, Mumbai 400013 (also in the JSON-LD). Never present these to the
+   client as verified facts.
 4. Eligibility checker is **link-only** on the home page (`sme-ipo-eligibility.html`);
    the 5-step tool is a separate page (not built yet).
 
@@ -63,21 +70,24 @@ frameworks.** Only external request is Google Fonts (Inter + Playfair Display).
 | `--accent-700` | `#587500` | Accent **text on white** (olive, 5.3:1 AA). Never use `#D4FF1F` as text on white (1.2:1) |
 | `--accent-600` | `#B9E600` | Deeper lime for progress-bar gradients |
 | `--accent-100` | `#F6FFD1` | Pale-lime tint (icon tiles, chips, "With Shikhar Capital" table column) |
-
-`--accent-text` resolves to `--accent-700` (olive) on light sections and to `--accent-500`
-(lime) on `.section--navy`. Use it for coloured text/icons instead of the raw accent.
 | `--ink-900 / 700 / 500` | `#0B1F3A / #2E3D55 / #5B6B82` | Text on light |
 | `--fg-dark / --fg-dark-muted` | `#F4F6FA / #A9B4C6` | Text on navy |
 | `--paper`, `--line` | `#F6F7F9`, `#E3E7EE` | Alt section bg, borders |
+
+`--accent-text` resolves to `--accent-700` (olive) on light sections and to `--accent-500`
+(lime) on `.section--navy`. Use it for coloured text/icons instead of the raw accent.
 
 Accent buttons use **navy text on lime** (14:1). Focus ring is two-tone (navy outline + lime
 halo) so it is visible on both white and navy; form inputs focus with a navy border + lime halo.
 Theme switching is per section: `.section--navy` / `.section--paper` override `--bg --fg
 --fg-heading --fg-muted --card --border --accent-text`, so every component works on both.
 
-**Type** — Playfair Display 600/700 (headings, stats, quotes) + Inter 400/500/600 (body/UI).
-Fluid scale via `--fs-display`, `--fs-h2`, `--fs-stat` (clamp). Playfair has no ₹ glyph:
-wrap rupee signs inside serif text in `<span class="rupee">₹</span>`.
+**Type** — **Poppins** 500/600/700 for headings, stats and quotes (`--font-display`) +
+**Inter** 400/500/600 for body and UI (`--font-sans`). Client decision: "Poppins for headings,
+Inter for other text." Fluid scale via `--fs-display`, `--fs-h2`, `--fs-stat` (clamp); H1
+letter-spacing -.025em, H2 -.02em. Keep wrapping rupee signs inside headings in
+`<span class="rupee">₹</span>` — a no-op with Poppins (it has the glyph) but it protects
+against a future display font that lacks it.
 
 **Layout** — `--container: 1200px`, `--container-narrow: 820px`, `--section-y: clamp(4rem, 8vw, 7rem)`.
 Breakpoints (mobile-first, min-width): 640 · **768** (mobile bottom bar hides) ·
@@ -104,8 +114,11 @@ Matches brief §3 exactly:
    media query compresses type and spacing so the fold still fits on 13" laptops.
    **Removed by the client:** the right-column roadmap card, the eyebrow badge, and the in-hero
    stats bar — do not add elements to the right side of the hero.
-2. **Proof strip** — its own `#proof` section directly under the hero: dark `navy-950` band,
-   4 stats with a lime left rule, credibility note. All values are `[X]` placeholders.
+2. **Proof strip** — its own `#proof` section directly under the hero: `navy-950` band with soft
+   lime/navy glows, header row (eyebrow "Track record" + H2 + credibility note with a lime dot),
+   then 4 frosted cards (`.proof__card`) each with a lime icon tile, the number, label and a
+   one-line descriptor; lime top rule and hover lift. **Numbers count up from 0** when the cards
+   scroll into view (`data-count` attribute, see JS). Values are sample data.
 3. **Who it's for** — 3 qualifying-criteria cards → "See if you qualify".
 4. **Roadmap** — 10 steps. Desktop: horizontal track + hover/keyboard detail panel.
    Tablet: horizontal scroll-snap cards. Mobile: vertical list with details inline.
@@ -160,7 +173,10 @@ focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
 CSS grid height animation), `initCallback` (dialog open/close, Indian-mobile validation
 `/^[6-9]\d{9}$/`, success state), `initReveal` (IntersectionObserver; content is never hidden
-without JS), `initYear`.
+without JS), `initCounters` (any `[data-count="N"]` element counts from 0 to N with ease-out
+over 1.6 s — optional `data-count-duration` — the first time 60 % of it is visible; under
+reduced-motion or without IntersectionObserver the final value is simply shown; `.stat__value`
+uses `tabular-nums` so widths don't jitter), `initYear`.
 
 ## Image slots (v1/images)
 
@@ -180,7 +196,7 @@ cd v1; python -m http.server 8080      # open http://localhost:8080/
 - Validate JSON-LD (e.g. Google Rich Results Test); FAQ text in schema must equal the DOM text.
 - Keyboard: Tab through nav → FAQ (Enter/Space, Arrow keys) → roadmap (Arrow keys) → callback (Esc).
 - Lighthouse mobile targets: Performance ≥ 90, Accessibility 100, SEO 100.
-- Placeholders still outstanding: `grep -n "\[X\]\|XXXXXXXXXX\|PLACEHOLDER\|TODO" v1/index.html`.
+- Sample values still to be replaced with real ones: `grep -n "data-placeholder\|SAMPLE DATA\|TODO" v1/index.html`.
 
 Last verified (home page): JSON-LD parses, FAQ parity OK, unique ids, all `aria-controls`
 targets exist, no console errors, no horizontal overflow at 375/768/1440, 30 interaction checks
@@ -215,3 +231,9 @@ step sequence · legal review of the footer disclaimer · real images for every 
   Client then asked to **remove the eyebrow badge** and to **move the stats out of the hero**
   into a separate section (`#proof`, navy-950 band). Hero verified to end exactly at the fold
   at 375×812, 768×1024, 1366×768, 1440×900 and 1920×910.
+- **2026-09-21 (fonts)** — Headings switched from Playfair Display to **Poppins**; Inter kept for
+  body/UI (token renamed `--font-serif` → `--font-display`).
+- **2026-09-21 (sample data + proof strip)** — All `[X]`/bracket placeholders replaced with
+  realistic **sample data** and the dashed placeholder styling removed (client will supply real
+  values later). Added **count-up animation** for numbers (`data-count`). Proof strip redesigned
+  as four frosted stat cards with icons, descriptors and a header row.

@@ -22,7 +22,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css">
@@ -42,7 +42,7 @@
         "email": "hello@shikharcapital.com",
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+91-XXXXXXXXXX",
+          "telephone": "+91-98200-12345",
           "contactType": "sales",
           "areaServed": "IN",
           "availableLanguage": ["en", "hi"]
@@ -56,14 +56,14 @@
         "parentOrganization": { "@id": "https://www.shikharcapital.com/#org" },
         "url": "https://www.shikharcapital.com/",
         "description": "SME IPO advisory for ₹70–250 Cr revenue companies listing on NSE Emerge and BSE SME. One advisor coordinates every intermediary from readiness check to listing day, with a single consolidated plan.",
-        "telephone": "+91-XXXXXXXXXX",
+        "telephone": "+91-98200-12345",
         "priceRange": "₹₹₹",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "[Office address]",
-          "addressLocality": "[City]",
-          "addressRegion": "[State]",
-          "postalCode": "[PIN]",
+          "streetAddress": "1204, Peninsula Business Park, Lower Parel",
+          "addressLocality": "Mumbai",
+          "addressRegion": "Maharashtra",
+          "postalCode": "400013",
           "addressCountry": "IN"
         },
         "areaServed": { "@type": "Country", "name": "India" },
@@ -98,7 +98,7 @@
       {
         "@type": "Question",
         "name": "What does an SME IPO cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Total costs typically fall in a band of [X–X]% of the issue size, spread across the merchant banker, legal counsel, auditor, RTA, exchange and ROC fees, market making and marketing. Our cost page breaks each head down with ranges." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Total costs typically fall in a band of 7–10% of the issue size, spread across the merchant banker, legal counsel, auditor, RTA, exchange and ROC fees, market making and marketing. Our cost page breaks each head down with ranges." }
       },
       {
         "@type": "Question",
@@ -195,17 +195,52 @@
     </section>
 
     <!-- ========================= 2 · PROOF STRIP ========================= -->
-    <section class="section section--navy proof" id="proof" aria-label="Track record">
+    <section class="section section--navy proof" id="proof" aria-labelledby="proof-title">
       <div class="container">
-        <!-- PLACEHOLDER: client to confirm numbers. If unavailable at launch, replace with
+        <!-- SAMPLE DATA: client to confirm numbers. If unavailable at launch, replace with
              "Partners with SEBI-registered merchant bankers" style copy per brief. -->
-        <div class="proof__grid" data-reveal>
-          <div class="stat"><span class="stat__value"><span data-placeholder title="Client to confirm">[X]</span></span><span class="stat__label">mandates advised</span></div>
-          <div class="stat"><span class="stat__value"><span class="rupee">₹</span><span data-placeholder title="Client to confirm">[X]</span> Cr</span><span class="stat__label">raised for promoters</span></div>
-          <div class="stat"><span class="stat__value"><span data-placeholder title="Client to confirm">[X]</span>+</span><span class="stat__label">years in capital markets</span></div>
-          <div class="stat"><span class="stat__value"><span data-placeholder title="Client to confirm">[X]</span></span><span class="stat__label">intermediary partners</span></div>
+        <div class="proof__head" data-reveal>
+          <div>
+            <span class="eyebrow">Track record</span>
+            <h2 id="proof-title" class="proof__title">The numbers promoters ask about first</h2>
           </div>
-        <p class="proof__note">Working with SEBI-registered merchant bankers and exchange-empanelled intermediaries.</p>
+          <p class="proof__note">Working with SEBI-registered merchant bankers and exchange-empanelled intermediaries.</p>
+        </div>
+
+        <div class="proof__grid">
+          <div class="proof__card stat" data-reveal>
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l1 3h3v13H5V7h3z"/><path d="M9 13l2 2 4-4"/></svg>
+            </div>
+            <span class="stat__value"><span data-placeholder data-count="40">40</span>+</span>
+            <span class="stat__label">mandates advised</span>
+            <span class="proof__desc">Across NSE Emerge and BSE SME</span>
+          </div>
+          <div class="proof__card stat" data-reveal style="--reveal-delay: 100ms">
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-8"/><path d="M14 8h6v6"/></svg>
+            </div>
+            <span class="stat__value"><span class="rupee">₹</span><span data-placeholder data-count="620">620</span> Cr</span>
+            <span class="stat__label">raised for promoters</span>
+            <span class="proof__desc">Growth capital, without giving up control</span>
+          </div>
+          <div class="proof__card stat" data-reveal style="--reveal-delay: 200ms">
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <span class="stat__value"><span data-placeholder data-count="15">15</span>+</span>
+            <span class="stat__label">years in capital markets</span>
+            <span class="proof__desc">Merchant banking and listing advisory</span>
+          </div>
+          <div class="proof__card stat" data-reveal style="--reveal-delay: 300ms">
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M12 7.5v4M10.2 13.2L6.6 16M13.8 13.2l3.6 2.8"/></svg>
+            </div>
+            <span class="stat__value"><span data-placeholder data-count="25">25</span>+</span>
+            <span class="stat__label">intermediary partners</span>
+            <span class="proof__desc">Bankers, auditors, RTAs, market makers</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -256,7 +291,6 @@
           <span class="eyebrow">Process</span>
           <h2 id="roadmap-title">The listing roadmap</h2>
           <p class="lead">Ten steps, one owner. Hover any step to see who is involved and what gets delivered.</p>
-          <small class="note">Indicative sequence — <span data-placeholder title="Client to confirm">to be confirmed with client</span>.</small>
         </div>
 
         <ol class="roadmap__track" aria-label="10-step SME IPO roadmap">
@@ -475,16 +509,16 @@
           </tbody>
         </table>
 
-        <!-- Meet your advisor — IMAGE SLOT: images/founder.webp (800×1000 portrait). PLACEHOLDER name/bio. -->
+        <!-- Meet your advisor — IMAGE SLOT: images/founder.webp (800×1000 portrait). SAMPLE DATA name/bio. -->
         <div class="advisor" data-reveal>
           <div class="advisor__media">
-            <img class="advisor__img" src="images/founder.webp" alt="[Founder name], founder of Shikhar Capital" width="800" height="1000" loading="lazy" decoding="async">
+            <img class="advisor__img" src="images/founder.webp" alt="Vikram Mehta, Founder of Shikhar Capital" width="800" height="1000" loading="lazy" decoding="async">
           </div>
           <div class="advisor__body">
             <span class="eyebrow">Your advisor</span>
-            <h3 class="advisor__name"><span data-placeholder title="Client to confirm">[Founder name]</span></h3>
-            <p class="advisor__role"><span data-placeholder title="Client to confirm">Founder, Shikhar Capital · [X] years in capital markets</span></p>
-            <p class="advisor__bio"><span data-placeholder title="Client to provide 4–5 line bio">[4–5 line founder bio: background in merchant banking / CA / corporate finance, number of SME mandates worked on, sectors and cities served, and why the firm was set up as a single-advisor model.]</span></p>
+            <h3 class="advisor__name"><span data-placeholder>Vikram Mehta</span></h3>
+            <p class="advisor__role"><span data-placeholder>Founder, Shikhar Capital · 18 years in capital markets</span></p>
+            <p class="advisor__bio"><span data-placeholder>A Chartered Accountant who spent twelve years inside SEBI-registered merchant banks before setting up Shikhar Capital. Vikram has worked on more than 40 SME listings across manufacturing, textiles, pharma, auto components and agri-processing, for promoters in Mumbai, Surat, Ahmedabad, Pune and Jaipur. He started the firm after watching too many good companies lose months — and control of their story — to eight uncoordinated intermediaries. Today he personally leads every mandate from readiness check to listing day.</span></p>
             <ul class="trust-list trust-list--light">
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Personally leads every mandate</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>SEBI-registered merchant banker partners</li>
@@ -515,10 +549,10 @@
           </ul>
           <a class="btn btn--accent" href="sme-ipo-cost-timeline.html">See the full cost &amp; timeline breakdown</a>
         </div>
-        <!-- PLACEHOLDER: cost figures to be confirmed by client -->
+        <!-- SAMPLE DATA: cost figures to be confirmed by client -->
         <div class="cost__tiles" data-reveal>
-          <div class="stat"><span class="stat__value"><span data-placeholder title="Client to confirm">[X]–[X]%</span></span><span class="stat__label">of issue size — total cost band</span></div>
-          <div class="stat"><span class="stat__value"><span class="rupee">₹</span><span data-placeholder title="Client to confirm">[X]–[X]</span> L</span><span class="stat__label">typical merchant banker fees</span></div>
+          <div class="stat"><span class="stat__value"><span data-placeholder><span data-count="7">7</span>–<span data-count="10">10</span>%</span></span><span class="stat__label">of issue size — total cost band</span></div>
+          <div class="stat"><span class="stat__value"><span class="rupee">₹</span><span data-placeholder><span data-count="30">30</span>–<span data-count="60">60</span></span> L</span><span class="stat__label">typical merchant banker fees</span></div>
           <div class="stat"><span class="stat__value">One</span><span class="stat__label">consolidated estimate upfront — no piecemeal quotes</span></div>
         </div>
       </div>
@@ -530,42 +564,42 @@
         <div class="section__head">
           <span class="eyebrow">Testimonials</span>
           <h2 id="testimonials-title">What promoters say</h2>
-          <p class="lead">Quotes and logos below are placeholders until client references are confirmed.</p>
+          <p class="lead">Promoters who have been through the process with us.</p>
         </div>
 
-        <!-- PLACEHOLDER: all three quotes. IMAGE SLOTS: images/testimonial-1..3.webp (200×200 headshots).
+        <!-- SAMPLE DATA: all three quotes. IMAGE SLOTS: images/testimonial-1..3.webp (200×200 headshots).
              ALT: replace this grid with a 16:9 founder-video <figure> if no client quotes are available at launch. -->
         <div class="grid grid--3">
           <figure class="quote" data-reveal>
-            <blockquote><span data-placeholder title="Placeholder quote">We had spoken to three merchant bankers and were more confused after each call. One advisor owning the whole plan changed everything — we listed in under five months.</span></blockquote>
+            <blockquote><span data-placeholder>We had spoken to three merchant bankers and were more confused after each call. One advisor owning the whole plan changed everything — we listed in under five months.</span></blockquote>
             <figcaption>
               <img class="quote__avatar" src="images/testimonial-1.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
-              <span><span class="quote__name">[Promoter name], [Designation]</span><span class="quote__meta">[Company] · Listed on NSE Emerge, [Year]</span></span>
+              <span><span class="quote__name">Anil Deshmukh, Managing Director</span><span class="quote__meta">Deshmukh Polymers Ltd · Listed on NSE Emerge, 2024</span></span>
             </figcaption>
           </figure>
           <figure class="quote" data-reveal style="--reveal-delay: 100ms">
-            <blockquote><span data-placeholder title="Placeholder quote">The readiness audit found two issues our auditors had missed. Fixing them before the DRHP saved us a full quarter of exchange queries.</span></blockquote>
+            <blockquote><span data-placeholder>The readiness audit found two issues our auditors had missed. Fixing them before the DRHP saved us a full quarter of exchange queries.</span></blockquote>
             <figcaption>
               <img class="quote__avatar" src="images/testimonial-2.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
-              <span><span class="quote__name">[Promoter name], [Designation]</span><span class="quote__meta">[Company] · Listed on BSE SME, [Year]</span></span>
+              <span><span class="quote__name">Priya Nair, Chief Financial Officer</span><span class="quote__meta">Coastal Agro Foods Ltd · Listed on BSE SME, 2023</span></span>
             </figcaption>
           </figure>
           <figure class="quote" data-reveal style="--reveal-delay: 200ms">
-            <blockquote><span data-placeholder title="Placeholder quote">I spent two hours a week on the IPO, not twenty. The rest of the time I ran the business, which is what investors were actually buying.</span></blockquote>
+            <blockquote><span data-placeholder>I spent two hours a week on the IPO, not twenty. The rest of the time I ran the business, which is what investors were actually buying.</span></blockquote>
             <figcaption>
               <img class="quote__avatar" src="images/testimonial-3.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
-              <span><span class="quote__name">[Promoter name], [Designation]</span><span class="quote__meta">[Company] · Listed on NSE Emerge, [Year]</span></span>
+              <span><span class="quote__name">Sandeep Agarwal, Chairman</span><span class="quote__meta">Agarwal Precision Tools Ltd · Listed on NSE Emerge, 2025</span></span>
             </figcaption>
           </figure>
         </div>
 
         <!-- IMAGE SLOTS: images/client-logo-1..5.webp (240×80, transparent or white background) -->
-        <ul class="logo-row" aria-label="Companies we have advised (placeholders)">
-          <li><img src="images/client-logo-1.webp" alt="[Client 1]" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-2.webp" alt="[Client 2]" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-3.webp" alt="[Client 3]" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-4.webp" alt="[Client 4]" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-5.webp" alt="[Client 5]" width="240" height="80" loading="lazy" decoding="async"></li>
+        <ul class="logo-row" aria-label="Companies we have advised">
+          <li><img src="images/client-logo-1.webp" alt="Deshmukh Polymers" width="240" height="80" loading="lazy" decoding="async"></li>
+          <li><img src="images/client-logo-2.webp" alt="Coastal Agro Foods" width="240" height="80" loading="lazy" decoding="async"></li>
+          <li><img src="images/client-logo-3.webp" alt="Agarwal Precision Tools" width="240" height="80" loading="lazy" decoding="async"></li>
+          <li><img src="images/client-logo-4.webp" alt="Sunrise Textiles" width="240" height="80" loading="lazy" decoding="async"></li>
+          <li><img src="images/client-logo-5.webp" alt="Meridian Healthcare" width="240" height="80" loading="lazy" decoding="async"></li>
         </ul>
       </div>
     </section>
@@ -576,7 +610,7 @@
         <div class="section__head">
           <span class="eyebrow">FAQ</span>
           <h2 id="faq-title">SME IPO questions promoters ask us</h2>
-          <small class="note">Norms reference SEBI ICDR regulations as amended; confirm current thresholds before publishing.</small>
+          <small class="note">Eligibility norms reference SEBI (ICDR) Regulations and exchange rules as amended.</small>
         </div>
 
         <div class="faq" data-accordion="single">
@@ -594,7 +628,7 @@
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">What does an SME IPO cost?<span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
-            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden><div><p>Total costs typically fall in a band of <span data-placeholder title="Client to confirm">[X–X]%</span> of the issue size, spread across the merchant banker, legal counsel, auditor, RTA, exchange and ROC fees, market making and marketing. Our cost page breaks each head down with ranges.</p></div></div>
+            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden><div><p>Total costs typically fall in a band of <span data-placeholder>7–10%</span> of the issue size, spread across the merchant banker, legal counsel, auditor, RTA, exchange and ROC fees, market making and marketing. Our cost page breaks each head down with ranges.</p></div></div>
           </div>
           <div class="faq__item">
             <h3><button class="faq__q" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">How much capital can we raise through an SME IPO?<span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
@@ -629,7 +663,7 @@
         </div>
         <div class="btn-row">
           <a class="btn btn--accent btn--lg" href="sme-ipo-eligibility.html">Check eligibility</a>
-          <a class="btn btn--outline-light btn--lg" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener">
+          <a class="btn btn--outline-light btn--lg" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>
             WhatsApp us
           </a>
@@ -659,10 +693,10 @@
             <span class="brand__name">Shikhar <em>Capital</em></span>
           </a>
           <p class="footer__blurb">SME IPO advisory for ₹70–250 Cr revenue companies listing on NSE Emerge and BSE SME.</p>
-          <!-- PLACEHOLDER: office address -->
+          <!-- SAMPLE DATA: office address -->
           <address class="footer__addr">
-            <span data-placeholder title="Client to confirm">[Office address line 1]</span><br>
-            <span data-placeholder title="Client to confirm">[City, State – PIN]</span>
+            <span data-placeholder>1204, Peninsula Business Park, Lower Parel</span><br>
+            <span data-placeholder>Mumbai, Maharashtra – 400013</span>
           </address>
         </div>
 
@@ -691,17 +725,17 @@
         <div>
           <h2 class="footer__title">Talk to us</h2>
           <div class="footer__contact">
-            <!-- PLACEHOLDER: phone, email -->
-            <a href="tel:+91XXXXXXXXXX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span data-placeholder title="Client to confirm">+91 XXXXX XXXXX</span></a>
-            <a href="mailto:hello@shikharcapital.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-placeholder title="Client to confirm">hello@shikharcapital.com</span></a>
-            <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>WhatsApp us</a>
+            <!-- SAMPLE DATA: phone, email -->
+            <a href="tel:+919820012345"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span data-placeholder>+91 98200 12345</span></a>
+            <a href="mailto:hello@shikharcapital.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-placeholder>hello@shikharcapital.com</span></a>
+            <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>WhatsApp us</a>
             <span>Mon–Sat · 10am–7pm IST</span>
           </div>
         </div>
       </div>
 
       <div class="footer__legal">
-        <!-- PLACEHOLDER: disclaimer wording for legal review; must align with Google financial-services ad policy -->
+        <!-- SAMPLE DATA: disclaimer wording for legal review; must align with Google financial-services ad policy -->
         <p><strong>Disclaimer.</strong> Shikhar Capital is an IPO advisory firm. It is not a SEBI-registered merchant banker; IPO execution is carried out through SEBI-registered intermediaries appointed for each mandate. Information on this site is for general guidance and is not investment advice. NSE Emerge and BSE SME are platforms of the National Stock Exchange of India Ltd and BSE Ltd respectively; references are for identification only. Eligibility criteria are subject to SEBI (ICDR) Regulations and exchange rules as amended.</p>
         <div class="footer__copy">
           <span>© <span data-year>2026</span> Shikhar Capital. All rights reserved.</span>
@@ -716,7 +750,7 @@
        SHARED: ALWAYS-ON WIDGETS — copy verbatim to every page.
        WhatsApp float · callback widget · mobile bottom bar
        ================================================================== -->
-  <a class="wa-float" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <a class="wa-float" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>
   </a>
 
@@ -754,8 +788,8 @@
   </div>
 
   <nav class="mobile-bar" aria-label="Quick actions">
-    <a href="tel:+91XXXXXXXXXX"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call</a>
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>WhatsApp</a>
+    <a href="tel:+919820012345"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call</a>
+    <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>WhatsApp</a>
     <a class="btn--accent" href="sme-ipo-eligibility.html">Check Eligibility</a>
   </nav>
   <!-- /SHARED: ALWAYS-ON WIDGETS -->

@@ -252,7 +252,39 @@
   }
 
   /* ---------------------------------------------------------------------
-     8. Footer year
+     8. Count-up numbers ([data-count="40"]) — animate from 0 when scrolled into view
+     --------------------------------------------------------------------- */
+  function initCounters() {
+    var els = $$('[data-count]');
+    if (!els.length) return;
+    if (REDUCED || !('IntersectionObserver' in window)) return; // leave the final value in place
+
+    function animate(el) {
+      var target = parseFloat(el.getAttribute('data-count'));
+      var duration = parseInt(el.getAttribute('data-count-duration'), 10) || 1600;
+      var decimals = (String(target).split('.')[1] || '').length;
+      var start = null;
+      function frame(now) {
+        if (start === null) start = now;
+        var t = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+        el.textContent = (target * eased).toFixed(decimals);
+        if (t < 1) window.requestAnimationFrame(frame); else el.textContent = String(target);
+      }
+      window.requestAnimationFrame(frame);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { animate(entry.target); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.6 });
+
+    els.forEach(function (el) { el.textContent = '0'; io.observe(el); });
+  }
+
+  /* ---------------------------------------------------------------------
+     9. Footer year
      --------------------------------------------------------------------- */
   function initYear() {
     $$('[data-year]').forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
@@ -266,6 +298,7 @@
     initAccordion();
     initCallback();
     initReveal();
+    initCounters();
     initYear();
   });
 })();
