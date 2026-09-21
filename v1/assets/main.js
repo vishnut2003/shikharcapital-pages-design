@@ -74,7 +74,8 @@
   }
 
   /* ---------------------------------------------------------------------
-     4. Roadmap — hover / keyboard driven detail panel (desktop only)
+     4. Roadmap — "ascent" chart: hover / keyboard / prev-next driven detail panel,
+        gentle autoplay until the visitor interacts (desktop only)
      --------------------------------------------------------------------- */
   function initRoadmap() {
     var root = $('.roadmap');
@@ -83,8 +84,16 @@
     var steps = $$('.roadmap__step', root);
     var buttons = $$('.roadmap__btn', root);
     if (!buttons.length) return;
+    var panelWrap = $('.roadmap__panel', root);
+    var counter = $('[data-roadmap-index]', root);
+    var prev = $('[data-roadmap-prev]', root);
+    var next = $('[data-roadmap-next]', root);
+    var chart = $('.roadmap__chart', root) || root;
+    var current = 0;
+    var timer = null;
 
     function activate(i) {
+      current = i;
       steps.forEach(function (el, n) {
         el.classList.toggle('is-active', n === i);
         el.classList.toggle('is-done', n < i);
@@ -92,24 +101,48 @@
       buttons.forEach(function (b, n) {
         if (n === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
       });
-      root.style.setProperty('--progress', Math.round((i / (steps.length - 1)) * 100) + '%');
+      root.style.setProperty('--progress', String(Math.round((i / (steps.length - 1)) * 100)));
       var detail = $('.roadmap__step-detail', steps[i]);
       if (detail) panel.innerHTML = detail.innerHTML;
+      if (counter) counter.textContent = String(i + 1);
+      if (panelWrap) panelWrap.setAttribute('data-step', (i + 1 < 10 ? '0' : '') + (i + 1));
+    }
+
+    function stopAutoplay() { if (timer) { clearInterval(timer); timer = null; } }
+    function startAutoplay() {
+      if (timer || REDUCED || !DESKTOP.matches) return;
+      timer = setInterval(function () {
+        if (document.hidden) return;
+        activate((current + 1) % steps.length);
+      }, 3600);
     }
 
     buttons.forEach(function (btn, i) {
-      btn.addEventListener('mouseenter', function () { if (DESKTOP.matches) activate(i); });
-      btn.addEventListener('focus', function () { if (DESKTOP.matches) activate(i); });
-      btn.addEventListener('click', function () { activate(i); });
+      btn.addEventListener('mouseenter', function () { if (DESKTOP.matches) { stopAutoplay(); activate(i); } });
+      btn.addEventListener('focus', function () { if (DESKTOP.matches) { stopAutoplay(); activate(i); } });
+      btn.addEventListener('click', function () { stopAutoplay(); activate(i); });
       btn.addEventListener('keydown', function (e) {
-        var next = null;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % buttons.length;
-        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + buttons.length) % buttons.length;
-        else if (e.key === 'Home') next = 0;
-        else if (e.key === 'End') next = buttons.length - 1;
-        if (next !== null) { e.preventDefault(); buttons[next].focus(); activate(next); }
+        var n = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % buttons.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i - 1 + buttons.length) % buttons.length;
+        else if (e.key === 'Home') n = 0;
+        else if (e.key === 'End') n = buttons.length - 1;
+        if (n !== null) { e.preventDefault(); stopAutoplay(); buttons[n].focus(); activate(n); }
       });
     });
+    if (prev) prev.addEventListener('click', function () { stopAutoplay(); activate((current - 1 + steps.length) % steps.length); });
+    if (next) next.addEventListener('click', function () { stopAutoplay(); activate((current + 1) % steps.length); });
+
+    // Autoplay only while the chart is on screen; any interaction ends it for good.
+    var interacted = false;
+    ['pointerdown', 'wheel', 'touchstart'].forEach(function (evt) {
+      chart.addEventListener(evt, function () { interacted = true; stopAutoplay(); }, { passive: true });
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !interacted) startAutoplay(); else stopAutoplay();
+      }, { threshold: 0.4 }).observe(chart);
+    }
 
     activate(0);
   }

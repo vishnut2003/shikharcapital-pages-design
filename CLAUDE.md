@@ -120,9 +120,19 @@ Matches brief §3 exactly:
    one-line descriptor; lime top rule and hover lift. **Numbers count up from 0** when the cards
    scroll into view (`data-count` attribute, see JS). Values are sample data.
 3. **Who it's for** — 3 qualifying-criteria cards → "See if you qualify".
-4. **Roadmap** — 10 steps. Desktop: horizontal track + hover/keyboard detail panel.
-   Tablet: horizontal scroll-snap cards. Mobile: vertical list with details inline.
-   Step content is written once inside each `<li>`; JS mirrors it into `#roadmap-detail` on desktop.
+4. **Roadmap** — 10 steps on a navy band. Desktop (≥1024): an **"ascent" chart** — an SVG
+   rising curve (IPO-gains motif) with a lime area fill and faint grid; the ten steps are
+   `<button>`s absolutely positioned on the curve via inline `--x/--y` percentages (the same
+   numbers generate the SVG path — keep them in sync if you move a node); the lime stroke fills
+   up to the active node (`pathLength="100"` + `stroke-dashoffset: calc(100 - var(--progress))`,
+   `--progress` is unitless 0–100); a "Listing day" flag sits on node 10; a phase axis
+   (Prepare 3 · Document 2 · Approve 2 · Launch 2 · List 1) runs underneath. Header row has a
+   phase legend. The detail panel shows phase chip, title, intermediaries, deliverable, a faint
+   big step number, "Step N of 10" and prev/next arrows. **Autoplay** advances every 3.6 s while
+   the chart is ≥40 % visible and stops permanently on any hover/click/scroll/keyboard interaction
+   (never under reduced-motion). Tablet: horizontal scroll-snap cards. Mobile: vertical timeline
+   with details inline. Step content is written once inside each `<li>`; JS mirrors it into
+   `#roadmap-detail` on desktop.
 5. **Services** — 3 image cards (Pre-IPO · Execution · Post-listing) → `services.html#…`.
 6. **Why us** — "Single advisor vs juggling 8 intermediaries" comparison table (stacks to cards <768)
    + **"Your advisor"** block with founder photo slot and bio placeholder.
@@ -169,7 +179,7 @@ loads on pages that have no hero timeline, roadmap, FAQ, etc.
 
 Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (adds `.is-scrolled`
 past 8px — drives the overlay header's transparent→white switch), `initMobileNav` (toggle, Esc,
-focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (hover,
+focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (ascent chart: hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
 CSS grid height animation), `initCallback` (dialog open/close, Indian-mobile validation
 `/^[6-9]\d{9}$/`, success state), `initReveal` (IntersectionObserver; content is never hidden
@@ -181,8 +191,8 @@ uses `tabular-nums` so widths don't jitter), `initYear`.
 ## Image slots (v1/images)
 
 All `*.webp` / `og-home.jpg` files are **generated placeholders** showing their own filename and
-size — except `hero-bg.webp`, which is now the client's real Mumbai-skyline photo (source PNG kept
-in `images/user-uploads/`). Replace each placeholder with a real image of the same name (WebP,
+size — except `hero-bg.webp` and the three `service-*.webp` card images, which are the client's
+real photos (source PNGs kept in `images/user-uploads/`). Replace each placeholder with a real image of the same name (WebP,
 roughly the same ratio); no HTML changes needed. Client uploads go in `images/user-uploads/`;
 convert to WebP into `images/` (Pillow: `Image.open(src).convert('RGB').save(dst, 'WEBP', quality=82)`). Full table in `v1/images/README.md`. Keep `logo-mark.svg` (placeholder logo
 until the client supplies one) and `skyline-lineart.svg` (decorative line-art).
@@ -237,3 +247,8 @@ step sequence · legal review of the footer disclaimer · real images for every 
   realistic **sample data** and the dashed placeholder styling removed (client will supply real
   values later). Added **count-up animation** for numbers (`data-count`). Proof strip redesigned
   as four frosted stat cards with icons, descriptors and a header row.
+- **2026-09-21 (roadmap)** — Roadmap section redesigned as the **ascent chart** (dark band,
+  rising SVG curve with nodes, phase legend + axis, richer detail panel with prev/next and
+  autoplay). Client had called the previous horizontal track "very basic".
+- **2026-09-21 (service images)** — Client supplied the three service-card photos
+  (`user-uploads/service-*.png` → `service-*.webp`, 1600×1000).

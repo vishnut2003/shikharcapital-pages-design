@@ -9,9 +9,9 @@ Keep roughly the same aspect ratio; WebP preferred (brief: fast load, WebP, no h
 | File | Size (px) | Where it appears | What to supply |
 |---|---|---|---|
 | `hero-bg.webp` | 1672×941 | Hero background, full opacity under a left-heavy navy gradient | **Supplied** — Mumbai skyline at dusk (source: `user-uploads/hero-bg.png`) |
-| `service-pre-ipo.webp` | 800×500 | Services card 1 | Financial review: documents, charts, boardroom. No handshakes. |
-| `service-execution.webp` | 800×500 | Services card 2 | Exchange floor / listing bell / DRHP paperwork |
-| `service-post-listing.webp` | 800×500 | Services card 3 | Ticker board / investor meeting / growth chart |
+| `service-pre-ipo.webp` | 1600×1000 | Services card 1 | **Supplied** — readiness review on a boardroom table (source: `user-uploads/service-pre-ipo.png`) |
+| `service-execution.webp` | 1600×1000 | Services card 2 | **Supplied** — listing bell + prospectus (source: `user-uploads/service-execution.png`) |
+| `service-post-listing.webp` | 1600×1000 | Services card 3 | **Supplied** — share-price screen in a meeting room (source: `user-uploads/service-post-listing.png`) |
 | `founder.webp` | 800×1000 | "Your advisor" block (Why us) | Founder's real portrait, plain background, top-aligned |
 | `testimonial-1.webp` … `-3.webp` | 200×200 | Testimonial headshots (shown as 48px circles) | Promoter headshots, square crop |
 | `client-logo-1.webp` … `-5.webp` | 240×80 | Logo row under testimonials (shown greyscale, colour on hover) | Client / listed-company logos on transparent or white |
