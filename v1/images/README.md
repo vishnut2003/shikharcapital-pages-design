@@ -8,7 +8,7 @@ Keep roughly the same aspect ratio; WebP preferred (brief: fast load, WebP, no h
 
 | File | Size (px) | Where it appears | What to supply |
 |---|---|---|---|
-| `hero-bg.webp` | 1920×1080 | Hero background (28% opacity under navy overlay) | Mumbai skyline / exchange building, dusk. No people. |
+| `hero-bg.webp` | 1672×941 | Hero background, full opacity under a left-heavy navy gradient | **Supplied** — Mumbai skyline at dusk (source: `user-uploads/hero-bg.png`) |
 | `service-pre-ipo.webp` | 800×500 | Services card 1 | Financial review: documents, charts, boardroom. No handshakes. |
 | `service-execution.webp` | 800×500 | Services card 2 | Exchange floor / listing bell / DRHP paperwork |
 | `service-post-listing.webp` | 800×500 | Services card 3 | Ticker board / investor meeting / growth chart |

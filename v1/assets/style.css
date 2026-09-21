@@ -669,9 +669,43 @@ p { color: var(--fg); }
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
-  transition: box-shadow var(--ease), border-color var(--ease);
+  transition: background var(--ease), box-shadow var(--ease), border-color var(--ease);
 }
 .site-header.is-scrolled { box-shadow: var(--shadow-sm); border-color: var(--line); }
+
+/* Overlay variant (home): fixed and transparent over the full-height hero, turns solid white
+   once the page scrolls (or the mobile menu opens). Other pages use the plain sticky header. */
+.site-header--overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.site-header--overlay:not(.is-scrolled) .brand { color: var(--fg-dark); }
+.site-header--overlay:not(.is-scrolled) .brand__name em { color: var(--accent-400); }
+.site-header--overlay:not(.is-scrolled) .nav-toggle { color: var(--fg-dark); }
+@media (min-width: 1024px) {
+  .site-header--overlay:not(.is-scrolled) .site-nav__list a { color: var(--fg-dark); }
+  .site-header--overlay:not(.is-scrolled) .site-nav__list a:hover,
+  .site-header--overlay:not(.is-scrolled) .site-nav__list a[aria-current="page"] { color: var(--accent-400); }
+}
+.site-header--overlay.is-scrolled {
+  background: rgba(255, 255, 255, .94);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+/* While the menu is open the header must NOT have a backdrop-filter: it would become the
+   containing block for the fixed-position nav panel and clip it to the header's height. */
+.nav-open .site-header {
+  background: var(--white);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.nav-open .site-header--overlay .brand { color: var(--ink-900); }
+.nav-open .site-header--overlay .brand__name em { color: var(--accent-700); }
+.nav-open .site-header--overlay .nav-toggle { color: var(--ink-900); }
 .site-header__inner {
   display: flex;
   align-items: center;
@@ -911,12 +945,20 @@ p { color: var(--fg); }
    ========================================================================== */
 
 /* --- Hero --- */
+/* Fills the first fold exactly (100dvh) and starts at the top of the page, under the transparent
+   overlay header. Content is centred; top padding clears the header, bottom padding leaves room
+   for the proof strip that overlaps the hero's lower edge. */
 .hero {
   position: relative;
   overflow: hidden;
-  padding-block: clamp(3rem, 7vw, 6rem) clamp(6rem, 10vw, 8rem);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-block: calc(var(--header-h) + clamp(1.5rem, 4vh, 3rem)) clamp(5.5rem, 12vh, 8rem);
   isolation: isolate;
+  display: flex;
+  align-items: center;
 }
+.hero > .container { width: 100%; }
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -924,20 +966,20 @@ p { color: var(--fg); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  opacity: .28;
+  object-position: right center; /* skyline sits on the right of the photo, beside the headline */
 }
+/* Overlay: heavy on the left (headline), lighter on the right (skyline), darker at the bottom (proof strip) */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(circle at 82% 18%, rgba(212, 255, 31, .12), transparent 42%),
-    linear-gradient(90deg, rgba(11, 31, 58, .92) 0%, rgba(11, 31, 58, .78) 55%, rgba(11, 31, 58, .55) 100%),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 48px),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 48px);
+    linear-gradient(180deg, rgba(11, 31, 58, .35) 0%, rgba(11, 31, 58, 0) 40%, rgba(11, 31, 58, .75) 100%),
+    linear-gradient(90deg, rgba(11, 31, 58, .92) 0%, rgba(11, 31, 58, .7) 45%, rgba(11, 31, 58, .2) 100%);
 }
+/* Single text column; the right half of the hero stays clear for the skyline */
+.hero__content { max-width: 640px; }
 .hero h1 { max-width: 16ch; }
 .hero .lead { margin-top: var(--sp-5); }
 .hero .btn-row { margin-top: var(--sp-6); }
@@ -945,95 +987,12 @@ p { color: var(--fg); }
 @media (max-width: 639px) {
   .hero .btn-row .btn { width: 100%; }
 }
+/* On phones the photo is behind the text, so darken it evenly */
+@media (max-width: 767px) {
+  .hero::before { background: linear-gradient(180deg, rgba(11, 31, 58, .85) 0%, rgba(11, 31, 58, .8) 60%, rgba(11, 31, 58, .9) 100%); }
+  .hero__bg { object-position: 70% center; }
+}
 
-/* Hero timeline card (decorative) */
-.hero-timeline {
-  background: var(--navy-800);
-  border: 1px solid var(--line-dark);
-  border-radius: var(--r-lg);
-  padding: var(--sp-5);
-  box-shadow: var(--shadow-lg);
-  min-height: 420px;
-  position: relative;
-  --progress: 0%;
-}
-.hero-timeline__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-3);
-  padding-bottom: var(--sp-4);
-  border-bottom: 1px solid var(--line-dark);
-  margin-bottom: var(--sp-4);
-}
-.hero-timeline__title { font-family: var(--font-serif); font-size: var(--fs-h4); color: var(--fg-dark); font-weight: 600; }
-.hero-timeline__list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px var(--sp-5);
-  position: relative;
-}
-@media (min-width: 480px) { .hero-timeline__list { grid-template-columns: 1fr 1fr; } }
-.hero-timeline__step {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: 7px 0;
-  color: var(--fg-dark-muted);
-  font-size: var(--fs-sm);
-  transition: color var(--ease);
-}
-.hero-timeline__num {
-  flex: none;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1.5px solid var(--line-dark);
-  display: grid;
-  place-items: center;
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: var(--fg-dark-muted);
-  transition: background var(--ease), color var(--ease), border-color var(--ease), transform var(--ease);
-}
-.hero-timeline__num svg { width: 12px; height: 12px; display: none; }
-.hero-timeline__label { flex: 1; line-height: 1.3; }
-.hero-timeline__week { font-size: var(--fs-xs); color: var(--fg-dark-muted); white-space: nowrap; opacity: .8; }
-.hero-timeline__step.is-done { color: var(--fg-dark); }
-.hero-timeline__step.is-done .hero-timeline__num { background: var(--navy-600); border-color: var(--navy-600); color: var(--fg-dark); }
-.hero-timeline__step.is-done .hero-timeline__num svg { display: block; }
-.hero-timeline__step.is-done .hero-timeline__num span { display: none; }
-.hero-timeline__step.is-active { color: var(--fg-dark); }
-.hero-timeline__step.is-active .hero-timeline__num {
-  background: var(--accent-500);
-  border-color: var(--accent-500);
-  color: var(--navy-900);
-  transform: scale(1.1);
-  animation: pulse 1.6s ease-out infinite;
-}
-.hero-timeline__step.is-active .hero-timeline__week { color: var(--accent-400); opacity: 1; }
-.hero-timeline__bar {
-  height: 4px;
-  border-radius: var(--r-pill);
-  background: var(--line-dark);
-  margin-top: var(--sp-4);
-  overflow: hidden;
-}
-.hero-timeline__bar::after {
-  content: "";
-  display: block;
-  height: 100%;
-  width: var(--progress);
-  background: linear-gradient(90deg, var(--accent-600), var(--accent-400));
-  transition: width 600ms cubic-bezier(.2, .7, .2, 1);
-}
-.hero-timeline__caption {
-  margin-top: var(--sp-3);
-  font-size: var(--fs-xs);
-  color: var(--fg-dark-muted);
-  min-height: 1.5em;
-}
-.hero-timeline__caption strong { color: var(--accent-400); font-weight: 600; }
 
 /* --- Proof strip --- */
 .proof {

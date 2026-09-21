@@ -133,7 +133,7 @@
        Keep in sync across all v1/*.html pages. Do not edit per page;
        aria-current is set by main.js.
        ================================================================== -->
-  <header class="site-header">
+  <header class="site-header site-header--overlay">
     <div class="container site-header__inner">
       <a class="brand" href="index.html" aria-label="Shikhar Capital — home">
         <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
@@ -173,10 +173,10 @@
 
     <!-- ============================ 1 · HERO ============================ -->
     <section class="section section--navy hero" id="hero" aria-labelledby="hero-title">
-      <!-- IMAGE SLOT: images/hero-bg.webp (1920×1080) — skyline / exchange building; shown at low opacity under a navy overlay -->
-      <img class="hero__bg" src="images/hero-bg.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
-      <div class="container split">
-        <div>
+      <!-- IMAGE: images/hero-bg.webp — Mumbai skyline at dusk (client-supplied, source in images/user-uploads/hero-bg.png) -->
+      <img class="hero__bg" src="images/hero-bg.webp" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
+      <div class="container">
+        <div class="hero__content">
           <span class="eyebrow">SME IPO Advisory · NSE Emerge &amp; BSE SME</span>
           <h1 id="hero-title">List your company on NSE Emerge / BSE SME with <span class="text-accent">one advisor</span></h1>
           <p class="lead">Every intermediary coordinated. From readiness check to listing day.</p>
@@ -189,28 +189,6 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No obligation</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reply within 15 min</li>
           </ul>
-        </div>
-
-        <!-- Decorative animated timeline card; the accessible version is in #roadmap -->
-        <div class="hero-timeline" aria-hidden="true">
-          <div class="hero-timeline__head">
-            <span class="hero-timeline__title">Your listing roadmap</span>
-            <span class="chip">10 steps · 1 advisor</span>
-          </div>
-          <ol class="hero-timeline__list">
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 1</strong> · Readiness assessment · Shikhar Capital"><span class="hero-timeline__num"><span>1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Readiness assessment</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 2</strong> · Appoint intermediaries · Merchant banker, legal, auditor, RTA"><span class="hero-timeline__num"><span>2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Appoint intermediaries</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 3</strong> · Corporate restructuring · Company secretary, legal"><span class="hero-timeline__num"><span>3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Corporate restructuring</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 4</strong> · Due diligence &amp; restated financials · Auditor, merchant banker"><span class="hero-timeline__num"><span>4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Due diligence</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 5</strong> · DRHP drafting · Merchant banker + legal counsel"><span class="hero-timeline__num"><span>5</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">DRHP drafting</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 6</strong> · Exchange filing · NSE Emerge / BSE SME"><span class="hero-timeline__num"><span>6</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Exchange approval</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 7</strong> · RHP filing &amp; issue setup · ROC, market maker, underwriter"><span class="hero-timeline__num"><span>7</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">RHP &amp; issue setup</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 8</strong> · Roadshows · Anchor investors, distributors"><span class="hero-timeline__num"><span>8</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Roadshows</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 9</strong> · Issue open, close &amp; allotment · RTA, bankers, depositories"><span class="hero-timeline__num"><span>9</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Issue &amp; allotment</span></li>
-            <li class="hero-timeline__step" data-hero-step data-caption="<strong>Step 10</strong> · Listing day · Exchange, market maker, Shikhar Capital"><span class="hero-timeline__num"><span>10</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="hero-timeline__label">Listing day</span></li>
-          </ol>
-          <div class="hero-timeline__bar"></div>
-          <p class="hero-timeline__caption" data-hero-caption><strong>Step 1</strong> · Readiness assessment · Shikhar Capital</p>
         </div>
       </div>
     </section>

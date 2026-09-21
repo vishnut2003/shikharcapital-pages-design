@@ -93,9 +93,12 @@ BEM-lite naming; mobile-first media queries grouped per component; colours only 
 
 Matches brief §3 exactly:
 
-1. **Hero** — H1 "List your company on NSE Emerge / BSE SME with *one advisor*", two CTAs
-   (Check eligibility · Book a readiness call), trust line, animated 10-step roadmap card
-   (decorative, `aria-hidden`; auto-advances, pauses on hover), `hero-bg.webp` at 28% under a navy overlay.
+1. **Hero** — full first fold (`min-height: 100dvh`, starts at the top of the page under the
+   transparent overlay header). Single text column (`.hero__content`, max 640px) on the left:
+   H1 "List your company on NSE Emerge / BSE SME with *one advisor*", two CTAs, trust line.
+   The right half is left clear for the skyline photo (`hero-bg.webp`, client-supplied, source
+   PNG in `images/user-uploads/`). Navy gradient overlay is heavy on the left / light on the right;
+   on phones it is uniform. **No right-column card** — the client removed the roadmap card from the hero.
 2. **Proof strip** — 4 stats, overlapping the hero. All values are `[X]` placeholders.
 3. **Who it's for** — 3 qualifying-criteria cards → "See if you qualify".
 4. **Roadmap** — 10 steps. Desktop: horizontal track + hover/keyboard detail panel.
@@ -110,7 +113,11 @@ Matches brief §3 exactly:
 10. **Final CTA** — Check eligibility · WhatsApp us, `cta-bg.webp` under overlay + skyline line-art.
 
 Footer: brand, pages, legal, contact, disclaimer (placeholder wording for legal review).
-Always-on widgets: sticky header with "Book a Call"; mobile bottom bar (Call · WhatsApp ·
+Always-on widgets: header with "Book a Call" — on the home page it is the **overlay variant**
+(`.site-header.site-header--overlay`: fixed, transparent with white text over the hero, turns
+solid white with navy text once scrolled or when the mobile menu opens). Inner pages use the
+plain `.site-header` (sticky, white) so their first section is not hidden under a fixed bar.
+Mobile bottom bar (Call · WhatsApp ·
 Check Eligibility, <768); WhatsApp float with pre-filled message; callback widget
 ("Get a call in 15 min" → name + mobile form, client-side validation, `// TODO` CRM webhook).
 Not built (paid-traffic only per brief): exit-intent popup.
@@ -131,14 +138,19 @@ the Organization JSON-LD):
 ```
 
 Do not edit them per page — `main.js` sets `aria-current="page"` on the matching nav link
-automatically. Every `init*()` in `main.js` null-checks its root element, so the same script
+automatically. One exception: **remove the `site-header--overlay` class** from the header on
+inner pages (it is only for the full-height hero on the home page).
+
+Gotcha: never give `.site-header` a `backdrop-filter` while the mobile menu is open — it makes
+the header the containing block for the `position: fixed` nav panel and clips it. The CSS
+already disables the blur under `body.nav-open`. Every `init*()` in `main.js` null-checks its root element, so the same script
 loads on pages that have no hero timeline, roadmap, FAQ, etc.
 
 ## JavaScript behaviours (v1/assets/main.js)
 
-Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (scroll shadow),
-`initMobileNav` (toggle, Esc, focus return, closes ≥1024), `initActiveNav`, `initHeroTimeline`
-(auto-advance every 2.4 s, pauses on hover / hidden tab / off-screen), `initRoadmap` (hover,
+Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (adds `.is-scrolled`
+past 8px — drives the overlay header's transparent→white switch), `initMobileNav` (toggle, Esc,
+focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
 CSS grid height animation), `initCallback` (dialog open/close, Indian-mobile validation
 `/^[6-9]\d{9}$/`, success state), `initReveal` (IntersectionObserver; content is never hidden
@@ -147,8 +159,10 @@ without JS), `initYear`.
 ## Image slots (v1/images)
 
 All `*.webp` / `og-home.jpg` files are **generated placeholders** showing their own filename and
-size. Replace each with a real image of the same name (WebP, roughly the same ratio); no HTML
-changes needed. Full table in `v1/images/README.md`. Keep `logo-mark.svg` (placeholder logo
+size — except `hero-bg.webp`, which is now the client's real Mumbai-skyline photo (source PNG kept
+in `images/user-uploads/`). Replace each placeholder with a real image of the same name (WebP,
+roughly the same ratio); no HTML changes needed. Client uploads go in `images/user-uploads/`;
+convert to WebP into `images/` (Pillow: `Image.open(src).convert('RGB').save(dst, 'WEBP', quality=82)`). Full table in `v1/images/README.md`. Keep `logo-mark.svg` (placeholder logo
 until the client supplies one) and `skyline-lineart.svg` (decorative line-art).
 
 ## Verification
@@ -184,3 +198,8 @@ step sequence · legal review of the footer disclaimer · real images for every 
   classes `btn--gold` → `btn--accent`, `text-gold` → `text-accent`); (c) accent then changed
   again from Emerald to **Lime `#D4FF1F`** (current). Olive `#587500` derived for accent text
   on white; logo mark, placeholder images and focus styles updated to match.
+- **2026-09-21 (later)** — Hero reworked per client: real skyline photo supplied
+  (`images/user-uploads/hero-bg.png` → `hero-bg.webp`); **roadmap card removed from the hero**
+  (its CSS/JS deleted; the accessible roadmap remains in section 4); hero made **100dvh** and the
+  header turned into a **transparent overlay** (`site-header--overlay`) that goes white on scroll.
+  Fixed a mobile-menu clipping bug caused by the header's `backdrop-filter`.

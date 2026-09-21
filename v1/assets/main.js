@@ -74,66 +74,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     4. Hero timeline auto-advance (decorative)
-     --------------------------------------------------------------------- */
-  function initHeroTimeline() {
-    var root = $('.hero-timeline');
-    if (!root) return;
-    var steps = $$('[data-hero-step]', root);
-    var caption = $('[data-hero-caption]', root);
-    if (!steps.length) return;
-
-    var total = steps.length;
-    var index = 0;
-    var timer = null;
-    var paused = false;
-    var inView = true;
-
-    function render(i) {
-      steps.forEach(function (el, n) {
-        el.classList.toggle('is-done', n < i);
-        el.classList.toggle('is-active', n === i);
-      });
-      root.style.setProperty('--progress', Math.round(((i + 1) / total) * 100) + '%');
-      if (caption) caption.innerHTML = steps[i].getAttribute('data-caption') || '';
-    }
-
-    if (REDUCED) {
-      steps.forEach(function (el, n) { el.classList.toggle('is-done', n < total - 1); });
-      render(total - 1);
-      return;
-    }
-
-    function tick() {
-      if (paused || !inView || document.hidden) return;
-      index = (index + 1) % total;
-      render(index);
-      // Hold a little longer on the final step before looping.
-      if (index === total - 1) { clearInterval(timer); setTimeout(start, 3000); }
-    }
-    function start() {
-      clearInterval(timer);
-      if (index === total - 1) { index = -1; }
-      timer = setInterval(tick, 2400);
-    }
-
-    root.addEventListener('mouseenter', function () { paused = true; });
-    root.addEventListener('mouseleave', function () { paused = false; });
-    root.addEventListener('focusin', function () { paused = true; });
-    root.addEventListener('focusout', function () { paused = false; });
-
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        inView = entries[0].isIntersecting;
-      }, { threshold: 0.2 }).observe(root);
-    }
-
-    render(0);
-    start();
-  }
-
-  /* ---------------------------------------------------------------------
-     5. Roadmap — hover / keyboard driven detail panel (desktop only)
+     4. Roadmap — hover / keyboard driven detail panel (desktop only)
      --------------------------------------------------------------------- */
   function initRoadmap() {
     var root = $('.roadmap');
@@ -174,7 +115,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     6. FAQ accordion
+     5. FAQ accordion
      --------------------------------------------------------------------- */
   function initAccordion() {
     var lists = $$('.faq');
@@ -225,7 +166,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     7. Callback widget ("Leave your number, we call in 15 minutes")
+     6. Callback widget ("Leave your number, we call in 15 minutes")
      --------------------------------------------------------------------- */
   function initCallback() {
     var root = $('.callback');
@@ -290,7 +231,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     8. Scroll reveal
+     7. Scroll reveal
      --------------------------------------------------------------------- */
   function initReveal() {
     var items = $$('[data-reveal]');
@@ -311,7 +252,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     9. Footer year
+     8. Footer year
      --------------------------------------------------------------------- */
   function initYear() {
     $$('[data-year]').forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
@@ -321,7 +262,6 @@
     initHeader();
     initMobileNav();
     initActiveNav();
-    initHeroTimeline();
     initRoadmap();
     initAccordion();
     initCallback();
