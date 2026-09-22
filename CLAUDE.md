@@ -81,6 +81,9 @@ Accent buttons use **navy text on lime** (14:1). Focus ring is two-tone (navy ou
 halo) so it is visible on both white and navy; form inputs focus with a navy border + lime halo.
 Theme switching is per section: `.section--navy` / `.section--paper` override `--bg --fg
 --fg-heading --fg-muted --card --border --accent-text`, so every component works on both.
+**Gotcha:** a white card placed *inside* a navy section (e.g. the hero lead form) inherits the
+navy slots — lime `.link` text on white is unreadable. Re-declare the light slots on the card
+(see `.lead-form`) rather than overriding colours element by element.
 
 **Type** — **Poppins** 500/600/700 for headings, stats and quotes (`--font-display`) +
 **Inter** 400/500/600 for body and UI (`--font-sans`). Client decision: "Poppins for headings,
@@ -112,8 +115,15 @@ Matches brief §3 exactly:
    a left-heavy navy gradient, a soft lime glow behind the headline and a faint dotted grid on the
    text side. A "Scroll" mouse cue sits at the bottom centre (desktop only). A `max-height: 860px`
    media query compresses type and spacing so the fold still fits on 13" laptops.
-   **Removed by the client:** the right-column roadmap card, the eyebrow badge, and the in-hero
-   stats bar — do not add elements to the right side of the hero.
+   **Removed by the client:** the roadmap card, the eyebrow badge, and the in-hero stats bar.
+   **Added by the client (2026-09-22): a two-step lead form on the right** (`.hero__form >
+   .lead-form`, white card, max 440px, 7/5 grid ≥1024, stacked under the CTAs below that).
+   Step 1 = name + mobile/WhatsApp → "Continue"; step 2 = company + annual-revenue band
+   (select: <₹70 Cr · ₹70–150 · ₹150–250 · >₹250) → "Request my readiness call", with Back link,
+   "Step N of 2" indicator and a two-segment progress bar. `initLeadForm()` validates per step
+   (Indian mobile `/^[6-9]\d{9}$/`), Enter on step 1 advances, success state replaces the card
+   body; submission is mocked (`// TODO` CRM webhook). The `max-height: 860px` query also
+   compresses the card (hides the sub-line, 40px inputs) so the fold still holds at 1366×768.
 2. **Proof strip** — its own `#proof` section directly under the hero: `navy-950` band with soft
    lime/navy glows, header row (eyebrow "Track record" + H2 + credibility note with a lime dot),
    then 4 frosted cards (`.proof__card`) each with a lime icon tile, the number, label and a
@@ -212,7 +222,8 @@ Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (adds 
 past 8px — drives the overlay header's transparent→white switch), `initMobileNav` (toggle, Esc,
 focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (ascent chart: hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
-CSS grid height animation), `initReveal` (IntersectionObserver; content is never hidden
+CSS grid height animation), `initLeadForm` (hero two-step form: per-step validation, Continue /
+Back, Enter advances step 1, mocked success state), `initReveal` (IntersectionObserver; content is never hidden
 without JS), `initCounters` (any `[data-count="N"]` element counts from 0 to N with ease-out
 over 1.6 s — optional `data-count-duration` — the first time 60 % of it is visible; under
 reduced-motion or without IntersectionObserver the final value is simply shown; `.stat__value`
@@ -298,3 +309,8 @@ step sequence · legal review of the footer disclaimer · real images for every 
   image, radial + linear navy gradient), skyline line-art removed from that section. Client
   asked to **remove the floating WhatsApp button and the callback widget** entirely (HTML, CSS,
   `initCallback()` deleted; the mobile bottom bar stays).
+- **2026-09-22 (hero form)** — Client asked for a **lead form in the right half of the hero**
+  (reversing the earlier "keep the right side clear" decision). Built as a two-step card
+  (name + mobile → company + revenue band) after the client rejected a 2-fields-per-row layout
+  for being too tall; H1 cap relaxed 17ch → 20ch so it still breaks on three lines beside the
+  card. Hero fold verified at 1366×768 / 1440×900; both CTAs above the fold at 375.

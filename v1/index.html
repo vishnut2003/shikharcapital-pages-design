@@ -189,6 +189,98 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reply within 15 min</li>
           </ul>
         </div>
+
+        <!-- Lead-capture form (client request, 2026-09-22). Validation + success state in main.js (initLeadForm);
+             submission is mocked — `// TODO` CRM webhook. -->
+        <div class="hero__form">
+          <form class="lead-form" id="hero-form" novalidate aria-labelledby="lead-form-title">
+            <div class="lead-form__head">
+              <span class="lead-form__eyebrow">Free readiness check</span>
+              <h2 class="lead-form__title" id="lead-form-title">Get your IPO readiness call</h2>
+              <p class="lead-form__sub">Tell us a little about your company. We call back within 15 minutes on working days.</p>
+              <span class="visually-hidden" aria-live="polite">Step <b data-step-current>1</b> of 2</span>
+              <!-- Stepper: main.js toggles .is-active / .is-done and --progress on the connector -->
+              <div class="stepper" aria-hidden="true">
+                <span class="stepper__item is-active" data-step-node="1">
+                  <span class="stepper__node">
+                    <span class="stepper__num">1</span>
+                    <svg class="stepper__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                  </span>
+                  <span class="stepper__label"><b>Contact</b><small>Name &amp; mobile</small></span>
+                </span>
+                <span class="stepper__line"><i></i></span>
+                <span class="stepper__item" data-step-node="2">
+                  <span class="stepper__node">
+                    <span class="stepper__num">2</span>
+                    <svg class="stepper__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                  </span>
+                  <span class="stepper__label"><b>Company</b><small>Name &amp; revenue</small></span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Step 1: who to call -->
+            <fieldset class="lead-form__step" data-step="1">
+              <legend class="visually-hidden">Step 1 of 2: your contact details</legend>
+              <div class="field">
+                <label for="lf-name">Your name</label>
+                <input class="input" id="lf-name" name="name" type="text" autocomplete="name" required aria-describedby="lf-name-error" placeholder="Full name">
+                <span class="field__error" id="lf-name-error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="lf-mobile">Mobile / WhatsApp</label>
+                <input class="input" id="lf-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" required aria-describedby="lf-mobile-error" placeholder="10-digit mobile number">
+                <span class="field__error" id="lf-mobile-error" aria-live="polite"></span>
+              </div>
+              <button class="btn btn--accent btn--block" type="button" data-step-next>
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+            </fieldset>
+
+            <!-- Step 2: about the company -->
+            <fieldset class="lead-form__step" data-step="2" hidden>
+              <legend class="visually-hidden">Step 2 of 2: about your company</legend>
+              <div class="field">
+                <label for="lf-company">Company name</label>
+                <input class="input" id="lf-company" name="company" type="text" autocomplete="organization" required aria-describedby="lf-company-error" placeholder="Registered company name">
+                <span class="field__error" id="lf-company-error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="lf-revenue">Annual revenue (last FY)</label>
+                <select class="input input--select" id="lf-revenue" name="revenue" required aria-describedby="lf-revenue-error">
+                  <option value="" selected disabled>Select a band</option>
+                  <option value="under-70">Under ₹70 Cr</option>
+                  <option value="70-150">₹70–150 Cr</option>
+                  <option value="150-250">₹150–250 Cr</option>
+                  <option value="over-250">Over ₹250 Cr</option>
+                </select>
+                <span class="field__error" id="lf-revenue-error" aria-live="polite"></span>
+              </div>
+              <input type="hidden" name="page" value="">
+              <button class="btn btn--accent btn--block" type="submit">
+                Request my readiness call
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <button class="lead-form__back" type="button" data-step-back>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                Back
+              </button>
+            </fieldset>
+
+            <p class="lead-form__note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+              No obligation. Your details stay with Shikhar Capital.
+            </p>
+            <div class="lead-form__success" tabindex="-1" hidden>
+              <span class="lead-form__success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+              </span>
+              <h3>Thanks — we'll call you shortly.</h3>
+              <p>Expect a call within 15 minutes, Mon–Sat 10am–7pm IST. Prefer to talk now? <a class="link" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%20just%20requested%20a%20readiness%20call." target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>
+            </div>
+          </form>
+        </div>
       </div>
 
       <a class="hero__scroll" href="#qualify" aria-label="Scroll to content"><span class="hero__scroll-mouse" aria-hidden="true"></span><span class="hero__scroll-text" aria-hidden="true">Scroll</span></a>

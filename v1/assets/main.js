@@ -198,7 +198,95 @@
     });
   }
 
-  /* (6. Callback widget removed by the client, 2026-09-22.) */
+  /* ---------------------------------------------------------------------
+     6. Hero lead form (name · company · mobile · revenue band)
+        Client-side validation + mocked success state. Replaces the old
+        callback widget the client removed (2026-09-22).
+     --------------------------------------------------------------------- */
+  function initLeadForm() {
+    var form = $('.lead-form');
+    if (!form) return;
+    var steps = $$('.lead-form__step', form);
+    var success = $('.lead-form__success', form);
+    var head = $('.lead-form__head', form);
+    var note = $('.lead-form__note', form);
+    var current = $('[data-step-current]', form);
+    var stepper = $('.stepper', form);
+    var nodes = $$('[data-step-node]', form);
+    var pageField = $('input[name="page"]', form);
+    if (pageField) pageField.value = window.location.href;
+
+    function flag(input, msg) {
+      var err = $('#' + input.id + '-error');
+      input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (err) err.textContent = msg || '';
+      return !msg;
+    }
+
+    // Validate every field inside one step; returns the first invalid input (or null)
+    function validateStep(step) {
+      var firstBad = null;
+      function check(input, ok, msg) {
+        if (input && !flag(input, ok ? '' : msg) && !firstBad) firstBad = input;
+      }
+      var name = $('#lf-name', step), mobile = $('#lf-mobile', step);
+      var company = $('#lf-company', step), revenue = $('#lf-revenue', step);
+      if (name) check(name, name.value.trim().length > 1, 'Please enter your name.');
+      if (mobile) check(mobile, /^[6-9]\d{9}$/.test(mobile.value.replace(/[\s-]/g, '')), 'Enter a valid 10-digit Indian mobile number.');
+      if (company) check(company, company.value.trim().length > 1, 'Please enter your company name.');
+      if (revenue) check(revenue, !!revenue.value, 'Please select your revenue band.');
+      return firstBad;
+    }
+
+    function showStep(n, focusFirst) {
+      steps.forEach(function (s, i) {
+        s.hidden = i !== n - 1;
+        s.style.animation = 'none'; void s.offsetWidth; s.style.animation = ''; // replay the entrance
+      });
+      if (current) current.textContent = String(n);
+      nodes.forEach(function (node, i) {
+        node.classList.toggle('is-done', i < n - 1);
+        node.classList.toggle('is-active', i === n - 1);
+      });
+      if (stepper) stepper.style.setProperty('--progress', n > 1 ? '100' : '0');
+      if (focusFirst) { var first = $('.input', steps[n - 1]); if (first) first.focus(); }
+    }
+
+    // Clear an error as soon as the user edits that field
+    $$('.input', form).forEach(function (input) {
+      input.addEventListener('input', function () { if (input.getAttribute('aria-invalid') === 'true') flag(input, ''); });
+    });
+
+    var next = $('[data-step-next]', form);
+    if (next) next.addEventListener('click', function () {
+      var bad = validateStep(steps[0]);
+      if (bad) { bad.focus(); return; }
+      showStep(2, true);
+    });
+    var back = $('[data-step-back]', form);
+    if (back) back.addEventListener('click', function () { showStep(1, true); });
+
+    // Enter on a step-1 field advances instead of submitting
+    steps[0] && steps[0].addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.tagName === 'INPUT') { e.preventDefault(); if (next) next.click(); }
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = validateStep(steps[0]);
+      if (bad) { showStep(1, false); bad.focus(); return; }
+      bad = validateStep(steps[1]);
+      if (bad) { bad.focus(); return; }
+
+      // TODO: POST to CRM webhook (Zoho / HubSpot) — see brief §7. Mock only for now.
+      steps.forEach(function (s) { s.hidden = true; });
+      if (head) head.hidden = true;
+      if (note) note.hidden = true;
+      if (success) { success.hidden = false; success.focus(); }
+    });
+
+    showStep(1, false);
+  }
 
   /* ---------------------------------------------------------------------
      7. Scroll reveal
@@ -268,6 +356,7 @@
     initAccordion();
     initReveal();
     initCounters();
+    initLeadForm();
     initYear();
   });
 })();
