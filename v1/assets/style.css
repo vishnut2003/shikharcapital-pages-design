@@ -3215,6 +3215,26 @@ body.book-open { overflow: hidden; }
   color: var(--fg-dark-muted);
 }
 .estimate__foot svg { flex: none; width: 18px; height: 18px; color: var(--accent-500); margin-top: 1px; }
+
+/* In a page hero the estimate card is a summary, not the reference: the table further down the
+   page carries the same heads with what they cover and a range, so here the descriptors are
+   dropped and the six heads run in two columns. Keeps the hero from running past a screen. */
+.page-hero .estimate { padding: var(--sp-5); }
+.page-hero .estimate__head { padding-bottom: var(--sp-4); }
+.page-hero .estimate__title { font-size: var(--fs-body); }
+.page-hero .estimate__total b { font-size: 1.75rem; }
+.page-hero .estimate__bar { height: 12px; margin-top: var(--sp-4); }
+.page-hero .estimate__list { margin-top: var(--sp-4); grid-template-columns: 1fr 1fr; column-gap: var(--sp-5); }
+.page-hero .estimate__list li { grid-template-areas: "swatch name share"; padding: 10px 0; }
+.page-hero .estimate__list li:nth-child(-n + 2) { border-top: 0; }   /* first row of both columns */
+.page-hero .estimate__list b { font-size: var(--fs-body); }
+.page-hero .estimate__note { display: none; }
+.page-hero .estimate__foot { margin-top: var(--sp-4); padding: var(--sp-2) var(--sp-3); gap: var(--sp-2); }
+.page-hero .estimate__foot svg { width: 16px; height: 16px; }
+@media (max-width: 479px) {
+  .page-hero .estimate__list { grid-template-columns: 1fr; }
+  .page-hero .estimate__list li:nth-child(2) { border-top: 1px solid rgba(255, 255, 255, .08); }
+}
 @media (max-width: 479px) {
   .cost__facts { grid-template-columns: 1fr; }
   .estimate { padding: var(--sp-5); }

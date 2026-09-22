@@ -283,7 +283,7 @@ New components, and what they are for:
 
 | Component | Used by | Notes |
 |---|---|---|
-| `.page-hero` (+ `--split`, `__bg`, `__inner`, `__content`, `__aside`) | every inner page | see above |
+| `.page-hero` (+ `--split`, `__bg`, `__inner`, `__content`, `__aside`) | every inner page | see above. A card in `__aside` must stay short — `.page-hero .estimate` is overridden to a compact summary (no descriptors, heads in two columns) because the full card made the cost hero 957px |
 | `.crumbs` | every inner page | must match that page's BreadcrumbList JSON-LD exactly |
 | `.media-frame` (+ `--portrait`) | services, about | rounded photo frame inside a `.split` |
 | `.table-wrap > .table` (+ `.table--stack`) | cost, NSE vs BSE | below 768 it stacks into cards; the label comes from each `td`'s `data-label` |
@@ -485,3 +485,7 @@ logos · whether "Below ₹25 Cr" revenue should force a "not yet" checker resul
   loop (~70 class flips/second on `services.html`). Fix: `body.header-fixed` takes the
   inner-page header out of flow (JS-gated, so the no-JS fallback stays sticky and unshrunk) and
   the threshold gained hysteresis (on >56px, off <24px). Content shift is now 0px on every page.
+- **2026-09-22 (cost hero)** — Client: the cost & timeline hero was too tall. The estimate card
+  in the hero is now a **compact summary** (`.page-hero .estimate`: descriptors hidden, the six
+  cost heads in two columns, tighter padding) since the table below already carries the detail.
+  Hero 957 → 551px at 1440, card 813 → 407px; one column again under 480px.
