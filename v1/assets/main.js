@@ -198,70 +198,7 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     6. Callback widget ("Leave your number, we call in 15 minutes")
-     --------------------------------------------------------------------- */
-  function initCallback() {
-    var root = $('.callback');
-    if (!root) return;
-    var trigger = $('.callback__trigger', root);
-    var panel = $('#callback-panel');
-    var closeBtn = $('.callback__close', root);
-    var form = $('.callback__form', root);
-    var success = $('.callback__success', root);
-    if (!trigger || !panel) return;
-
-    var lastFocus = null;
-
-    function open() {
-      lastFocus = document.activeElement;
-      panel.hidden = false;
-      trigger.setAttribute('aria-expanded', 'true');
-      var first = $('input', panel);
-      if (first) first.focus();
-    }
-    function close() {
-      if (panel.hidden) return;
-      panel.hidden = true;
-      trigger.setAttribute('aria-expanded', 'false');
-      (lastFocus || trigger).focus();
-    }
-
-    trigger.addEventListener('click', function () { panel.hidden ? open() : close(); });
-    if (closeBtn) closeBtn.addEventListener('click', close);
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-    document.addEventListener('click', function (e) { if (!panel.hidden && !root.contains(e.target)) close(); });
-    $$('[data-open-callback]').forEach(function (el) {
-      el.addEventListener('click', function (e) { e.preventDefault(); open(); });
-    });
-
-    if (form) {
-      var pageField = $('input[name="page"]', form);
-      if (pageField) pageField.value = window.location.href;
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var name = $('input[name="name"]', form);
-        var mobile = $('input[name="mobile"]', form);
-        var valid = true;
-
-        function flag(input, msg) {
-          var err = $('#' + input.id + '-error');
-          input.setAttribute('aria-invalid', msg ? 'true' : 'false');
-          if (err) err.textContent = msg || '';
-          if (msg) valid = false;
-        }
-
-        flag(name, name.value.trim() ? '' : 'Please enter your name.');
-        flag(mobile, /^[6-9]\d{9}$/.test(mobile.value.replace(/\s+/g, '')) ? '' : 'Enter a valid 10-digit Indian mobile number.');
-        if (!valid) { (name.getAttribute('aria-invalid') === 'true' ? name : mobile).focus(); return; }
-
-        // TODO: POST to CRM webhook (Zoho / HubSpot) — see brief §7. Mock only for now.
-        form.hidden = true;
-        if (success) { success.hidden = false; success.focus(); }
-      });
-    }
-  }
+  /* (6. Callback widget removed by the client, 2026-09-22.) */
 
   /* ---------------------------------------------------------------------
      7. Scroll reveal
@@ -329,7 +266,6 @@
     initActiveNav();
     initRoadmap();
     initAccordion();
-    initCallback();
     initReveal();
     initCounters();
     initYear();

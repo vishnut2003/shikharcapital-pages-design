@@ -96,7 +96,7 @@ Breakpoints (mobile-first, min-width): 640 · **768** (mobile bottom bar hides) 
 **Stylesheet order** — 01 Tokens · 02 Reset/base · 03 Typography · 04 Layout · 05 Components
 (`.btn`, `.card`, `.card--media`, `.icon-tile`, `.chip`, `.stat`, `.trust-list`, `.compare`,
 `.faq`, `.quote`, `.logo-row`, `.field/.input`, `.brand`) · 06 Site chrome (header, nav,
-footer, mobile bar, WhatsApp float, callback widget) · 07 Sections · 08 Utilities · 09 Motion/MQ.
+footer, mobile bar) · 07 Sections · 08 Utilities · 09 Motion/MQ.
 BEM-lite naming; mobile-first media queries grouped per component; colours only via tokens.
 
 ## Home page — section order (v1/index.html)
@@ -119,7 +119,13 @@ Matches brief §3 exactly:
    then 4 frosted cards (`.proof__card`) each with a lime icon tile, the number, label and a
    one-line descriptor; lime top rule and hover lift. **Numbers count up from 0** when the cards
    scroll into view (`data-count` attribute, see JS). Values are sample data.
-3. **Who it's for** — 3 qualifying-criteria cards → "See if you qualify".
+3. **Who it's for** (`#qualify`) — white section with a soft lime glow + fading dot grid. Three
+   **signal cards** (`.signal`): ghost index "01/02/03", icon tile + tag, H3 built from a big
+   figure + label (`.signal__value` "₹70–250 Cr" / "2 of 3" / "3+ yrs" + `.signal__label`),
+   description, and a lime-check footer line. Lime top rule grows and the icon tile inverts on
+   hover. Below: the **readiness panel** (`.qualify__cta`, navy) — "Meet two of three?" copy, a
+   3-segment meter whose lime bars fill when revealed (`.is-visible`, shown filled without JS),
+   and the lime "See if you qualify" CTA.
 4. **Roadmap** — 10 steps on a navy band. Desktop (≥1024): an **"ascent" chart** — an SVG
    rising curve (IPO-gains motif) with a lime area fill and faint grid; the ten steps are
    `<button>`s absolutely positioned on the curve via inline `--x/--y` percentages (the same
@@ -133,13 +139,38 @@ Matches brief §3 exactly:
    (never under reduced-motion). Tablet: horizontal scroll-snap cards. Mobile: vertical timeline
    with details inline. Step content is written once inside each `<li>`; JS mirrors it into
    `#roadmap-detail` on desktop.
-5. **Services** — 3 image cards (Pre-IPO · Execution · Post-listing) → `services.html#…`.
-6. **Why us** — "Single advisor vs juggling 8 intermediaries" comparison table (stacks to cards <768)
-   + **"Your advisor"** block with founder photo slot and bio placeholder.
-7. **Cost teaser** — cost heads as chips + 3 stat tiles → `sme-ipo-cost-timeline.html`.
-8. **Testimonials** — 3 placeholder quotes with headshot slots + 5 client-logo slots.
-9. **FAQ** — 8 questions, accessible accordion, `FAQPage` JSON-LD mirrors the visible text verbatim.
-10. **Final CTA** — Check eligibility · WhatsApp us, `cta-bg.webp` under overlay + skyline line-art.
+5. **Services** — left-aligned header + stage legend (01 Before · 02 Listing · 03 After), then
+   three **stage cards** (`.svc`): 4:3 client photo with a navy fade and a "Stage 01 · Before
+   listing" chip top-left, a navy icon tile overlapping the photo edge, title, one-liner,
+   lime-check deliverables list and an arrow "Learn more" link → `services.html#…`. Photo zooms
+   and the tile inverts on hover. Footer line links to `services.html`.
+6. **Why us** — the comparison table is a **"showdown"** (`.compare-wrap > .compare`): muted DIY
+   column with grey ✕ marks, **navy "With Shikhar Capital" column** with lime ✓ marks, a lime
+   rule on its header and a "Bottom line" `<tfoot>` row. Each cell's text is wrapped in
+   `.compare__cell` (the icon is its `::before`; the `td::before` is reserved for the stacked
+   mobile `data-label`). Stacks to cards <768. Then the **"Your advisor"** block (`.advisor`):
+   photo slot with a frosted caption badge, name/role, a compact **inline stat row**
+   (`.advisor__stats`: 18 yrs · 40+ listings · 12 yrs — one row at every width, labels stack under
+   numbers <480), a lime-ruled pull-quote (`.advisor__quote`), bio, trust list, two buttons.
+7. **Cost teaser** — navy split: copy column (H2, lead, two lime-ruled headline figures
+   `.cost__facts` with count-up, trust points, lime CTA) + the **consolidated-estimate card**
+   (`.estimate`, frosted): total band, a stacked share bar whose segments grow into view
+   (`--w` per segment must equal the % shown in the list, `--i` steps the lime opacity), an
+   itemised list of the six cost heads with sample shares, and a footnote. Shares are SAMPLE DATA.
+8. **Testimonials** — featured layout (`.quotes`): one large **navy quote** (`.quote--featured`)
+   with a result figure (`.quote__result`) + two light cards stacked beside it (7/5 split ≥1024,
+   2-up at 768, stacked <768). Each card: big lime quotation mark, ringed avatar, name/company,
+   exchange-year chip (`.quote__tag`). **Client-logo row removed by the client** (`.logo-row`
+   CSS kept for inner pages).
+9. **FAQ** — two-column (`.faq-layout`, 5/7 ≥1024): **sticky intro column** (eyebrow, H2, lead,
+   note + navy "Still have a question?" card with WhatsApp / Book a call; fills the viewport
+   height with the card pinned to the bottom) and the accordion as **numbered cards**
+   (`.faq__q::before` CSS counter, open item gets a lime left rule via `:has()` and a navy ×
+   button). The section uses `overflow: clip`, not `hidden` — `hidden` breaks the sticky column.
+   8 questions, accessible accordion, `FAQPage` JSON-LD mirrors the visible text verbatim.
+10. **Final CTA** — Check eligibility · WhatsApp us. Background is the client's night-skyline
+    image `cta-bg.webp` (source `user-uploads/cta-section-bg-image.png`, 1920×800, anchored
+    bottom) at 75 % opacity under a navy gradient that is darkest behind the headline.
 
 Footer: brand, pages, legal, contact, disclaimer (placeholder wording for legal review).
 Always-on widgets: header with "Book a Call" — on the home page it is the **overlay variant**
@@ -147,9 +178,9 @@ Always-on widgets: header with "Book a Call" — on the home page it is the **ov
 solid white with navy text once scrolled or when the mobile menu opens). Inner pages use the
 plain `.site-header` (sticky, white) so their first section is not hidden under a fixed bar.
 Mobile bottom bar (Call · WhatsApp ·
-Check Eligibility, <768); WhatsApp float with pre-filled message; callback widget
-("Get a call in 15 min" → name + mobile form, client-side validation, `// TODO` CRM webhook).
-Not built (paid-traffic only per brief): exit-intent popup.
+Check Eligibility, <768). **Removed by the client (2026-09-22):** the floating WhatsApp button
+and the "Get a call in 15 min" callback widget — HTML, CSS and `initCallback()` all deleted; do
+not re-add them. Not built (paid-traffic only per brief): exit-intent popup.
 
 SEO: `Organization` + `ProfessionalService` JSON-LD, `FAQPage` JSON-LD, canonical/OG/Twitter
 meta (domain `shikharcapital.com` is a TODO), semantic landmarks, one H1, question-style FAQ headings.
@@ -181,8 +212,7 @@ Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (adds 
 past 8px — drives the overlay header's transparent→white switch), `initMobileNav` (toggle, Esc,
 focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (ascent chart: hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
-CSS grid height animation), `initCallback` (dialog open/close, Indian-mobile validation
-`/^[6-9]\d{9}$/`, success state), `initReveal` (IntersectionObserver; content is never hidden
+CSS grid height animation), `initReveal` (IntersectionObserver; content is never hidden
 without JS), `initCounters` (any `[data-count="N"]` element counts from 0 to N with ease-out
 over 1.6 s — optional `data-count-duration` — the first time 60 % of it is visible; under
 reduced-motion or without IntersectionObserver the final value is simply shown; `.stat__value`
@@ -204,7 +234,7 @@ cd v1; python -m http.server 8080      # open http://localhost:8080/
 ```
 - Check 375 / 768 / 1024 / 1440 widths — no horizontal scroll; both hero CTAs above the fold at 375.
 - Validate JSON-LD (e.g. Google Rich Results Test); FAQ text in schema must equal the DOM text.
-- Keyboard: Tab through nav → FAQ (Enter/Space, Arrow keys) → roadmap (Arrow keys) → callback (Esc).
+- Keyboard: Tab through nav → FAQ (Enter/Space, Arrow keys) → roadmap (Arrow keys).
 - Lighthouse mobile targets: Performance ≥ 90, Accessibility 100, SEO 100.
 - Sample values still to be replaced with real ones: `grep -n "data-placeholder\|SAMPLE DATA\|TODO" v1/index.html`.
 
@@ -217,7 +247,8 @@ reduced-motion, no-JS fallback).
 
 Brand logo · founder photo + 4–5 line bio · mandate / capital-raised / partner numbers ·
 phone, WhatsApp number, email, office address · production domain · cost band % and
-merchant-banker fee range · promoter testimonials + client logos · confirmation of roadmap
+merchant-banker fee range + share of each cost head · promoter testimonials (logo row dropped) ·
+founder figures (years, listings) + a real quote · confirmation of roadmap
 step sequence · legal review of the footer disclaimer · real images for every slot.
 
 ## Change log
@@ -252,3 +283,18 @@ step sequence · legal review of the footer disclaimer · real images for every 
   autoplay). Client had called the previous horizontal track "very basic".
 - **2026-09-21 (service images)** — Client supplied the three service-card photos
   (`user-uploads/service-*.png` → `service-*.webp`, 1600×1000).
+- **2026-09-22 (section redesigns)** — Client called each of these "very basic"; redesigned in
+  turn: **Who it's for** (signal cards + readiness meter panel), **Services** (stage cards with
+  photo chips, legend), **Why us** (navy "showdown" comparison column + advisor block with badge,
+  inline stat row and pull-quote), **Cost** (consolidated-estimate card with share bar),
+  **Testimonials** (featured navy quote + two cards; **client-logo row removed**), **FAQ**
+  (sticky intro column with "Still have a question?" card + numbered accordion cards). New sample
+  data added on the way (all wrapped in `data-placeholder`): three signal footers, cost-head
+  shares (40/20/12/10/10/8 %), advisor figures (18 yrs · 40+ listings · 12 yrs in merchant banks),
+  advisor pull-quote, "<5 months" result on the first testimonial. Verified at 375/768/1024/1440:
+  no overflow, JSON-LD parses, FAQ parity, no console errors.
+- **2026-09-22 (later)** — Client supplied the final-CTA background
+  (`user-uploads/cta-section-bg-image.png` → `cta-bg.webp` 1920×800); overlay retuned (75 %
+  image, radial + linear navy gradient), skyline line-art removed from that section. Client
+  asked to **remove the floating WhatsApp button and the callback widget** entirely (HTML, CSS,
+  `initCallback()` deleted; the mobile bottom bar stays).

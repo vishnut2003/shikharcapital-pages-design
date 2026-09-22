@@ -245,41 +245,92 @@
     </section>
 
     <!-- ========================= 3 · WHO IT'S FOR ========================= -->
-    <section class="section" id="qualify" aria-labelledby="qualify-title">
+    <section class="section qualify" id="qualify" aria-labelledby="qualify-title">
       <div class="container">
         <div class="section__head">
           <span class="eyebrow">Who it's for</span>
           <h2 id="qualify-title">Is your company ready?</h2>
-          <p class="lead">Three signals we look for before recommending a listing.</p>
+          <p class="lead">Three signals we look for before recommending a listing. Meet all three and you are a strong candidate today.</p>
         </div>
 
-        <div class="grid grid--3">
-          <article class="card" data-reveal>
-            <div class="icon-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 16V9M10 16V5M14 16v-6M18 16V7"/></svg>
+        <!-- Three qualifying signals: each heading = big figure + label so the H3 text still reads as one criterion -->
+        <div class="signal-grid">
+          <article class="signal" data-reveal>
+            <span class="signal__index" aria-hidden="true">01</span>
+            <div class="signal__top">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 16V9M10 16V5M14 16v-6M18 16V7"/></svg>
+              </div>
+              <span class="signal__tag">Revenue</span>
             </div>
-            <h3><span class="rupee">₹</span>70–250 Cr revenue</h3>
-            <p>The band where an SME listing raises meaningful capital (₹10–50 Cr) without over-diluting promoters.</p>
+            <h3>
+              <span class="signal__value"><span class="rupee">₹</span>70–250 <small>Cr</small></span>
+              <span class="signal__label">annual revenue</span>
+            </h3>
+            <p class="signal__desc">The band where an SME listing raises meaningful capital (₹10–50 Cr) without over-diluting promoters.</p>
+            <p class="signal__foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Typical raise: ₹10–50 Cr
+            </p>
           </article>
-          <article class="card" data-reveal style="--reveal-delay: 100ms">
-            <div class="icon-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-8"/><path d="M14 8h6v6"/></svg>
+
+          <article class="signal" data-reveal style="--reveal-delay: 100ms">
+            <span class="signal__index" aria-hidden="true">02</span>
+            <div class="signal__top">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-8"/><path d="M14 8h6v6"/></svg>
+              </div>
+              <span class="signal__tag">Profitability</span>
             </div>
-            <h3>Profitable in 2 of the last 3 years</h3>
-            <p>Exchanges look for consistent operating profit; steady EBITDA also drives your valuation.</p>
+            <h3>
+              <span class="signal__value">2 <small>of 3</small></span>
+              <span class="signal__label">years profitable</span>
+            </h3>
+            <p class="signal__desc">Exchanges look for consistent operating profit in two of the last three years; steady EBITDA also drives your valuation.</p>
+            <p class="signal__foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Operating profit, not one-off gains
+            </p>
           </article>
-          <article class="card" data-reveal style="--reveal-delay: 200ms">
-            <div class="icon-tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+
+          <article class="signal" data-reveal style="--reveal-delay: 200ms">
+            <span class="signal__index" aria-hidden="true">03</span>
+            <div class="signal__top">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <span class="signal__tag">Track record</span>
             </div>
-            <h3>3+ years in operation</h3>
-            <p>A track record with positive net worth is the base criterion on both NSE Emerge and BSE SME.</p>
+            <h3>
+              <span class="signal__value">3<small>+ yrs</small></span>
+              <span class="signal__label">in operation</span>
+            </h3>
+            <p class="signal__desc">A track record with positive net worth is the base criterion on both NSE Emerge and BSE SME.</p>
+            <p class="signal__foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Positive net worth required
+            </p>
           </article>
         </div>
 
-        <div class="qualify__note">
-          <p class="note">Meet two of three? You may still qualify within 12–18 months.</p>
-          <a class="btn btn--navy" href="sme-ipo-eligibility.html">See if you qualify</a>
+        <!-- Readiness panel: the "meet two of three" note turned into a visual meter + CTA -->
+        <div class="qualify__cta" data-reveal style="--reveal-delay: 150ms">
+          <div class="qualify__cta-text">
+            <h3>Meet two of three?</h3>
+            <p>You may still qualify within 12–18 months. We map the gap, fix it, and time the filing so you list from a position of strength.</p>
+          </div>
+          <div class="qualify__meter" aria-hidden="true">
+            <div class="qualify__meter-row"><span>Signals met</span><b>2 / 3</b></div>
+            <div class="qualify__meter-bars"><i class="is-on" style="--i: 0"></i><i class="is-on" style="--i: 1"></i><i></i></div>
+            <span class="qualify__meter-note">Two signals today, third within 12–18 months</span>
+          </div>
+          <div class="qualify__cta-action">
+            <a class="btn btn--accent" href="sme-ipo-eligibility.html">
+              See if you qualify
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <span class="qualify__cta-note">Free 5-step check · no documents needed</span>
+          </div>
         </div>
       </div>
     </section>
@@ -461,68 +512,100 @@
     </section>
 
     <!-- ============================ 5 · SERVICES ============================ -->
-    <section class="section" id="services" aria-labelledby="services-title">
+    <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
-        <div class="section__head">
-          <span class="eyebrow">Services</span>
-          <h2 id="services-title">What we do</h2>
-          <p class="lead">End-to-end, or the stage you need.</p>
+        <div class="services__head" data-reveal>
+          <div>
+            <span class="eyebrow">Services</span>
+            <h2 id="services-title">What we do</h2>
+            <p class="lead">End-to-end, or the stage you need. One team stays accountable before, during and after listing day.</p>
+          </div>
+          <ul class="services__legend" aria-label="Stages">
+            <li><b>01</b><span>Before listing</span></li>
+            <li><b>02</b><span>Listing</span></li>
+            <li><b>03</b><span>After listing</span></li>
+          </ul>
         </div>
 
-        <div class="grid grid--3">
+        <div class="svc-grid">
           <!-- IMAGES: images/service-*.webp (1600×1000, client-supplied; sources in images/user-uploads/) -->
-          <article class="card card--media" data-reveal>
-            <img class="card__img" src="images/service-pre-ipo.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
-            <div class="card__body">
+          <article class="svc" data-reveal>
+            <div class="svc__media">
+              <img class="svc__img" src="images/service-pre-ipo.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+              <span class="svc__stage"><b>Stage 01</b>Before listing</span>
+            </div>
+            <div class="svc__body">
               <div class="icon-tile" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M8 11h6M11 8v6"/></svg>
               </div>
               <h3>Pre-IPO readiness</h3>
-              <p>Know where you stand before a single mandate is signed.</p>
-              <ul class="card__list">
+              <p class="svc__desc">Know where you stand before a single mandate is signed.</p>
+              <ul class="svc__list">
                 <li>Readiness audit &amp; gap closure</li>
                 <li>Corporate &amp; capital structuring</li>
                 <li>Equity story &amp; valuation framing</li>
                 <li>Exchange selection (NSE Emerge vs BSE SME)</li>
               </ul>
-              <a class="card__link" href="services.html#pre-ipo">Learn more →</a>
+              <a class="svc__link" href="services.html#pre-ipo">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
             </div>
           </article>
-          <article class="card card--media" data-reveal style="--reveal-delay: 100ms">
-            <img class="card__img" src="images/service-execution.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
-            <div class="card__body">
+
+          <article class="svc" data-reveal style="--reveal-delay: 100ms">
+            <div class="svc__media">
+              <img class="svc__img" src="images/service-execution.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+              <span class="svc__stage"><b>Stage 02</b>Listing</span>
+            </div>
+            <div class="svc__body">
               <div class="icon-tile" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>
               </div>
               <h3>IPO execution</h3>
-              <p>From DRHP to allotment, every intermediary on one plan.</p>
-              <ul class="card__list">
+              <p class="svc__desc">From DRHP to allotment, every intermediary on one plan.</p>
+              <ul class="svc__list">
                 <li>Intermediary selection &amp; coordination</li>
                 <li>DRHP drafting &amp; exchange approvals</li>
                 <li>Roadshows &amp; anchor investors</li>
                 <li>Issue management to allotment</li>
               </ul>
-              <a class="card__link" href="services.html#execution">Learn more →</a>
+              <a class="svc__link" href="services.html#execution">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
             </div>
           </article>
-          <article class="card card--media" data-reveal style="--reveal-delay: 200ms">
-            <img class="card__img" src="images/service-post-listing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
-            <div class="card__body">
+
+          <article class="svc" data-reveal style="--reveal-delay: 200ms">
+            <div class="svc__media">
+              <img class="svc__img" src="images/service-post-listing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+              <span class="svc__stage"><b>Stage 03</b>After listing</span>
+            </div>
+            <div class="svc__body">
               <div class="icon-tile" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
               </div>
               <h3>Post-listing support</h3>
-              <p>Listing day is only the start. The obligations run for years.</p>
-              <ul class="card__list">
+              <p class="svc__desc">Listing day is only the start. The obligations run for years.</p>
+              <ul class="svc__list">
                 <li>Market-making oversight</li>
                 <li>Investor relations &amp; results communication</li>
                 <li>Ongoing exchange / SEBI compliance</li>
                 <li>Mainboard migration planning</li>
               </ul>
-              <a class="card__link" href="services.html#post-listing">Learn more →</a>
+              <a class="svc__link" href="services.html#post-listing">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
             </div>
           </article>
         </div>
+
+        <p class="services__foot" data-reveal>
+          <span>Not sure which stage you are at?</span>
+          <a class="link" href="services.html">See how the three stages fit together</a>
+        </p>
       </div>
     </section>
 
@@ -535,37 +618,69 @@
           <p class="lead">Most promoters underestimate the coordination. That is the job we take off your desk.</p>
         </div>
 
-        <table class="compare" data-reveal>
-          <caption class="visually-hidden">Comparison of coordinating an SME IPO yourself versus with Shikhar Capital</caption>
-          <thead>
-            <tr>
-              <th scope="col">Aspect</th>
-              <th scope="col" class="compare__them">Juggling 8 intermediaries yourself</th>
-              <th scope="col" class="compare__us"><svg class="compare__us-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>With Shikhar Capital</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Points of contact</th><td class="compare__them" data-label="Doing it yourself">8+ vendors, 8 separate timelines</td><td class="compare__us" data-label="With Shikhar Capital">One advisor, one weekly status</td></tr>
-            <tr><th scope="row">Readiness gaps</th><td class="compare__them" data-label="Doing it yourself">Discovered mid-process by the merchant banker</td><td class="compare__us" data-label="With Shikhar Capital">Closed before the mandate is signed</td></tr>
-            <tr><th scope="row">Intermediary selection</th><td class="compare__them" data-label="Doing it yourself">Whoever you happen to know</td><td class="compare__us" data-label="With Shikhar Capital">Pre-vetted network matched to your sector and issue size</td></tr>
-            <tr><th scope="row">Timeline ownership</th><td class="compare__them" data-label="Doing it yourself">No single owner; slips compound</td><td class="compare__us" data-label="With Shikhar Capital">One plan with a named owner per milestone</td></tr>
-            <tr><th scope="row">Exchange queries</th><td class="compare__them" data-label="Doing it yourself">Reactive scramble</td><td class="compare__us" data-label="With Shikhar Capital">Anticipated and pre-empted in the DRHP</td></tr>
-            <tr><th scope="row">Cost visibility</th><td class="compare__them" data-label="Doing it yourself">Piecemeal quotes, surprises later</td><td class="compare__us" data-label="With Shikhar Capital">Consolidated estimate upfront</td></tr>
-            <tr><th scope="row">Promoter time</th><td class="compare__them" data-label="Doing it yourself">10–15 hrs/week on coordination</td><td class="compare__us" data-label="With Shikhar Capital">2–3 hrs/week on decisions only</td></tr>
-            <tr><th scope="row">After listing day</th><td class="compare__them" data-label="Doing it yourself">Everyone moves on</td><td class="compare__us" data-label="With Shikhar Capital">Market making, IR and compliance support continue</td></tr>
-          </tbody>
-        </table>
+        <!-- Comparison "showdown": the DIY column is muted with ✕ marks, the Shikhar column is a navy panel with lime ✓ marks.
+             Each cell's text sits in .compare__cell so the icon (::before on the span) survives the stacked mobile layout,
+             where the td::before is used for the data-label. -->
+        <div class="compare-wrap" data-reveal>
+          <table class="compare">
+            <caption class="visually-hidden">Comparison of coordinating an SME IPO yourself versus with Shikhar Capital</caption>
+            <thead>
+              <tr>
+                <th scope="col">Aspect</th>
+                <th scope="col" class="compare__them">
+                  <span class="compare__head">
+                    <span class="compare__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                    Juggling 8 intermediaries yourself
+                  </span>
+                </th>
+                <th scope="col" class="compare__us">
+                  <span class="compare__head">
+                    <svg class="compare__us-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                    With Shikhar Capital
+                  </span>
+                  <span class="compare__tag">One advisor · one plan</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Points of contact</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">8+ vendors, 8 separate timelines</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">One advisor, one weekly status</span></td></tr>
+              <tr><th scope="row">Readiness gaps</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">Discovered mid-process by the merchant banker</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">Closed before the mandate is signed</span></td></tr>
+              <tr><th scope="row">Intermediary selection</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">Whoever you happen to know</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">Pre-vetted network matched to your sector and issue size</span></td></tr>
+              <tr><th scope="row">Timeline ownership</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">No single owner; slips compound</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">One plan with a named owner per milestone</span></td></tr>
+              <tr><th scope="row">Exchange queries</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">Reactive scramble</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">Anticipated and pre-empted in the DRHP</span></td></tr>
+              <tr><th scope="row">Cost visibility</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">Piecemeal quotes, surprises later</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">Consolidated estimate upfront</span></td></tr>
+              <tr><th scope="row">Promoter time</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">10–15 hrs/week on coordination</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">2–3 hrs/week on decisions only</span></td></tr>
+              <tr><th scope="row">After listing day</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">Everyone moves on</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">Market making, IR and compliance support continue</span></td></tr>
+            </tbody>
+            <tfoot>
+              <tr><th scope="row">Bottom line</th><td class="compare__them" data-label="Doing it yourself"><span class="compare__cell">Months lost to coordination no one owns</span></td><td class="compare__us" data-label="With Shikhar Capital"><span class="compare__cell">One accountable owner from readiness check to listing day</span></td></tr>
+            </tfoot>
+          </table>
+        </div>
 
         <!-- Meet your advisor — IMAGE SLOT: images/founder.webp (800×1000 portrait). SAMPLE DATA name/bio. -->
         <div class="advisor" data-reveal>
           <div class="advisor__media">
             <img class="advisor__img" src="images/founder.webp" alt="Vikram Mehta, Founder of Shikhar Capital" width="800" height="1000" loading="lazy" decoding="async">
+            <!-- SAMPLE DATA: caption card over the photo -->
+            <div class="advisor__badge">
+              <span class="advisor__badge-label">Founder &amp; lead advisor</span>
+              <span class="advisor__badge-value"><span data-placeholder>CA · ex-merchant banker</span></span>
+            </div>
           </div>
           <div class="advisor__body">
             <span class="eyebrow">Your advisor</span>
             <h3 class="advisor__name"><span data-placeholder>Vikram Mehta</span></h3>
             <p class="advisor__role"><span data-placeholder>Founder, Shikhar Capital · 18 years in capital markets</span></p>
-            <p class="advisor__bio"><span data-placeholder>A Chartered Accountant who spent twelve years inside SEBI-registered merchant banks before setting up Shikhar Capital. Vikram has worked on more than 40 SME listings across manufacturing, textiles, pharma, auto components and agri-processing, for promoters in Mumbai, Surat, Ahmedabad, Pune and Jaipur. He started the firm after watching too many good companies lose months — and control of their story — to eight uncoordinated intermediaries. Today he personally leads every mandate from readiness check to listing day.</span></p>
+            <!-- SAMPLE DATA: the three figures mirror the bio below -->
+            <ul class="advisor__stats" aria-label="Experience at a glance">
+              <li><b><span data-placeholder>18</span></b><span>years in capital markets</span></li>
+              <li><b><span data-placeholder>40+</span></b><span>SME listings</span></li>
+              <li><b><span data-placeholder>12</span></b><span>years in merchant banks</span></li>
+            </ul>
+            <!-- SAMPLE DATA: pull-quote in the founder's voice -->
+            <blockquote class="advisor__quote"><span data-placeholder>“Too many good companies lose months — and control of their story — to eight uncoordinated intermediaries. I started Shikhar Capital so a promoter has one person to call.”</span></blockquote>
+            <p class="advisor__bio"><span data-placeholder>A Chartered Accountant who spent twelve years inside SEBI-registered merchant banks before setting up Shikhar Capital. Vikram has worked on more than 40 SME listings across manufacturing, textiles, pharma, auto components and agri-processing, for promoters in Mumbai, Surat, Ahmedabad, Pune and Jaipur. Today he personally leads every mandate from readiness check to listing day.</span></p>
             <ul class="trust-list trust-list--light">
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Personally leads every mandate</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>SEBI-registered merchant banker partners</li>
@@ -581,26 +696,57 @@
 
     <!-- ============================ 7 · COST ============================ -->
     <section class="section section--navy cost" id="cost" aria-labelledby="cost-title">
-      <div class="container split split--even">
-        <div>
+      <div class="container split cost__split">
+        <div class="cost__copy">
           <span class="eyebrow">Cost</span>
           <h2 id="cost-title">What does an SME IPO cost?</h2>
           <p class="lead">Costs depend on issue size and the intermediaries you appoint. Most ₹10–50 Cr issues land in a predictable band — here is what goes into it.</p>
-          <ul class="chip-row" aria-label="Cost heads">
-            <li class="chip">Merchant banker</li>
-            <li class="chip">Legal counsel</li>
-            <li class="chip">Auditor</li>
-            <li class="chip">RTA &amp; depositories</li>
-            <li class="chip">Exchange &amp; ROC fees</li>
-            <li class="chip">Market making &amp; marketing</li>
+          <!-- SAMPLE DATA: headline figures mirror the estimate card -->
+          <ul class="cost__facts" aria-label="Cost at a glance">
+            <li><b><span data-placeholder><span data-count="7">7</span>–<span data-count="10">10</span>%</span></b><span>of issue size — total cost band</span></li>
+            <li><b><span class="rupee">₹</span><span data-placeholder><span data-count="30">30</span>–<span data-count="60">60</span></span> L</b><span>typical merchant banker fees</span></li>
           </ul>
-          <a class="btn btn--accent" href="sme-ipo-cost-timeline.html">See the full cost &amp; timeline breakdown</a>
+          <ul class="trust-list" aria-label="How we quote">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Every head itemised before you sign</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>One estimate, not six separate quotes</li>
+          </ul>
+          <a class="btn btn--accent" href="sme-ipo-cost-timeline.html">
+            See the full cost &amp; timeline breakdown
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
-        <!-- SAMPLE DATA: cost figures to be confirmed by client -->
-        <div class="cost__tiles" data-reveal>
-          <div class="stat"><span class="stat__value"><span data-placeholder><span data-count="7">7</span>–<span data-count="10">10</span>%</span></span><span class="stat__label">of issue size — total cost band</span></div>
-          <div class="stat"><span class="stat__value"><span class="rupee">₹</span><span data-placeholder><span data-count="30">30</span>–<span data-count="60">60</span></span> L</span><span class="stat__label">typical merchant banker fees</span></div>
-          <div class="stat"><span class="stat__value">One</span><span class="stat__label">consolidated estimate upfront — no piecemeal quotes</span></div>
+
+        <!-- Consolidated-estimate card. SAMPLE DATA: the share of each cost head (adds to 100) and the ₹ ranges — to be confirmed by client.
+             The --w on each bar segment must match the percentage shown in the list. -->
+        <div class="estimate" data-reveal>
+          <div class="estimate__head">
+            <div>
+              <span class="estimate__eyebrow">Consolidated estimate</span>
+              <b class="estimate__title">Typical <span class="rupee">₹</span>10–50 Cr issue</b>
+            </div>
+            <div class="estimate__total">
+              <span>Total cost band</span>
+              <b><span data-placeholder>7–10%</span></b>
+            </div>
+          </div>
+
+          <div class="estimate__bar" aria-hidden="true">
+            <i style="--w: 40; --i: 0"></i><i style="--w: 20; --i: 1"></i><i style="--w: 12; --i: 2"></i><i style="--w: 10; --i: 3"></i><i style="--w: 10; --i: 4"></i><i style="--w: 8; --i: 5"></i>
+          </div>
+
+          <ul class="estimate__list" aria-label="Cost heads and typical share">
+            <li style="--i: 0"><span class="estimate__name">Merchant banker</span><span class="estimate__note"><span data-placeholder>₹30–60 L</span></span><b><span data-placeholder><span data-count="40">40</span>%</span></b></li>
+            <li style="--i: 1"><span class="estimate__name">Market making &amp; marketing</span><span class="estimate__note">Roadshows, market maker</span><b><span data-placeholder><span data-count="20">20</span>%</span></b></li>
+            <li style="--i: 2"><span class="estimate__name">Legal counsel</span><span class="estimate__note">Due diligence, DRHP</span><b><span data-placeholder><span data-count="12">12</span>%</span></b></li>
+            <li style="--i: 3"><span class="estimate__name">Auditor</span><span class="estimate__note">Restated financials</span><b><span data-placeholder><span data-count="10">10</span>%</span></b></li>
+            <li style="--i: 4"><span class="estimate__name">Exchange &amp; ROC fees</span><span class="estimate__note">Listing, processing, filing</span><b><span data-placeholder><span data-count="10">10</span>%</span></b></li>
+            <li style="--i: 5"><span class="estimate__name">RTA &amp; depositories</span><span class="estimate__note">NSDL / CDSL, registrar</span><b><span data-placeholder><span data-count="8">8</span>%</span></b></li>
+          </ul>
+
+          <div class="estimate__foot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>
+            <span>Shares are indicative for a ₹10–50 Cr issue. You get one consolidated estimate upfront — no piecemeal quotes.</span>
+          </div>
         </div>
       </div>
     </section>
@@ -616,48 +762,69 @@
 
         <!-- SAMPLE DATA: all three quotes. IMAGE SLOTS: images/testimonial-1..3.webp (200×200 headshots).
              ALT: replace this grid with a 16:9 founder-video <figure> if no client quotes are available at launch. -->
-        <div class="grid grid--3">
-          <figure class="quote" data-reveal>
+        <!-- Featured layout: one large navy quote (with a result figure) + two lighter cards beside it -->
+        <div class="quotes">
+          <figure class="quote quote--featured" data-reveal>
+            <span class="quote__mark" aria-hidden="true">&ldquo;</span>
             <blockquote><span data-placeholder>We had spoken to three merchant bankers and were more confused after each call. One advisor owning the whole plan changed everything — we listed in under five months.</span></blockquote>
+            <!-- SAMPLE DATA: result figure drawn from the quote -->
+            <p class="quote__result"><b><span data-placeholder>&lt;5</span></b><span>months from mandate<br>to listing day</span></p>
             <figcaption>
               <img class="quote__avatar" src="images/testimonial-1.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
-              <span><span class="quote__name">Anil Deshmukh, Managing Director</span><span class="quote__meta">Deshmukh Polymers Ltd · Listed on NSE Emerge, 2024</span></span>
+              <span class="quote__who"><span class="quote__name">Anil Deshmukh, Managing Director</span><span class="quote__meta">Deshmukh Polymers Ltd</span></span>
+              <span class="quote__tag">NSE Emerge · 2024</span>
             </figcaption>
           </figure>
-          <figure class="quote" data-reveal style="--reveal-delay: 100ms">
-            <blockquote><span data-placeholder>The readiness audit found two issues our auditors had missed. Fixing them before the DRHP saved us a full quarter of exchange queries.</span></blockquote>
-            <figcaption>
-              <img class="quote__avatar" src="images/testimonial-2.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
-              <span><span class="quote__name">Priya Nair, Chief Financial Officer</span><span class="quote__meta">Coastal Agro Foods Ltd · Listed on BSE SME, 2023</span></span>
-            </figcaption>
-          </figure>
-          <figure class="quote" data-reveal style="--reveal-delay: 200ms">
-            <blockquote><span data-placeholder>I spent two hours a week on the IPO, not twenty. The rest of the time I ran the business, which is what investors were actually buying.</span></blockquote>
-            <figcaption>
-              <img class="quote__avatar" src="images/testimonial-3.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
-              <span><span class="quote__name">Sandeep Agarwal, Chairman</span><span class="quote__meta">Agarwal Precision Tools Ltd · Listed on NSE Emerge, 2025</span></span>
-            </figcaption>
-          </figure>
-        </div>
 
-        <!-- IMAGE SLOTS: images/client-logo-1..5.webp (240×80, transparent or white background) -->
-        <ul class="logo-row" aria-label="Companies we have advised">
-          <li><img src="images/client-logo-1.webp" alt="Deshmukh Polymers" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-2.webp" alt="Coastal Agro Foods" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-3.webp" alt="Agarwal Precision Tools" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-4.webp" alt="Sunrise Textiles" width="240" height="80" loading="lazy" decoding="async"></li>
-          <li><img src="images/client-logo-5.webp" alt="Meridian Healthcare" width="240" height="80" loading="lazy" decoding="async"></li>
-        </ul>
+          <div class="quotes__side">
+            <figure class="quote" data-reveal style="--reveal-delay: 100ms">
+              <span class="quote__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote><span data-placeholder>The readiness audit found two issues our auditors had missed. Fixing them before the DRHP saved us a full quarter of exchange queries.</span></blockquote>
+              <figcaption>
+                <img class="quote__avatar" src="images/testimonial-2.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
+                <span class="quote__who"><span class="quote__name">Priya Nair, Chief Financial Officer</span><span class="quote__meta">Coastal Agro Foods Ltd</span></span>
+                <span class="quote__tag">BSE SME · 2023</span>
+              </figcaption>
+            </figure>
+            <figure class="quote" data-reveal style="--reveal-delay: 200ms">
+              <span class="quote__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote><span data-placeholder>I spent two hours a week on the IPO, not twenty. The rest of the time I ran the business, which is what investors were actually buying.</span></blockquote>
+              <figcaption>
+                <img class="quote__avatar" src="images/testimonial-3.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
+                <span class="quote__who"><span class="quote__name">Sandeep Agarwal, Chairman</span><span class="quote__meta">Agarwal Precision Tools Ltd</span></span>
+                <span class="quote__tag">NSE Emerge · 2025</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <!-- Client-logo row removed per client (2026-09-22); .logo-row CSS kept for inner pages. -->
       </div>
     </section>
 
     <!-- ============================== 9 · FAQ ============================== -->
-    <section class="section section--paper" id="faq" aria-labelledby="faq-title">
-      <div class="container container--narrow">
-        <div class="section__head">
+    <section class="section section--paper faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-layout">
+        <div class="faq-intro" data-reveal>
           <span class="eyebrow">FAQ</span>
           <h2 id="faq-title">SME IPO questions promoters ask us</h2>
+          <p class="lead">Straight answers to the eight questions we hear first on every readiness call.</p>
           <small class="note">Eligibility norms reference SEBI (ICDR) Regulations and exchange rules as amended.</small>
+
+          <!-- "Still have questions?" card -->
+          <div class="faq-ask">
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M9 9h6M9 12h4"/></svg>
+            </div>
+            <h3>Still have a question?</h3>
+            <p>Ask it on WhatsApp or book a 20-minute readiness call — no preparation needed.</p>
+            <div class="btn-row">
+              <a class="btn btn--accent btn--sm" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%20have%20a%20question%20about%20an%20SME%20IPO." target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                WhatsApp us
+              </a>
+              <a class="btn btn--outline btn--sm" href="book.html">Book a call</a>
+            </div>
+          </div>
         </div>
 
         <div class="faq" data-accordion="single">
@@ -693,9 +860,9 @@
             <h3><button class="faq__q" type="button" id="faq-q8" aria-expanded="false" aria-controls="faq-a8">Which intermediaries are required, and who coordinates them?<span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
             <div class="faq__a" id="faq-a8" role="region" aria-labelledby="faq-q8" hidden><div><p>A SEBI-registered merchant banker, legal counsel, peer-reviewed auditor, RTA, market maker, underwriter, bankers to the issue and the depositories. Shikhar Capital appoints and coordinates all of them so you deal with one advisor.</p></div></div>
           </div>
-        </div>
 
-        <p class="section__foot"><a class="link" href="resources.html">More guides →</a></p>
+          <p class="faq__more"><span>Looking for something more specific?</span><a class="link" href="resources.html">Browse all guides →</a></p>
+        </div>
       </div>
     </section>
 
@@ -711,7 +878,7 @@
         <div class="btn-row">
           <a class="btn btn--accent btn--lg" href="sme-ipo-eligibility.html">Check eligibility</a>
           <a class="btn btn--outline-light btn--lg" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             WhatsApp us
           </a>
         </div>
@@ -775,7 +942,7 @@
             <!-- SAMPLE DATA: phone, email -->
             <a href="tel:+919820012345"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span data-placeholder>+91 98200 12345</span></a>
             <a href="mailto:hello@shikharcapital.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-placeholder>hello@shikharcapital.com</span></a>
-            <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>WhatsApp us</a>
+            <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp us</a>
             <span>Mon–Sat · 10am–7pm IST</span>
           </div>
         </div>
@@ -795,48 +962,11 @@
 
   <!-- ==================================================================
        SHARED: ALWAYS-ON WIDGETS — copy verbatim to every page.
-       WhatsApp float · callback widget · mobile bottom bar
+       Mobile bottom bar only. (WhatsApp float + callback widget removed by the client, 2026-09-22.)
        ================================================================== -->
-  <a class="wa-float" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>
-  </a>
-
-  <div class="callback">
-    <button class="callback__trigger" type="button" aria-expanded="false" aria-controls="callback-panel">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
-      <span>Get a call in 15 min</span>
-    </button>
-    <div class="callback__panel" id="callback-panel" role="dialog" aria-labelledby="callback-title" hidden>
-      <div class="callback__head">
-        <div>
-          <h2 id="callback-title">Leave your number</h2>
-          <p>We call within 15 minutes, Mon–Sat 10am–7pm IST.</p>
-        </div>
-        <button class="callback__close" type="button" aria-label="Close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-      </div>
-      <form class="callback__form" novalidate>
-        <div class="field">
-          <label for="cb-name">Your name</label>
-          <input class="input" id="cb-name" name="name" type="text" autocomplete="name" required aria-describedby="cb-name-error">
-          <span class="field__error" id="cb-name-error" aria-live="polite"></span>
-        </div>
-        <div class="field">
-          <label for="cb-mobile">Mobile / WhatsApp</label>
-          <input class="input" id="cb-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile" required aria-describedby="cb-mobile-error">
-          <span class="field__error" id="cb-mobile-error" aria-live="polite"></span>
-        </div>
-        <input type="hidden" name="page" value="">
-        <button class="btn btn--accent btn--block" type="submit">Call me back</button>
-      </form>
-      <p class="callback__success" tabindex="-1" hidden>Thanks — we'll call you within 15 minutes (Mon–Sat, 10am–7pm IST).</p>
-    </div>
-  </div>
-
   <nav class="mobile-bar" aria-label="Quick actions">
     <a href="tel:+919820012345"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call</a>
-    <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>WhatsApp</a>
+    <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
     <a class="btn--accent" href="sme-ipo-eligibility.html">Check Eligibility</a>
   </nav>
   <!-- /SHARED: ALWAYS-ON WIDGETS -->
