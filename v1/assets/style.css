@@ -1204,7 +1204,7 @@ p { color: var(--fg); }
 .footer__legal p { color: var(--fg-dark-muted); }
 .footer__copy { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); justify-content: space-between; }
 
-/* --- Mobile bottom bar --- */
+/* --- Mobile bottom bar: navy dock, two icon-over-label actions + lime primary pill --- */
 .mobile-bar {
   position: fixed;
   left: 0;
@@ -1213,28 +1213,32 @@ p { color: var(--fg); }
   z-index: 90;
   height: var(--mobile-bar-h);
   display: grid;
-  grid-template-columns: 1fr 1fr 1.6fr;
-  gap: var(--sp-2);
-  padding: var(--sp-2) var(--sp-3);
-  padding-bottom: max(var(--sp-2), env(safe-area-inset-bottom));
-  background: rgba(255, 255, 255, .96);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--line);
+  grid-template-columns: 1fr 1fr;         /* two equal pills: Call us · WhatsApp */
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 8px var(--sp-4);
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  background: transparent;                    /* client: no fill, no blur — the buttons float over the page */
+  pointer-events: none;                       /* gaps between buttons shouldn't block taps on the page … */
 }
-.mobile-bar a {
+.mobile-bar > * { pointer-events: auto; }     /* … but the buttons must */
+.mobile-bar__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  border-radius: var(--r-sm);
+  min-height: 46px;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--accent-400), var(--accent-500) 55%, var(--accent-600));
+  color: var(--navy-900);
   font-size: var(--fs-sm);
   font-weight: 600;
-  color: var(--navy-900);
-  border: 1.5px solid var(--line);
+  white-space: nowrap;
+  box-shadow: 0 8px 22px rgba(6, 20, 40, .35), 0 0 0 1px rgba(6, 20, 40, .08), inset 0 1px 0 rgba(255, 255, 255, .45);
 }
-.mobile-bar a svg { width: 18px; height: 18px; }
-.mobile-bar .btn--accent { border-color: var(--accent-500); }
+.mobile-bar__cta svg { width: 17px; height: 17px; flex: none; }
+.mobile-bar__cta:active { transform: translateY(1px); }
 @media (min-width: 768px) { .mobile-bar { display: none; } }
 
 /* --- "Book a call" split-screen dialog (native <dialog>, opened by [data-book]) --- */

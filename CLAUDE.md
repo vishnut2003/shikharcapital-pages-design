@@ -189,8 +189,11 @@ Always-on widgets: header with "Book a Call" — on the home page it is the **ov
 (`.site-header.site-header--overlay`: fixed, transparent with white text over the hero, turns
 solid white with navy text once scrolled or when the mobile menu opens). Inner pages use the
 plain `.site-header` (sticky, white) so their first section is not hidden under a fixed bar.
-Mobile bottom bar (Call · WhatsApp ·
-Check Eligibility, <768) and the **"Book a call" dialog** (`<dialog class="book" id="book">`,
+Mobile bottom bar (<768): **transparent** (no fill, no blur — client decision after trying a
+navy dock, a blur-only bar and a blur+shade gradient) holding two **equal rounded lime-gradient
+buttons**: "Call us" · "WhatsApp" (the eligibility button was dropped from the bar). The bar
+itself is `pointer-events: none` so the gap between buttons doesn't block taps. And the
+**"Book a call" dialog** (`<dialog class="book" id="book">`,
 native `<dialog>`): split screen — left `.book__aside` is navy over `cta-bg.webp` with the call's
 promise, three bullets, an advisor mini-card (SAMPLE DATA name) and a trust line; right
 `.book__main` holds `.book-form` (three 2-col rows: name | company · mobile | optional email ·
@@ -338,7 +341,9 @@ step sequence · legal review of the footer disclaimer · real images for every 
   the sitemap. Hero polish the same day: CTAs shortened to "Check eligibility" / "Book a call"
   (standard size, not `btn--lg`); lead forced onto two lines with a `<br>`; H1 capped at 3.5rem
   beside the form; trust line kept on one row on phones (≥360px); desktop header CTA restyled
-  as a lime pill with a navy phone-icon disc, sliding arrow and hover sheen.
+  as a lime pill with a navy phone-icon disc, sliding arrow and hover sheen. Mobile bottom bar
+  reworked in several rounds → final: transparent bar, two equal rounded lime buttons (Call us ·
+  WhatsApp).
   Verified: opens from header (desktop + mobile menu), hero, advisor, FAQ card, final
   CTA and footer; Esc, backdrop and Done close it and return focus; validation and success state
   pass; no console errors at 375/768/1440. Client then asked for it to be **shorter** (fields in
