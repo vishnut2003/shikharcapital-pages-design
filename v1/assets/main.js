@@ -289,6 +289,126 @@
   }
 
   /* ---------------------------------------------------------------------
+     6b. "Book a call" split-screen dialog — opened by any [data-book] link
+         (replaces the former book.html page). Native <dialog> gives us the
+         focus trap, Esc and the backdrop; we add scroll-lock, backdrop-click
+         to close, focus return, validation and a mocked success state.
+     --------------------------------------------------------------------- */
+  function initBookModal() {
+    var dialog = $('#book');
+    if (!dialog) return;
+    var form = $('.book-form', dialog);
+    var fields = $('.book-form__fields', form);
+    var head = $('.book-form__head', form);
+    var success = $('.book-form__success', form);
+    var opener = null;
+    var supportsDialog = typeof dialog.showModal === 'function';
+
+    function open(from) {
+      opener = from || document.activeElement;
+      if (supportsDialog) { if (!dialog.open) dialog.showModal(); }
+      else dialog.setAttribute('open', '');
+      document.body.classList.add('book-open');
+      var pageField = $('input[name="page"]', form);
+      if (pageField) pageField.value = window.location.href;
+      var main = $('.book__main', dialog);
+      if (main) main.scrollTop = 0;
+      // Desktop: focus the first field. Phones: leave focus on the close button (showModal's default)
+      // so the sheet opens at the top and the keyboard doesn't pop up uninvited.
+      if (!PHONE.matches) { var first = $('.input', fields.hidden ? dialog : fields); if (first) first.focus(); }
+    }
+    function close() {
+      if (supportsDialog) { if (dialog.open) dialog.close(); }
+      else dialog.removeAttribute('open');
+    }
+
+    $$('[data-book]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); open(el); });
+    });
+    $$('[data-book-close]', dialog).forEach(function (btn) { btn.addEventListener('click', close); });
+
+    // Click on the backdrop (outside the panel) closes
+    dialog.addEventListener('click', function (e) {
+      var r = $('.book__panel', dialog).getBoundingClientRect();
+      var outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      if (outside) close();
+    });
+    // Covers Esc, close() and the polyfill path alike
+    dialog.addEventListener('close', function () {
+      document.body.classList.remove('book-open');
+      if (opener && typeof opener.focus === 'function') opener.focus();
+    });
+    if (!supportsDialog) {
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dialog.hasAttribute('open')) { close(); dialog.dispatchEvent(new Event('close')); } });
+    }
+
+    // Phones: the dialog is a bottom sheet — dragging the navy header down dismisses it
+    var aside = $('.book__aside', dialog);
+    var PHONE = window.matchMedia('(max-width: 767px)');
+    if (aside && 'PointerEvent' in window) {
+      var startY = 0, dy = 0, dragging = false;
+      aside.addEventListener('pointerdown', function (e) {
+        if (!PHONE.matches || e.target.closest('button')) return;
+        e.preventDefault();               // no text selection / native image drag → no pointercancel mid-swipe
+        dragging = true; startY = e.clientY; dy = 0;
+        dialog.classList.add('is-dragging');
+        aside.setPointerCapture(e.pointerId);
+      });
+      aside.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        dy = Math.max(0, e.clientY - startY);
+        dialog.style.transform = 'translateY(' + dy + 'px)';
+      });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        dialog.classList.remove('is-dragging');
+        if (dy > 90) {
+          close();
+          dialog.style.transform = '';
+        } else {
+          dialog.classList.add('is-settling');
+          dialog.style.transform = '';
+          setTimeout(function () { dialog.classList.remove('is-settling'); }, 280);
+        }
+      }
+      aside.addEventListener('pointerup', endDrag);
+      aside.addEventListener('pointercancel', endDrag);
+    }
+
+    function flag(input, msg) {
+      var err = $('#' + input.id + '-error');
+      input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (err) err.textContent = msg || '';
+      return !msg;
+    }
+    $$('.input', form).forEach(function (input) {
+      input.addEventListener('input', function () { if (input.getAttribute('aria-invalid') === 'true') flag(input, ''); });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var firstBad = null;
+      function check(input, ok, msg) { if (!flag(input, ok ? '' : msg) && !firstBad) firstBad = input; }
+      var name = $('#bk-name', form), company = $('#bk-company', form), mobile = $('#bk-mobile', form),
+          email = $('#bk-email', form), revenue = $('#bk-revenue', form), slot = $('#bk-slot', form);
+      check(name, name.value.trim().length > 1, 'Please enter your name.');
+      check(company, company.value.trim().length > 1, 'Please enter your company name.');
+      check(mobile, /^[6-9]\d{9}$/.test(mobile.value.replace(/[\s-]/g, '')), 'Enter a valid 10-digit Indian mobile number.');
+      check(email, !email.value.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()), 'That email address does not look right.');
+      check(revenue, !!revenue.value, 'Please select your revenue band.');
+      check(slot, !!slot.value, 'Please pick a time window.');
+      if (firstBad) { firstBad.focus(); return; }
+
+      // TODO: POST to CRM webhook / calendar (Zoho / HubSpot / Calendly) — see brief §7. Mock only for now.
+      fields.hidden = true;
+      if (head) head.hidden = true;
+      success.hidden = false;
+      success.focus();
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      7. Scroll reveal
      --------------------------------------------------------------------- */
   function initReveal() {
@@ -357,6 +477,7 @@
     initReveal();
     initCounters();
     initLeadForm();
+    initBookModal();
     initYear();
   });
 })();

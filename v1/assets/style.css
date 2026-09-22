@@ -1192,6 +1192,217 @@ p { color: var(--fg); }
 .mobile-bar .btn--accent { border-color: var(--accent-500); }
 @media (min-width: 768px) { .mobile-bar { display: none; } }
 
+/* --- "Book a call" split-screen dialog (native <dialog>, opened by [data-book]) --- */
+.book {
+  /* light theme slots for the form side; the aside re-declares dark ones */
+  --bg: var(--white);
+  --fg: var(--ink-700);
+  --fg-heading: var(--ink-900);
+  --fg-muted: var(--ink-500);
+  --card: var(--white);
+  --border: var(--line);
+  --accent-text: var(--accent-700);
+  width: min(1040px, calc(100vw - 2 * var(--sp-4)));
+  max-height: min(92dvh, 860px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  color: var(--ink-700);
+  box-shadow: 0 40px 100px rgba(6, 20, 40, .6);
+  overflow: hidden;
+}
+.book::backdrop {
+  background: rgba(6, 20, 40, .72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.book[open] { animation: bookIn 380ms cubic-bezier(.2, .7, .2, 1); }
+.book[open]::backdrop { animation: bookFade 300ms ease-out; }
+@keyframes bookIn { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes bookFade { from { opacity: 0; } to { opacity: 1; } }
+body.book-open { overflow: hidden; }
+
+.book__panel {
+  position: relative;
+  display: grid;
+  max-height: inherit;
+  overflow: auto;
+}
+@media (min-width: 768px) {
+  .book__panel { grid-template-columns: 5fr 7fr; overflow: hidden; }
+  .book__aside, .book__main { overflow: auto; max-height: min(92dvh, 860px); }
+}
+.book__close {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink-700);
+  border: 1px solid var(--line);
+  transition: background var(--ease), color var(--ease), transform var(--ease);
+}
+.book__close svg { width: 18px; height: 18px; }
+.book__close:hover { background: var(--navy-900); color: var(--accent-500); border-color: var(--navy-900); transform: rotate(90deg); }
+
+/* Left: navy panel over the skyline */
+.book__aside {
+  --fg: var(--fg-dark-muted);
+  --fg-heading: var(--fg-dark);
+  --fg-muted: var(--fg-dark-muted);
+  --accent-text: var(--accent-400);
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-950);
+  color: var(--fg-dark-muted);
+  isolation: isolate;
+}
+.book__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 22% 60%;            /* the tall tower cluster on the left of the photo */
+  opacity: .8;
+}
+.book__aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(420px 260px at 0% 0%, rgba(212, 255, 31, .14), transparent 70%),
+    linear-gradient(180deg, rgba(6, 20, 40, .55) 0%, rgba(6, 20, 40, .25) 40%, rgba(6, 20, 40, .9) 78%, rgba(6, 20, 40, .96) 100%);
+}
+.book__aside-body { position: relative; padding: var(--sp-5) var(--sp-6); display: grid; gap: var(--sp-3); }
+@media (min-width: 1024px) { .book__aside-body { padding: var(--sp-6) var(--sp-7) var(--sp-5); min-height: 100%; align-content: end; } }
+.book__eyebrow {
+  justify-self: start;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: rgba(212, 255, 31, .14);
+  color: var(--accent-500);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.book__title { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.875rem); line-height: 1.15; color: var(--fg-dark); letter-spacing: -.02em; max-width: 16ch; }
+.book__sub { font-size: var(--fs-sm); color: var(--fg-dark-muted); max-width: 40ch; }
+.book__list { display: grid; gap: var(--sp-2); }
+.book__list li { display: flex; gap: var(--sp-2); align-items: flex-start; font-size: var(--fs-sm); color: var(--fg-dark); }
+.book__list svg { flex: none; width: 18px; height: 18px; padding: 3px; border-radius: 50%; background: var(--accent-500); color: var(--navy-900); margin-top: 1px; }
+.book__advisor {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+  padding: var(--sp-3);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .12);
+}
+.book__advisor img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid var(--accent-500); flex: none; }
+.book__advisor b { display: block; font-family: var(--font-display); font-weight: 600; color: var(--fg-dark); font-size: var(--fs-sm); }
+.book__advisor small { font-size: var(--fs-xs); color: var(--fg-dark-muted); }
+.book__trust { font-size: var(--fs-xs); color: var(--fg-dark-muted); letter-spacing: .02em; }
+.book__handle { display: none; }
+
+/* Phones: bottom-sheet drawer — full width, anchored to the bottom, slides up, drag handle, swipe-down to close */
+@media (max-width: 767px) {
+  .book {
+    width: 100vw;
+    max-width: none;
+    max-height: 96dvh;
+    margin: auto 0 0;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    box-shadow: 0 -20px 60px rgba(6, 20, 40, .5);
+  }
+  .book[open] { animation: bookUp 420ms cubic-bezier(.2, .7, .2, 1); }
+  .book.is-dragging { transition: none; }
+  .book.is-settling { transition: transform 260ms cubic-bezier(.2, .7, .2, 1); }
+  .book__panel { max-height: 96dvh; grid-template-rows: auto 1fr; overflow: hidden; }
+  .book__aside { touch-action: none; -webkit-user-select: none; user-select: none; }   /* the drag handler owns gestures on the header */
+  .book__aside img { -webkit-user-drag: none; pointer-events: none; }
+  .book__main { overflow: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; align-content: start; }
+  /* Fit in one view (client request): no form head, labels visually hidden (placeholders carry them), tight gaps */
+  .book-form__head { display: none; }
+  .book-form .field label { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .book-form .field { position: relative; gap: 0; }
+  .book-form__fields, .book-form__row { gap: 10px; }
+  .book-form .input { min-height: 44px; }
+  .book-form .btn { margin-top: 4px; }
+  .book-form__note { margin-top: 2px; }
+  .book__handle {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    z-index: 2;
+    width: 44px;
+    height: 4px;
+    margin-left: -22px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, .55);
+  }
+  .book__close { top: var(--sp-4); right: var(--sp-4); background: rgba(255, 255, 255, .14); border-color: rgba(255, 255, 255, .25); color: var(--fg-dark); }
+  .book__list, .book__advisor, .book__sub { display: none; }   /* header stays short: eyebrow + title + trust */
+  .book__aside-body { padding: 28px var(--sp-5) 14px; padding-right: 72px; gap: 6px; }
+  .book__title { font-size: 1.25rem; max-width: none; }
+  .book__trust { font-size: .6875rem; }
+  .book-form { padding: var(--sp-4) var(--sp-5) calc(var(--sp-4) + env(safe-area-inset-bottom, 0px)); }
+}
+@keyframes bookUp { from { transform: translateY(100%); } to { transform: none; } }
+/* Lime rule under the form title (all sizes) */
+.book-form__head h3::after { content: ""; display: block; width: 44px; height: 3px; margin-top: var(--sp-2); border-radius: 2px; background: var(--accent-500); }
+
+/* Right: the form */
+.book__main { background: var(--white); display: grid; align-content: center; }
+.book-form { padding: var(--sp-5) var(--sp-6); }
+@media (min-width: 1024px) { .book-form { padding: var(--sp-6) var(--sp-7); } }
+.book-form__head { margin-bottom: var(--sp-4); padding-right: 48px; }
+.book-form__head h3 { font-size: var(--fs-h3); color: var(--ink-900); }
+.book-form__head p { margin-top: 2px; font-size: var(--fs-sm); color: var(--ink-500); }
+.book-form__fields { display: grid; gap: var(--sp-3); }
+.book-form__row { display: grid; gap: var(--sp-3); }
+@media (min-width: 640px) { .book-form__row { grid-template-columns: 1fr 1fr; } }
+.book-form .field { gap: 3px; }
+.book-form .field label { font-size: var(--fs-xs); color: var(--ink-900); }
+.field__opt { font-weight: 400; color: var(--ink-500); }
+.book-form .input { min-height: 42px; padding-block: var(--sp-2); padding-inline: var(--sp-3); font-size: var(--fs-sm); }
+.book-form .input--select { padding-right: 34px; background-position: right 10px center; }
+.book-form .field__error { min-height: 0; line-height: 1.3; }
+.book-form .field__error:empty { display: none; }
+.book-form .btn { margin-top: var(--sp-1); min-height: 46px; }
+.book-form .btn svg { transition: transform var(--ease); }
+.book-form .btn:hover svg { transform: translateX(3px); }
+.book-form__note { display: flex; align-items: center; justify-content: center; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--ink-500); }
+.book-form__note svg { flex: none; width: 16px; height: 16px; color: var(--accent-700); }
+.book-form__success { text-align: center; padding: var(--sp-6) 0 var(--sp-3); display: grid; justify-items: center; gap: var(--sp-3); }
+.book-form__success-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  color: var(--navy-900);
+  box-shadow: 0 0 0 10px rgba(212, 255, 31, .2);
+  margin-bottom: var(--sp-2);
+}
+.book-form__success-icon svg { width: 30px; height: 30px; }
+.book-form__success h3 { font-size: var(--fs-h3); color: var(--ink-900); }
+.book-form__success p { font-size: var(--fs-sm); color: var(--ink-500); max-width: 40ch; }
+
 /* ==========================================================================
    07 SECTIONS
    ========================================================================== */

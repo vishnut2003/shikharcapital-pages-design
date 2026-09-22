@@ -25,8 +25,10 @@ CLAUDE.md                           this file
 Convention: one flat `.html` per page in `v1/`, shared CSS/JS in `v1/assets/`, all images in
 `v1/images/`. Page filenames follow the brief's sitemap slugs:
 `sme-ipo-eligibility.html`, `sme-ipo-cost-timeline.html`, `services.html`,
-`nse-emerge-vs-bse-sme.html`, `about.html`, `resources.html`, `book.html`,
+`nse-emerge-vs-bse-sme.html`, `about.html`, `resources.html`,
 `privacy.html`, `terms.html`, `disclaimer.html`. The home page already links to all of them.
+**There is no `book.html`:** every "Book a call" control is `<a href="#book" data-book>` and opens
+the shared split-screen dialog (see *Always-on widgets*).
 
 ## Stack
 
@@ -188,7 +190,21 @@ Always-on widgets: header with "Book a Call" — on the home page it is the **ov
 solid white with navy text once scrolled or when the mobile menu opens). Inner pages use the
 plain `.site-header` (sticky, white) so their first section is not hidden under a fixed bar.
 Mobile bottom bar (Call · WhatsApp ·
-Check Eligibility, <768). **Removed by the client (2026-09-22):** the floating WhatsApp button
+Check Eligibility, <768) and the **"Book a call" dialog** (`<dialog class="book" id="book">`,
+native `<dialog>`): split screen — left `.book__aside` is navy over `cta-bg.webp` with the call's
+promise, three bullets, an advisor mini-card (SAMPLE DATA name) and a trust line; right
+`.book__main` holds `.book-form` (three 2-col rows: name | company · mobile | optional email ·
+revenue band | preferred time window) with a success state; the client asked for it to stay
+short (~460px, no scrolling at 1366×768), so don't add fields without removing one. `initBookModal()` opens it from any
+`[data-book]` element, locks body scroll (`body.book-open`), closes on Esc / backdrop click /
+`[data-book-close]`, returns focus to the opener, validates, and mocks submission (`// TODO`
+CRM/calendar). **On phones (<768) it is a bottom-sheet drawer**: full width, anchored to the
+bottom, slides up, drag handle, swipe-down on the navy header dismisses (pointer events;
+`user-select: none` on the header so a selection drag can't cancel the gesture). The client wants
+it to **fit in one view with no scrolling**: the form head is hidden, labels are visually hidden
+(placeholders / first `<option>` carry the label text), gaps tightened — ~600px total, verified
+at 375×667 upward. The dialog re-declares the light theme tokens; the aside re-declares the dark ones.
+**Removed by the client (2026-09-22):** the floating WhatsApp button
 and the "Get a call in 15 min" callback widget — HTML, CSS and `initCallback()` all deleted; do
 not re-add them. Not built (paid-traffic only per brief): exit-intent popup.
 
@@ -223,7 +239,9 @@ past 8px — drives the overlay header's transparent→white switch), `initMobil
 focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (ascent chart: hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
 CSS grid height animation), `initLeadForm` (hero two-step form: per-step validation, Continue /
-Back, Enter advances step 1, mocked success state), `initReveal` (IntersectionObserver; content is never hidden
+Back, Enter advances step 1, mocked success state), `initBookModal` (the `#book` dialog: open
+from `[data-book]`, scroll lock, Esc/backdrop/close buttons, focus return, validation incl.
+optional email, mocked success), `initReveal` (IntersectionObserver; content is never hidden
 without JS), `initCounters` (any `[data-count="N"]` element counts from 0 to N with ease-out
 over 1.6 s — optional `data-count-duration` — the first time 60 % of it is visible; under
 reduced-motion or without IntersectionObserver the final value is simply shown; `.stat__value`
@@ -314,3 +332,11 @@ step sequence · legal review of the footer disclaimer · real images for every 
   (name + mobile → company + revenue band) after the client rejected a 2-fields-per-row layout
   for being too tall; H1 cap relaxed 17ch → 20ch so it still breaks on three lines beside the
   card. Hero fold verified at 1366×768 / 1440×900; both CTAs above the fold at 375.
+- **2026-09-22 (book dialog)** — Client asked for a **split-screen booking popup on every "Book"
+  button, replacing the `book.html` page**. Built as a native `<dialog id="book">` in the shared
+  widgets block; all seven booking links now `href="#book" data-book`. `book.html` dropped from
+  the sitemap. Verified: opens from header (desktop + mobile menu), hero, advisor, FAQ card, final
+  CTA and footer; Esc, backdrop and Done close it and return focus; validation and success state
+  pass; no console errors at 375/768/1440. Client then asked for it to be **shorter** (fields in
+  2-col rows, note field dropped → ~460px on desktop) and, on phones, a **bottom-sheet drawer
+  that fits in one view** (no scrolling; swipe-down to close).
