@@ -335,7 +335,11 @@ step sequence · legal review of the footer disclaimer · real images for every 
 - **2026-09-22 (book dialog)** — Client asked for a **split-screen booking popup on every "Book"
   button, replacing the `book.html` page**. Built as a native `<dialog id="book">` in the shared
   widgets block; all seven booking links now `href="#book" data-book`. `book.html` dropped from
-  the sitemap. Verified: opens from header (desktop + mobile menu), hero, advisor, FAQ card, final
+  the sitemap. Hero polish the same day: CTAs shortened to "Check eligibility" / "Book a call"
+  (standard size, not `btn--lg`); lead forced onto two lines with a `<br>`; H1 capped at 3.5rem
+  beside the form; trust line kept on one row on phones (≥360px); desktop header CTA restyled
+  as a lime pill with a navy phone-icon disc, sliding arrow and hover sheen.
+  Verified: opens from header (desktop + mobile menu), hero, advisor, FAQ card, final
   CTA and footer; Esc, backdrop and Done close it and return focus; validation and success state
   pass; no console errors at 375/768/1440. Client then asked for it to be **shorter** (fields in
   2-col rows, note field dropped → ~460px on desktop) and, on phones, a **bottom-sheet drawer

@@ -1098,7 +1098,52 @@ p { color: var(--fg); }
   .site-nav__list a:hover::after,
   .site-nav__list a[aria-current="page"]::after { transform: scaleX(1); }
   .site-nav__cta { display: none; }
-  .site-header__cta { display: inline-flex; }
+  /* Desktop "Book a Call": lime pill, phone icon in a navy disc, arrow slides on hover, sheen sweep */
+  .site-header__cta {
+    position: relative;
+    display: inline-flex;
+    gap: var(--sp-2);
+    min-height: 44px;
+    padding: 4px 18px 4px 4px;
+    border-radius: var(--r-pill);
+    background: linear-gradient(135deg, var(--accent-400), var(--accent-500) 55%, var(--accent-600));
+    border-color: transparent;
+    box-shadow: 0 6px 18px rgba(212, 255, 31, .28), inset 0 1px 0 rgba(255, 255, 255, .45);
+    overflow: hidden;
+    transition: transform var(--ease), box-shadow var(--ease);
+  }
+  .site-header__cta::after {             /* sheen that sweeps across on hover */
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .55), transparent);
+    transform: skewX(-20deg);
+    transition: left 600ms cubic-bezier(.2, .7, .2, 1);
+    pointer-events: none;
+  }
+  .site-header__cta:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(212, 255, 31, .42), inset 0 1px 0 rgba(255, 255, 255, .45); background: linear-gradient(135deg, var(--accent-400), var(--accent-500) 55%, var(--accent-600)); }
+  .site-header__cta:hover::after { left: 120%; }
+  .site-header__cta-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--navy-900);
+    color: var(--accent-500);
+    flex: none;
+    transition: transform var(--ease);
+  }
+  .site-header__cta-icon svg { width: 17px; height: 17px; }
+  .site-header__cta:hover .site-header__cta-icon { transform: rotate(-12deg) scale(1.05); }
+  .site-header__cta-arrow { width: 16px; height: 16px; margin-left: -2px; transition: transform var(--ease); }
+  .site-header__cta:hover .site-header__cta-arrow { transform: translateX(3px); }
+  /* Solid (scrolled / inner-page) header: tone the glow down so it doesn't bloom on white */
+  .site-header:not(.site-header--overlay) .site-header__cta,
+  .site-header--overlay.is-scrolled .site-header__cta { box-shadow: 0 4px 14px rgba(88, 117, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .45); }
 }
 
 /* --- Footer --- */
@@ -1474,6 +1519,9 @@ body.book-open { overflow: hidden; }
   }
   .hero__content { margin-block: 0; }
   .hero__form { margin-top: 0; justify-self: end; width: 100%; max-width: 440px; }
+  /* Beside the form the column is ~660px: cap the H1 so it breaks
+     "List your company on / NSE Emerge / BSE SME / with one advisor" */
+  .hero h1 { font-size: clamp(2rem, 1rem + 2.6vw, 3.5rem); }
 }
 @media (min-width: 1280px) { .hero__inner { gap: var(--sp-9); } }
 
@@ -1652,7 +1700,8 @@ body.book-open { overflow: hidden; }
 .hero .lead { margin-top: var(--sp-7); color: rgba(244, 246, 250, .8); }
 .hero .btn-row { margin-top: var(--sp-7); }
 .hero .trust-list { margin-top: var(--sp-6); }
-.hero .btn--lg svg { width: 20px; height: 20px; }
+.hero .btn-row .btn { padding-inline: var(--sp-5); }
+.hero .btn-row .btn svg { width: 18px; height: 18px; }
 .hero .btn--accent { box-shadow: 0 8px 28px rgba(212, 255, 31, .22); }
 .hero .btn--accent:hover { box-shadow: 0 12px 36px rgba(212, 255, 31, .38); }
 .hero .btn--accent svg { transition: transform var(--ease); }
@@ -1707,7 +1756,6 @@ body.book-open { overflow: hidden; }
   .hero .lead { margin-top: var(--sp-5); }
   .hero .btn-row { margin-top: var(--sp-6); }
   .hero .trust-list { margin-top: var(--sp-5); }
-  .hero .btn--lg { min-height: 50px; padding-block: var(--sp-3); }
   .lead-form { padding: var(--sp-5); }
   .lead-form__head { margin-bottom: var(--sp-3); }
   .lead-form__sub { display: none; }
@@ -1765,8 +1813,10 @@ body.book-open { overflow: hidden; }
   .hero h1 { font-size: clamp(2rem, 1.5rem + 2.4vw, 2.5rem); }
   .hero .lead { margin-top: var(--sp-5); font-size: var(--fs-body); }
   .hero .btn-row { margin-top: var(--sp-6); gap: var(--sp-3); }
-  .hero .btn--lg { min-height: 50px; }
-  .hero .trust-list { margin-top: var(--sp-5); gap: var(--sp-2) var(--sp-4); }
+  /* Three trust points on one row: no wrapping, tighter type/gaps, icons shrink with it */
+  .hero .trust-list { margin-top: var(--sp-5); flex-wrap: nowrap; justify-content: space-between; gap: 6px; font-size: .6875rem; letter-spacing: -.01em; }
+  .hero .trust-list li { gap: 3px; white-space: nowrap; }
+  .hero .trust-list svg { width: 13px; height: 13px; }
 }
 
 @keyframes heroIn {
