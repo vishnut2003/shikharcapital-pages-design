@@ -151,7 +151,8 @@ Matches brief §3 exactly:
    (never under reduced-motion). Tablet: horizontal scroll-snap cards. Mobile: vertical timeline
    with details inline. Step content is written once inside each `<li>`; JS mirrors it into
    `#roadmap-detail` on desktop.
-5. **Services** — left-aligned header + stage legend (01 Before · 02 Listing · 03 After), then
+5. **Services** — left-aligned header + stage legend (01 Before · 02 Listing · 03 After; a
+   3-column row on phones with the short labels via `.hide-sm-down/.hide-sm-up`), then
    three **stage cards** (`.svc`): 4:3 client photo with a navy fade and a "Stage 01 · Before
    listing" chip top-left, a navy icon tile overlapping the photo edge, title, one-liner,
    lime-check deliverables list and an arrow "Learn more" link → `services.html#…`. Photo zooms
@@ -160,7 +161,10 @@ Matches brief §3 exactly:
    column with grey ✕ marks, **navy "With Shikhar Capital" column** with lime ✓ marks, a lime
    rule on its header and a "Bottom line" `<tfoot>` row. Each cell's text is wrapped in
    `.compare__cell` (the icon is its `::before`; the `td::before` is reserved for the stacked
-   mobile `data-label`). Stacks to cards <768. Then the **"Your advisor"** block (`.advisor`):
+   mobile `data-label`). **<768 it stacks into per-aspect cards** — title, then a
+   "Yourself ✕" line and a navy "Shikhar ✓" line (labels come from CSS `content`, not the
+   `data-label`); the desktop column widths are reset with `!important` there because
+   `.compare .compare__them { width: 36% }` outranks the block reset. Then the **"Your advisor"** block (`.advisor`):
    photo slot with a frosted caption badge, name/role, a compact **inline stat row**
    (`.advisor__stats`: 18 yrs · 40+ listings · 12 yrs — one row at every width, labels stack under
    numbers <480), a lime-ruled pull-quote (`.advisor__quote`), bio, trust list, two buttons.
