@@ -1059,7 +1059,19 @@ p { color: var(--fg); }
   justify-content: space-between;
   gap: var(--sp-4);
   min-height: var(--header-h);
+  transition: min-height 260ms cubic-bezier(.2, .7, .2, 1);
 }
+/* Shrink once scrolled: shorter bar, smaller logo + CTA. --header-h itself is left alone
+   because the hero offset, scroll-padding and the menu panel are measured from it. */
+.site-header.is-scrolled .site-header__inner { min-height: 56px; }
+.site-header .brand__mark, .site-header .brand__name, .site-header__cta {
+  transition: width 260ms cubic-bezier(.2, .7, .2, 1), height 260ms cubic-bezier(.2, .7, .2, 1),
+              font-size 260ms cubic-bezier(.2, .7, .2, 1), min-height 260ms cubic-bezier(.2, .7, .2, 1),
+              transform var(--ease), box-shadow var(--ease);
+}
+.site-header.is-scrolled .brand__mark { width: 30px; height: 30px; }
+.site-header.is-scrolled .brand__name { font-size: 1.125rem; }
+.nav-open .site-header .site-header__inner { min-height: var(--header-h); }   /* menu open: keep full height so the panel lines up */
 .site-header__cta { display: none; }
 .site-header__right { display: flex; align-items: center; gap: var(--sp-3); }
 
@@ -1266,6 +1278,11 @@ p { color: var(--fg); }
   /* Solid (scrolled / inner-page) header: tone the glow down so it doesn't bloom on white */
   .site-header:not(.site-header--overlay) .site-header__cta,
   .site-header--overlay.is-scrolled .site-header__cta { box-shadow: 0 4px 14px rgba(88, 117, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .45); }
+  /* Scrolled: the pill shrinks with the bar */
+  .site-header.is-scrolled .site-header__cta { min-height: 38px; padding-right: 14px; font-size: var(--fs-xs); }
+  .site-header.is-scrolled .site-header__cta-icon { width: 30px; height: 30px; }
+  .site-header.is-scrolled .site-header__cta-icon svg { width: 14px; height: 14px; }
+  .site-header__cta-icon { transition: width 260ms cubic-bezier(.2, .7, .2, 1), height 260ms cubic-bezier(.2, .7, .2, 1), transform var(--ease); }
 }
 
 /* --- Footer --- */

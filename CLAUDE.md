@@ -193,6 +193,9 @@ Always-on widgets: header with "Book a Call" — on the home page it is the **ov
 (`.site-header.site-header--overlay`: fixed, transparent with white text over the hero, turns
 solid white with navy text once scrolled or when the mobile menu opens). Inner pages use the
 plain `.site-header` (sticky, white) so their first section is not hidden under a fixed bar.
+Once `.is-scrolled`, the bar **shrinks** (row 72/64 → 56px, logo 36 → 30px, CTA pill 44 → 38px,
+all transitioned); `--header-h` is deliberately not changed because the hero offset,
+`scroll-padding-top` and the mobile menu panel are measured from it.
 Mobile bottom bar (<768): **transparent** (no fill, no blur — client decision after trying a
 navy dock, a blur-only bar and a blur+shade gradient) holding two **equal rounded lime-gradient
 buttons**: "Call us" · "WhatsApp" (the eligibility button was dropped from the bar). The bar
