@@ -208,6 +208,15 @@ plain `.site-header` (sticky, white) so their first section is not hidden under 
 Once `.is-scrolled`, the bar **shrinks** (row 72/64 → 56px, logo 36 → 30px, CTA pill 44 → 38px,
 all transitioned); `--header-h` is deliberately not changed because the hero offset,
 `scroll-padding-top` and the mobile menu panel are measured from it.
+
+**Gotcha — why the inner-page header is `position: fixed`, not sticky.** A sticky header shrinks
+*in flow*, so toggling `.is-scrolled` moved every page by 16px; scroll anchoring then nudged
+`scrollY`, which re-crossed the threshold and made the header judder near the top (~70 class
+flips a second). Two fixes, both needed: `initHeader` adds `body.header-fixed` on non-overlay
+pages, which takes the header out of flow and pads the body by `--header-h` (no JS → sticky and
+no shrink, so nothing moves); and the scroll threshold has **hysteresis** — on above 56px, off
+below 24px — so a small layout change can never re-cross it. Do not collapse those back to a
+single threshold.
 Mobile bottom bar (<768): **transparent** (no fill, no blur — client decision after trying a
 navy dock, a blur-only bar and a blur+shade gradient) holding two **equal rounded lime-gradient
 buttons**: "Call us" · "WhatsApp" (the eligibility button was dropped from the bar). The bar
@@ -331,8 +340,9 @@ criteria are met — the brief's literal rule is what is implemented.
 
 ## JavaScript behaviours (v1/assets/main.js)
 
-Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (adds `.is-scrolled`
-past 8px — drives the overlay header's transparent→white switch), `initMobileNav` (toggle, Esc,
+Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (adds `.is-scrolled` above 56px and removes it
+below 24px — hysteresis, see the header gotcha — and sets `body.header-fixed` on inner pages;
+drives the overlay header's transparent→white switch and the shrink), `initMobileNav` (toggle, Esc,
 focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (ascent chart: hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
 CSS grid height animation), `initLeadForm` (hero two-step form: per-step validation, Continue /
@@ -469,3 +479,9 @@ logos · whether "Below ₹25 Cr" revenue should force a "not yet" checker resul
   button works. `make_placeholders.py` gained the per-page OG and partner-logo slots plus a
   `REAL` guard so it can never overwrite a client photo. Added `scripts/verify_pages.py`
   (site-wide checks; all 11 pages pass) and 27 checker interaction assertions.
+- **2026-09-22 (header judder)** — Fixed the header juddering when scrolling near the top of
+  inner pages. Cause: the sticky header shrinks in flow, so the 16px height change shifted the
+  page, scroll anchoring adjusted `scrollY`, and that re-crossed the single 8px threshold in a
+  loop (~70 class flips/second on `services.html`). Fix: `body.header-fixed` takes the
+  inner-page header out of flow (JS-gated, so the no-JS fallback stays sticky and unshrunk) and
+  the threshold gained hysteresis (on >56px, off <24px). Content shift is now 0px on every page.

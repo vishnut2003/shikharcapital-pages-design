@@ -20,9 +20,19 @@
   function initHeader() {
     var header = $('.site-header');
     if (!header) return;
+    // Take the inner-page header out of flow (see .header-fixed in style.css) so the shrink
+    // below cannot shift the page. The home page's overlay header is already fixed.
+    if (!header.classList.contains('site-header--overlay')) document.body.classList.add('header-fixed');
     var ticking = false;
+    // Two thresholds, not one. The scrolled header is ~16px shorter, and on inner pages it sits
+    // in flow, so toggling the class shifts the content — which scroll anchoring compensates for
+    // by nudging scrollY. With a single threshold that nudge re-crosses it and the header flickers.
+    // The gap between ON and OFF is wider than the height change, so the loop cannot close.
+    var ON = 56, OFF = 24;
     function update() {
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      var y = window.scrollY;
+      if (y > ON) header.classList.add('is-scrolled');
+      else if (y < OFF) header.classList.remove('is-scrolled');
       ticking = false;
     }
     window.addEventListener('scroll', function () {

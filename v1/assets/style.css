@@ -1018,6 +1018,13 @@ p { color: var(--fg); }
 }
 .site-header.is-scrolled { box-shadow: var(--shadow-sm); border-color: var(--line); }
 
+/* Inner pages: once JS is running the header is taken out of flow, so the scrolled shrink can
+   never move the content below it. A sticky header shrinks *in flow* — the page jumps 16px and
+   scroll anchoring then nudges scrollY, which is what made the header judder near the top.
+   Without JS the header stays sticky and never shrinks, so nothing moves either. */
+body.header-fixed { padding-top: calc(var(--header-h) + 1px); }
+body.header-fixed .site-header:not(.site-header--overlay) { position: fixed; left: 0; right: 0; top: 0; }
+
 /* Overlay variant (home): fixed and transparent over the full-height hero, turns solid white
    once the page scrolls (or the mobile menu opens). Other pages use the plain sticky header. */
 .site-header--overlay {
@@ -3809,6 +3816,7 @@ body.book-open { overflow: hidden; }
 
 @media print {
   .site-header, .mobile-bar, .skip-link { display: none !important; }
+  body.header-fixed { padding-top: 0; }
   .section { padding-block: var(--sp-6); }
   .section--navy { --bg: #fff; --fg: #000; --fg-heading: #000; --fg-muted: #333; }
 }
