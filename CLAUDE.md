@@ -14,11 +14,20 @@ Source of truth for content and structure: `project-details/website-development-
 project-details/
   website-development-details.pdf   the client brief (sitemap, section order, copy direction)
 v1/
-  index.html                        HOME page (built)
+  index.html                        HOME page
+  sme-ipo-eligibility.html          5-step eligibility checker (the lead magnet)
+  sme-ipo-cost-timeline.html        cost table by intermediary + the 10-step roadmap in detail
+  services.html                     Pre-IPO · Execution · Post-listing (#pre-ipo/#execution/#post-listing)
+  nse-emerge-vs-bse-sme.html        platform comparison + "which is right for you"
+  about.html                        Why us: founder, proof strip, one-vs-eight orbit, network, mandates
+  resources.html                    guides — "coming soon" preview + notify form
+  privacy.html terms.html disclaimer.html   legal (SAMPLE placeholder copy for counsel)
+  thank-you.html                    conversion-tracking page: noindex, not linked from nav/footer
   assets/style.css                  single stylesheet — design tokens + all components
   assets/main.js                    single script — all interactive behaviour
   images/                           logo mark, line-art, and image PLACEHOLDERS (see images/README.md)
 scripts/make_placeholders.py        regenerates the placeholder images (Pillow); edit SLOTS to add a slot
+scripts/verify_pages.py             site-wide checks for every page (Playwright) — see Verification
 CLAUDE.md                           this file
 ```
 
@@ -26,7 +35,8 @@ Convention: one flat `.html` per page in `v1/`, shared CSS/JS in `v1/assets/`, a
 `v1/images/`. Page filenames follow the brief's sitemap slugs:
 `sme-ipo-eligibility.html`, `sme-ipo-cost-timeline.html`, `services.html`,
 `nse-emerge-vs-bse-sme.html`, `about.html`, `resources.html`,
-`privacy.html`, `terms.html`, `disclaimer.html`. The home page already links to all of them.
+`privacy.html`, `terms.html`, `disclaimer.html` — **all built**. City pages
+(`sme-ipo-consultant-<city>.html`) are Phase 2 per the brief and not built.
 **There is no `book.html`:** every "Book a call" control is `<a href="#book" data-book>` and opens
 the shared split-screen dialog (see *Always-on widgets*).
 
@@ -49,15 +59,17 @@ frameworks.** Only external request is Google Fonts (Poppins + Inter).
    place of `[X]` markers and no placeholder styling ("I will update it later"). Every sample
    value is wrapped in an invisible `<span data-placeholder>…</span>` (no CSS, no tooltip) and
    the nearby HTML comment says `SAMPLE DATA`. To list what still needs real values:
-   `grep -n "data-placeholder\|SAMPLE DATA\|TODO" v1/index.html`. Current sample values:
+   `grep -rn "data-placeholder\|SAMPLE DATA\|TODO" v1/*.html`. Current sample values:
    40+ mandates · ₹620 Cr raised · 15+ years · 25+ partners · cost band 7–10% · merchant-banker
    fees ₹30–60 L · founder "Vikram Mehta, 18 years" + bio · three promoter quotes (Deshmukh
    Polymers, Coastal Agro Foods, Agarwal Precision Tools) · five client-logo names · phone
    +91 98200 12345 / WhatsApp 919820012345 · hello@shikharcapital.com · office at Peninsula
-   Business Park, Lower Parel, Mumbai 400013 (also in the JSON-LD). Never present these to the
-   client as verified facts.
-4. Eligibility checker is **link-only** on the home page (`sme-ipo-eligibility.html`);
-   the 5-step tool is a separate page (not built yet).
+   Business Park, Lower Parel, Mumbai 400013 (also in the JSON-LD). Inner pages add: the
+   cost-table ranges per intermediary, NSE vs BSE fees and market observations, three mandate
+   cards, partner-logo roles, the founder's long bio, and all three legal documents. Never
+   present any of these to the client as verified facts.
+4. Eligibility checker is **link-only** on the home page; the 5-step tool lives on its own page
+   (`sme-ipo-eligibility.html`, built — see *Eligibility checker*).
 
 ## Design system (v1/assets/style.css, section 01 TOKENS)
 
@@ -246,6 +258,77 @@ the header the containing block for the `position: fixed` nav panel and clips it
 already disables the blur under `body.nav-open`. Every `init*()` in `main.js` null-checks its root element, so the same script
 loads on pages that have no hero timeline, roadmap, FAQ, etc.
 
+## Inner pages — shared patterns
+
+Every inner page is the same shell: the `<head>` boilerplate (fonts, `assets/style.css`,
+`assets/main.js`, the Organization + ProfessionalService `@graph`) with its own title /
+description / canonical / `og:*` / JSON-LD, then the three SHARED blocks copied verbatim —
+**minus the `site-header--overlay` class**, which is home-only.
+
+`.page-hero` is the one inner-page hero (never `.hero`, which is 100dvh and assumes the fixed
+overlay header): navy band over `cta-bg.webp` with a lime glow, it re-declares the navy theme
+slots like `.section--navy`, and carries `.crumbs` + eyebrow + H1 + lead. Add `--split` for a
+7/5 grid with a `.page-hero__aside` (used by the checker and the estimate card).
+
+New components, and what they are for:
+
+| Component | Used by | Notes |
+|---|---|---|
+| `.page-hero` (+ `--split`, `__bg`, `__inner`, `__content`, `__aside`) | every inner page | see above |
+| `.crumbs` | every inner page | must match that page's BreadcrumbList JSON-LD exactly |
+| `.media-frame` (+ `--portrait`) | services, about | rounded photo frame inside a `.split` |
+| `.table-wrap > .table` (+ `.table--stack`) | cost, NSE vs BSE | below 768 it stacks into cards; the label comes from each `td`'s `data-label` |
+| `.steps` (+ `__num/__body/__meta/__group-title`) | cost roadmap, about, thank-you | numbers are **written in the markup**, not CSS counters, so phase groups can restart at 04 |
+| `.orbit` (+ `__core/__nodes/__node`) | about | nodes are positioned with inline `--x/--y` percentages (like the roadmap chart). A percentage `translate` would resolve against the node's own size, not the ring |
+| `.checker`, `.choice`/`.choice-grid`, `.result` | eligibility | see the next section |
+| `.notify-form` | resources | email-only, mocked success |
+| `.prose` | privacy, terms, disclaimer | long-form rhythm inside `.container--narrow` |
+
+Reused as-is from the home page: `.section--navy/--paper`, `.section__head(--left)`, `.split`,
+`.grid--2/--3`, `.card`/`.card__list`, `.icon-tile`, `.chip(-row)`, `.trust-list`, `.logo-row`,
+`.faq`/`.faq-section`/`.faq-layout`/`.faq-intro`/`.faq-ask`, `.signal(-grid)`, `.estimate`,
+`.proof`, `.qualify__cta`, `.final-cta`, `.btn*`, `.field`/`.input`, and the `[data-reveal]` /
+`[data-count]` behaviours.
+
+**Head metadata rules:** canonical and `og:url` use the extensionless slug on the (still TODO)
+production domain; every page has its own `og-*.jpg`; **FAQPage JSON-LD only where a visible
+`.faq` exists** (eligibility, cost, NSE vs BSE) and its text must equal the DOM verbatim — write
+the HTML first, then copy it into the schema (`scripts/verify_pages.py` enforces this).
+`about.html` adds AboutPage + Person. `thank-you.html` is `noindex, nofollow`, has no canonical
+and is linked from nowhere: it exists so the production build has a URL to fire the Google Ads /
+Meta conversion on.
+
+## Eligibility checker (v1/sme-ipo-eligibility.html)
+
+Five screens, one question each, contact details last (brief §4). DOM contract:
+`[data-checker]` wraps `.checker__head` (count + `--progress` bar), a `<form>` of five
+`<fieldset class="checker__screen" data-screen="n">`, `[data-checker-back/next/submit]`, a
+`.result` region, and three `<template data-result="ready|nearly|not-yet">`. Screens 1–4 are
+radio groups of `.choice` tiles (`role="radiogroup"`, one `#<name>-error` per group); screen 5
+uses the standard `.field`/`.input` pattern (`#ck-name/company/city/mobile/email`).
+
+Scoring — four criteria, `4 met = ready · 3 = nearly · else not yet`:
+
+| key | radio `name` | met when | gap phrase used on "nearly" |
+|---|---|---|---|
+| revenue | `revenue` | `70-150`, `150-250`, `over-250` | cross the ₹70 Cr revenue mark |
+| profit | `profit` | value ≥ 2 | post a second profitable year |
+| networth | `networth` | `positive` | restore positive net worth |
+| years | `years` | `3-plus` | complete three years of operations |
+
+`motive` (screen 4) is captured for the CRM but not scored. The result screen shows the state
+badge, a 4-bar meter, the four criteria ticked/crossed, three next steps and per-state CTAs —
+"not yet" sends people to the guides rather than a sales call, per the brief.
+
+Behaviour (`initChecker`): a **pointer** pick auto-advances after ~220 ms, **keyboard** selection
+never does (arrow keys move between options; Enter advances), focus moves to the question legend
+on each screen and to `.result` on submit, and Back keeps previous answers. Without JS every
+screen is visible and a `<noscript>` note points to WhatsApp. Submission is **mocked** — nothing
+leaves the browser; see the `// TODO` for the CRM webhook, GA4 step events and the Ads/Meta
+conversion (which should fire on "ready" only). One open question is flagged in the code as
+`// TODO (client)`: whether "Below ₹25 Cr" should force "not yet" even when the other three
+criteria are met — the brief's literal rule is what is implemented.
+
 ## JavaScript behaviours (v1/assets/main.js)
 
 Single IIFE, no globals, `prefers-reduced-motion` respected. `initHeader` (adds `.is-scrolled`
@@ -253,9 +336,11 @@ past 8px — drives the overlay header's transparent→white switch), `initMobil
 focus return, closes ≥1024), `initActiveNav`, `initRoadmap` (ascent chart: hover,
 focus, Arrow/Home/End keys, `aria-current="step"`), `initAccordion` (single-open, Arrow keys,
 CSS grid height animation), `initLeadForm` (hero two-step form: per-step validation, Continue /
-Back, Enter advances step 1, mocked success state), `initBookModal` (the `#book` dialog: open
-from `[data-book]`, scroll lock, Esc/backdrop/close buttons, focus return, validation incl.
-optional email, mocked success), `initReveal` (IntersectionObserver; content is never hidden
+Back, Enter advances step 1, mocked success state), `initBookModal` (the `#book` dialog: opened by a **delegated**
+`[data-book]` click listener — so controls rendered later, like the checker result, work too —
+scroll lock, Esc/backdrop/close buttons, focus return, validation incl. optional email, mocked
+success), `initChecker` (the eligibility checker, see above), `initNotifyForm` (resources page:
+email validation + mocked success), `initReveal` (IntersectionObserver; content is never hidden
 without JS), `initCounters` (any `[data-count="N"]` element counts from 0 to N with ease-out
 over 1.6 s — optional `data-count-duration` — the first time 60 % of it is visible; under
 reduced-motion or without IntersectionObserver the final value is simply shown; `.stat__value`
@@ -273,18 +358,29 @@ until the client supplies one) and `skyline-lineart.svg` (decorative line-art).
 ## Verification
 
 ```powershell
-cd v1; python -m http.server 8080      # open http://localhost:8080/
+python scripts/verify_pages.py         # all pages (Playwright, headless Chromium)
+python scripts/verify_pages.py index.html
+cd v1; python -m http.server 8080      # or just look at it: http://localhost:8080/
 ```
-- Check 375 / 768 / 1024 / 1440 widths — no horizontal scroll; both hero CTAs above the fold at 375.
-- Validate JSON-LD (e.g. Google Rich Results Test); FAQ text in schema must equal the DOM text.
-- Keyboard: Tab through nav → FAQ (Enter/Space, Arrow keys) → roadmap (Arrow keys).
-- Lighthouse mobile targets: Performance ≥ 90, Accessibility 100, SEO 100.
-- Sample values still to be replaced with real ones: `grep -n "data-placeholder\|SAMPLE DATA\|TODO" v1/index.html`.
 
-Last verified (home page): JSON-LD parses, FAQ parity OK, unique ids, all `aria-controls`
-targets exist, no console errors, no horizontal overflow at 375/768/1440, 30 interaction checks
-pass in headless Chromium (nav, hero timeline, roadmap keys, accordion, callback validation,
-reduced-motion, no-JS fallback).
+`verify_pages.py` serves `v1/` and fails on: console / page errors and 404s, horizontal overflow
+at 375 / 768 / 1440 (and at 375 with the mobile menu open), internal links or `#fragments` that
+do not resolve, invalid JSON-LD, FAQ schema that does not match the DOM verbatim, breadcrumb
+schema that does not match `.crumbs`, duplicate ids, missing ARIA targets, more or fewer than one
+`<h1>`, a stray `site-header--overlay` on an inner page, a missing canonical / `og:image`, and
+**any "17 week" or week-range wording** (the client rule).
+
+Still worth doing by hand:
+- Keyboard: Tab through nav → FAQ (Enter/Space, Arrow keys) → roadmap (Arrow keys) → checker
+  (arrows move between options, Enter advances) → booking dialog (Esc).
+- Validate JSON-LD in Google's Rich Results Test before launch.
+- Lighthouse mobile targets: Performance ≥ 90, Accessibility 100, SEO 100.
+- Sample values still to be replaced: `grep -rn "data-placeholder\|SAMPLE DATA\|TODO" v1/*.html`.
+
+Last verified (all 11 pages, 2026-09-22): `scripts/verify_pages.py` passes, and the eligibility
+checker passes 27 interaction assertions in headless Chromium (three result states, the gap
+phrase per missing criterion, empty-screen validation, Back, pointer auto-advance, keyboard not
+auto-advancing, contact validation, Book from the result, restart).
 
 ## Outstanding inputs from the client
 
@@ -292,7 +388,10 @@ Brand logo · founder photo + 4–5 line bio · mandate / capital-raised / partn
 phone, WhatsApp number, email, office address · production domain · cost band % and
 merchant-banker fee range + share of each cost head · promoter testimonials (logo row dropped) ·
 founder figures (years, listings) + a real quote · confirmation of roadmap
-step sequence · legal review of the footer disclaimer · real images for every slot.
+step sequence · legal review of the footer disclaimer **and of privacy / terms / disclaimer**
+(all placeholder text) · real images for every slot · cost-table ranges per intermediary ·
+NSE vs BSE fee figures and the market observations · mandate card details · intermediary partner
+logos · whether "Below ₹25 Cr" revenue should force a "not yet" checker result.
 
 ## Change log
 
@@ -360,3 +459,13 @@ step sequence · legal review of the footer disclaimer · real images for every 
   pass; no console errors at 375/768/1440. Client then asked for it to be **shorter** (fields in
   2-col rows, note field dropped → ~460px on desktop) and, on phones, a **bottom-sheet drawer
   that fits in one view** (no scrolling; swipe-down to close).
+- **2026-09-22 (inner pages)** — Built the **ten remaining pages** from the brief §2/§5 so the
+  mock-up is clickable end to end: eligibility checker, cost & timeline, services, NSE vs BSE,
+  about, resources ("coming soon" per the client), privacy, terms, disclaimer and an unlinked
+  noindex thank-you page. New shared components (`.page-hero`, `.crumbs`, `.media-frame`,
+  `.table/--stack`, `.steps`, `.orbit`, `.checker/.choice/.result`, `.notify-form`, `.prose`);
+  everything else reuses the home page's components. `main.js` gained `initChecker` and
+  `initNotifyForm`, and `[data-book]` became a delegated listener so the checker result's Book
+  button works. `make_placeholders.py` gained the per-page OG and partner-logo slots plus a
+  `REAL` guard so it can never overwrite a client photo. Added `scripts/verify_pages.py`
+  (site-wide checks; all 11 pages pass) and 27 checker interaction assertions.

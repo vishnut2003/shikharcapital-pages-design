@@ -322,8 +322,12 @@
       else dialog.removeAttribute('open');
     }
 
-    $$('[data-book]').forEach(function (el) {
-      el.addEventListener('click', function (e) { e.preventDefault(); open(el); });
+    // Delegated so controls added later (e.g. the eligibility result screen) work too
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest ? e.target.closest('[data-book]') : null;
+      if (!trigger) return;
+      e.preventDefault();
+      open(trigger);
     });
     $$('[data-book-close]', dialog).forEach(function (btn) { btn.addEventListener('click', close); });
 
@@ -409,6 +413,275 @@
   }
 
   /* ---------------------------------------------------------------------
+     6c. Notify form (resources page) — email only, mocked success
+     --------------------------------------------------------------------- */
+  function initNotifyForm() {
+    var form = $('#notify-form');
+    if (!form) return;
+    var email = $('#nf-email', form);
+    var errEl = $('#nf-email-error');
+    var success = $('.notify-form__success');
+    var pageField = $('input[name="page"]', form);
+    if (pageField) pageField.value = window.location.href;
+
+    function flag(msg) {
+      email.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (errEl) errEl.textContent = msg || '';
+      return !msg;
+    }
+    email.addEventListener('input', function () {
+      if (email.getAttribute('aria-invalid') === 'true') flag('');
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var value = email.value.trim();
+      if (!flag(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Enter a valid email address.')) {
+        email.focus();
+        return;
+      }
+      // TODO: POST to the CRM / newsletter list — see brief §7. Mock only for now.
+      form.hidden = true;
+      if (success) { success.hidden = false; success.focus(); }
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     6d. Eligibility checker (sme-ipo-eligibility.html)
+         Five screens, one question each; contact details last. Scoring follows
+         the brief: four criteria, 4 met = ready, 3 = nearly, otherwise not yet.
+         See CLAUDE.md for the DOM contract.
+     --------------------------------------------------------------------- */
+  function initChecker() {
+    var root = $('[data-checker]');
+    if (!root) return;
+    var form = $('.checker__form', root);
+    var screens = $$('.checker__screen', root);
+    var result = $('.result', root);
+    var head = $('.checker__head', root);
+    var counter = $('[data-checker-current]', root);
+    var live = $('[data-checker-live]', root);
+    var backBtn = $('[data-checker-back]', root);
+    var nextBtn = $('[data-checker-next]', root);
+    var submitBtn = $('[data-checker-submit]', root);
+    var note = $('.checker__note', root);
+    if (!form || !screens.length || !result) return;
+
+    var TOTAL = screens.length;
+    var current = 1;
+
+    // Scoring. The brief's rule is literal: each criterion is independent.
+    // TODO (client): confirm whether "Below ₹25 Cr" should force "not yet" even when
+    // the other three criteria are met.
+    var CRITERIA = [
+      { key: 'revenue',  met: function (v) { return v === '70-150' || v === '150-250' || v === 'over-250'; },
+        gap: 'cross the ₹70 Cr revenue mark' },
+      { key: 'profit',   met: function (v) { return Number(v) >= 2; },
+        gap: 'post a second profitable year' },
+      { key: 'networth', met: function (v) { return v === 'positive'; },
+        gap: 'restore positive net worth' },
+      { key: 'years',    met: function (v) { return v === '3-plus'; },
+        gap: 'complete three years of operations' }
+    ];
+
+    function answer(name) {
+      var el = $('input[name="' + name + '"]:checked', form);
+      return el ? el.value : '';
+    }
+
+    function flag(input, msg) {
+      var err = $('#' + input.id + '-error');
+      input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (err) err.textContent = msg || '';
+      return !msg;
+    }
+
+    function groupError(screen, name, msg) {
+      var err = $('#' + name + '-error', screen);
+      if (err) err.textContent = msg || '';
+    }
+
+    // Returns the element to focus when the screen is incomplete, else null
+    function validateScreen(n) {
+      var screen = screens[n - 1];
+      var firstBad = null;
+
+      // Radio screens: every radiogroup in the screen needs a checked option
+      var names = [];
+      $$('input[type="radio"]', screen).forEach(function (r) {
+        if (names.indexOf(r.name) === -1) names.push(r.name);
+      });
+      names.forEach(function (name) {
+        var checked = $('input[name="' + name + '"]:checked', screen);
+        groupError(screen, name, checked ? '' : 'Please pick one option.');
+        if (!checked && !firstBad) firstBad = $('input[name="' + name + '"]', screen);
+      });
+
+      // Contact screen
+      if (n === TOTAL) {
+        var name = $('#ck-name', screen);
+        var company = $('#ck-company', screen);
+        var city = $('#ck-city', screen);
+        var mobile = $('#ck-mobile', screen);
+        var email = $('#ck-email', screen);
+        function check(input, ok, msg) {
+          if (input && !flag(input, ok ? '' : msg) && !firstBad) firstBad = input;
+        }
+        check(name, name.value.trim().length > 1, 'Please enter your name.');
+        check(company, company.value.trim().length > 1, 'Please enter your company name.');
+        check(city, city.value.trim().length > 1, 'Please enter your city.');
+        check(mobile, /^[6-9]\d{9}$/.test(mobile.value.replace(/[\s-]/g, '')), 'Enter a valid 10-digit Indian mobile number.');
+        check(email, !email.value.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()), 'That email address does not look right.');
+      }
+      return firstBad;
+    }
+
+    function show(n, focus) {
+      current = n;
+      screens.forEach(function (s, i) {
+        s.hidden = i !== n - 1;
+        s.style.animation = 'none'; void s.offsetWidth; s.style.animation = '';
+      });
+      if (counter) counter.textContent = String(n);
+      if (live) live.textContent = 'Question ' + n + ' of ' + TOTAL;
+      root.style.setProperty('--progress', String(Math.round((n / TOTAL) * 100)));
+      if (backBtn) backBtn.hidden = n === 1;
+      if (nextBtn) nextBtn.hidden = n === TOTAL;
+      if (submitBtn) submitBtn.hidden = n !== TOTAL;
+      if (focus) {
+        var legend = $('.checker__q', screens[n - 1]);
+        if (legend) legend.focus();
+      }
+    }
+
+    // Clear a field error as soon as it is edited
+    $$('.input', form).forEach(function (input) {
+      input.addEventListener('input', function () { if (input.getAttribute('aria-invalid') === 'true') flag(input, ''); });
+    });
+
+    // Pointer selection auto-advances; keyboard (arrow keys) never does, so that
+    // moving through the options does not skip the screen.
+    var pointerPick = false;
+    root.addEventListener('pointerdown', function (e) {
+      if (e.target.closest && e.target.closest('.choice')) {
+        pointerPick = true;
+        window.setTimeout(function () { pointerPick = false; }, 500);
+      }
+    });
+    form.addEventListener('change', function (e) {
+      if (e.target.type !== 'radio') return;
+      groupError(screens[current - 1], e.target.name, '');
+      if (!pointerPick || current >= TOTAL) return;
+      if (validateScreen(current)) return;          // screen not complete yet (Q3 has two groups)
+      window.setTimeout(function () { show(current + 1, true); }, REDUCED ? 0 : 220);
+    });
+
+    // Enter on a radio advances instead of submitting
+    form.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.type === 'radio') {
+        e.preventDefault();
+        if (nextBtn && !nextBtn.hidden) nextBtn.click();
+      }
+    });
+
+    if (nextBtn) nextBtn.addEventListener('click', function () {
+      var bad = validateScreen(current);
+      if (bad) { bad.focus(); return; }
+      show(Math.min(current + 1, TOTAL), true);
+    });
+    if (backBtn) backBtn.addEventListener('click', function () { show(Math.max(current - 1, 1), true); });
+
+    function render(state, met, values) {
+      var tpl = $('template[data-result="' + state + '"]', root);
+      if (!tpl) return;
+      result.innerHTML = '';
+      result.appendChild(tpl.content.cloneNode(true));
+      result.setAttribute('data-state', state);
+
+      var score = met.length;
+      var scoreEl = $('[data-result-score]', result);
+      if (scoreEl) scoreEl.textContent = score + ' / ' + CRITERIA.length;
+
+      $$('[data-criterion]', result).forEach(function (li) {
+        li.classList.toggle('is-met', met.indexOf(li.getAttribute('data-criterion')) !== -1);
+      });
+      $$('.result__meter-bars i', result).forEach(function (bar, i) {
+        bar.style.setProperty('--i', String(i));
+        bar.classList.toggle('is-on', i < score);
+      });
+
+      var gapEl = $('[data-gap]', result);
+      if (gapEl) {
+        var missing = CRITERIA.filter(function (c) { return met.indexOf(c.key) === -1; });
+        gapEl.textContent = missing.length ? missing[0].gap : 'the remaining criterion';
+      }
+
+      var over = $('[data-note-over-250]', result);
+      if (over) over.hidden = values.revenue !== 'over-250';
+
+      var waBase = root.getAttribute('data-wa') || 'https://wa.me/?text=';
+      var company = ($('#ck-company', form) || {}).value || '';
+      $$('[data-result-wa]', result).forEach(function (a) {
+        a.setAttribute('href', waBase + encodeURIComponent(
+          'Hi Shikhar Capital, I completed the eligibility check' +
+          (company.trim() ? ' for ' + company.trim() : '') +
+          ' — result: ' + (($('.result__title', result) || {}).textContent || '') + '.'
+        ));
+      });
+
+      form.hidden = true;
+      if (head) head.hidden = true;
+      if (note) note.hidden = true;
+      result.hidden = false;
+      window.requestAnimationFrame(function () { result.classList.add('is-visible'); });
+      result.focus();
+
+      $$('[data-checker-restart]', result).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          form.reset();
+          $$('.field__error', form).forEach(function (el) { el.textContent = ''; });
+          $$('[aria-invalid]', form).forEach(function (el) { el.setAttribute('aria-invalid', 'false'); });
+          result.hidden = true;
+          result.classList.remove('is-visible');
+          result.removeAttribute('data-state');
+          form.hidden = false;
+          if (head) head.hidden = false;
+          if (note) note.hidden = false;
+          show(1, true);
+        });
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Any earlier screen left incomplete sends the visitor back to it
+      for (var n = 1; n <= TOTAL; n++) {
+        var bad = validateScreen(n);
+        if (bad) { show(n, false); bad.focus(); return; }
+      }
+
+      var values = {};
+      ['revenue', 'profit', 'networth', 'years', 'motive'].forEach(function (k) { values[k] = answer(k); });
+      var met = CRITERIA.filter(function (c) { return c.met(values[c.key]); }).map(function (c) { return c.key; });
+      var state = met.length === CRITERIA.length ? 'ready' : (met.length === CRITERIA.length - 1 ? 'nearly' : 'not-yet');
+
+      var scoreField = $('input[name="score"]', form);
+      var stateField = $('input[name="state"]', form);
+      var pageField = $('input[name="page"]', form);
+      if (scoreField) scoreField.value = String(met.length);
+      if (stateField) stateField.value = state;
+      if (pageField) pageField.value = window.location.href;
+
+      // TODO: POST to CRM webhook (Zoho / HubSpot) with the revenue band, score and state;
+      // fire GA4 step events, and the Google Ads / Meta conversion on "ready" only — brief §4/§7.
+      // Mock only for now; nothing leaves the browser.
+      render(state, met, values);
+    });
+
+    show(1, false);
+  }
+
+  /* ---------------------------------------------------------------------
      7. Scroll reveal
      --------------------------------------------------------------------- */
   function initReveal() {
@@ -478,6 +751,8 @@
     initCounters();
     initLeadForm();
     initBookModal();
+    initNotifyForm();
+    initChecker();
     initYear();
   });
 })();

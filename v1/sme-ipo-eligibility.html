@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SME IPO Eligibility Checker — 60-second readiness check | Shikhar Capital</title>
+  <meta name="description" content="Find out in 60 seconds whether your company qualifies for NSE Emerge or BSE SME: revenue, profitability, net worth and track record. Free, no documents, no obligation.">
+  <!-- TODO: confirm production domain with client -->
+  <link rel="canonical" href="https://www.shikharcapital.com/sme-ipo-eligibility">
+  <meta name="theme-color" content="#0B1F3A">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shikhar Capital">
+  <meta property="og:title" content="Is your company SME IPO-ready? Find out in 60 seconds.">
+  <meta property="og:description" content="Five questions, no documents. Get an instant read on NSE Emerge / BSE SME eligibility and your next two steps.">
+  <meta property="og:url" content="https://www.shikharcapital.com/sme-ipo-eligibility">
+  <meta property="og:image" content="https://www.shikharcapital.com/images/og-eligibility.jpg">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/main.js"></script>
+
+  <!-- Structured data: Organization + ProfessionalService (placeholders marked XXXX) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.shikharcapital.com/#org",
+        "name": "Shikhar Capital",
+        "url": "https://www.shikharcapital.com/",
+        "logo": "https://www.shikharcapital.com/images/logo-mark.svg",
+        "email": "hello@shikharcapital.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-98200-12345",
+          "contactType": "sales",
+          "areaServed": "IN",
+          "availableLanguage": ["en", "hi"]
+        },
+        "sameAs": ["https://www.linkedin.com/company/shikhar-capital"]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.shikharcapital.com/#service",
+        "name": "Shikhar Capital — SME IPO Advisory",
+        "parentOrganization": { "@id": "https://www.shikharcapital.com/#org" },
+        "url": "https://www.shikharcapital.com/",
+        "description": "SME IPO advisory for ₹70–250 Cr revenue companies listing on NSE Emerge and BSE SME. One advisor coordinates every intermediary from readiness check to listing day, with a single consolidated plan.",
+        "telephone": "+91-98200-12345",
+        "priceRange": "₹₹₹",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1204, Peninsula Business Park, Lower Parel",
+          "addressLocality": "Mumbai",
+          "addressRegion": "Maharashtra",
+          "postalCode": "400013",
+          "addressCountry": "IN"
+        },
+        "areaServed": { "@type": "Country", "name": "India" },
+        "serviceType": ["SME IPO Advisory", "NSE Emerge Listing", "BSE SME Listing"],
+        "knowsAbout": ["SME IPO", "NSE Emerge", "BSE SME", "DRHP", "IPO readiness", "Merchant banker coordination"]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured data: BreadcrumbList (mirrors the visible breadcrumb) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shikharcapital.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Eligibility checker", "item": "https://www.shikharcapital.com/sme-ipo-eligibility" }
+    ]
+  }
+  </script>
+
+  <!-- Structured data: FAQPage (text mirrors the visible FAQ section verbatim) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this a formal eligibility opinion?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It is a first read based on four answers. Formal eligibility is determined by the exchange against SEBI (ICDR) Regulations and its own listing norms, on the strength of your audited financials and documents. A readiness assessment is the step between the two."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens after I submit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your result appears on screen straight away. If it shows you are ready or nearly ready, an advisor calls or messages you within 15 minutes on working days to walk through it. If it shows not yet, we send the guides and leave you alone until you get in touch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need documents to complete it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "None. You only need to know your revenue band, how many of the last three years were profitable, whether net worth is positive and how long the company has been operating. Documents come later, and only if you decide to proceed."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ==================================================================
+       SHARED: SITE HEADER — copy verbatim to every page.
+       Keep in sync across all v1/*.html pages. Do not edit per page;
+       aria-current is set by main.js.
+       ================================================================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="Shikhar Capital — home">
+        <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <rect width="48" height="48" rx="10" fill="#0B1F3A"/>
+          <path d="M8 34 L19 16 L26 27 L31 20 L40 34 Z" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M8 34 L19 16 L26 27" fill="none" stroke="#E0FF57" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M30 12 L40 12 L40 22" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M40 12 L32 20" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="brand__name">Shikhar <em>Capital</em></span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <!-- On phones each link shows an icon tile + one-line description (.site-nav__desc); desktop shows the label only -->
+        <ul class="site-nav__list">
+          <li><a href="sme-ipo-eligibility.html"><span class="site-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></span><span class="site-nav__text">Eligibility<small class="site-nav__desc">60-second readiness check</small></span></a></li>
+          <li><a href="sme-ipo-cost-timeline.html"><span class="site-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="site-nav__text">Cost &amp; Timeline<small class="site-nav__desc">What it costs, step by step</small></span></a></li>
+          <li><a href="services.html"><span class="site-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></span><span class="site-nav__text">Services<small class="site-nav__desc">Pre-IPO · Execution · Post-listing</small></span></a></li>
+          <li><a href="nse-emerge-vs-bse-sme.html"><span class="site-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 16V9M10 16V5M14 16v-6M18 16V7"/></svg></span><span class="site-nav__text">NSE vs BSE<small class="site-nav__desc">Which platform fits you</small></span></a></li>
+          <li><a href="about.html"><span class="site-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="site-nav__text">Why Us<small class="site-nav__desc">One advisor, every intermediary</small></span></a></li>
+          <li><a href="resources.html"><span class="site-nav__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7z"/></svg></span><span class="site-nav__text">Resources<small class="site-nav__desc">Guides &amp; checklists</small></span></a></li>
+        </ul>
+
+        <!-- Phone-only footer of the menu -->
+        <div class="site-nav__foot">
+          <a class="btn btn--accent btn--block site-nav__cta" href="#book" data-book>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            Book a readiness call
+          </a>
+          <div class="site-nav__quick">
+            <a href="tel:+919820012345"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call us</a>
+            <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
+          </div>
+          <!-- SAMPLE DATA: contact details -->
+          <p class="site-nav__contact"><a href="mailto:hello@shikharcapital.com">hello@shikharcapital.com</a><span>Mon–Sat · 10am–7pm IST · Reply within 15 min</span></p>
+        </div>
+      </nav>
+
+      <div class="site-header__right">
+        <a class="btn btn--accent btn--sm site-header__cta" href="#book" data-book>
+          <span class="site-header__cta-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+          <span>Book a Call</span>
+          <svg class="site-header__cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- /SHARED: SITE HEADER -->
+
+  <main id="main">
+
+    <!-- ============================ PAGE HERO + CHECKER ============================ -->
+    <section class="page-hero page-hero--split" aria-labelledby="page-title">
+      <img class="page-hero__bg" src="images/cta-bg.webp" alt="" width="1920" height="800" loading="lazy" decoding="async">
+      <div class="container page-hero__inner">
+        <div class="page-hero__content">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li aria-current="page">Eligibility checker</li>
+            </ol>
+          </nav>
+          <span class="eyebrow">Free eligibility check</span>
+          <h1 id="page-title">Is your company SME IPO-ready? Find out in 60 seconds.</h1>
+          <p class="lead">Five questions about your numbers — no documents, no obligation. You get an instant read on NSE Emerge and BSE SME eligibility, and what to do next either way.</p>
+          <ul class="trust-list" aria-label="What to expect">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>5 questions</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No documents needed</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Result on screen</li>
+          </ul>
+        </div>
+
+        <!-- Eligibility checker. Scoring, validation and the result screens are driven by
+             initChecker() in assets/main.js — see CLAUDE.md for the DOM contract. -->
+        <div class="page-hero__aside">
+          <div class="checker" id="checker" data-checker data-wa="https://wa.me/919820012345?text=">
+            <div class="checker__head">
+              <span class="checker__count">Question <b data-checker-current>1</b> of 5</span>
+              <span class="visually-hidden" aria-live="polite" data-checker-live>Question 1 of 5</span>
+              <div class="checker__bar" aria-hidden="true"><i></i></div>
+            </div>
+
+            <form class="checker__form" id="checker-form" novalidate>
+              <!-- Q1 -->
+              <fieldset class="checker__screen" data-screen="1">
+                <legend class="checker__q" tabindex="-1">What was your revenue last financial year?</legend>
+                <div class="choice-grid" role="radiogroup" aria-describedby="revenue-error">
+                  <label class="choice"><input class="choice__input" type="radio" name="revenue" value="under-25"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Below <span class="rupee">₹</span>25 Cr</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="revenue" value="25-70"><span class="choice__box" aria-hidden="true"></span><span class="choice__text"><span class="rupee">₹</span>25–70 Cr</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="revenue" value="70-150"><span class="choice__box" aria-hidden="true"></span><span class="choice__text"><span class="rupee">₹</span>70–150 Cr</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="revenue" value="150-250"><span class="choice__box" aria-hidden="true"></span><span class="choice__text"><span class="rupee">₹</span>150–250 Cr</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="revenue" value="over-250"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Above <span class="rupee">₹</span>250 Cr</span></label>
+                </div>
+                <p class="field__error" id="revenue-error" aria-live="polite"></p>
+              </fieldset>
+
+              <!-- Q2 -->
+              <fieldset class="checker__screen" data-screen="2" hidden>
+                <legend class="checker__q" tabindex="-1">Profitable in how many of the last 3 years?</legend>
+                <div class="choice-grid choice-grid--4" role="radiogroup" aria-describedby="profit-error">
+                  <label class="choice"><input class="choice__input" type="radio" name="profit" value="0"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">0</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="profit" value="1"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">1</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="profit" value="2"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">2</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="profit" value="3"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">3</span></label>
+                </div>
+                <p class="checker__hint">Operating profit, not one-off gains.</p>
+                <p class="field__error" id="profit-error" aria-live="polite"></p>
+              </fieldset>
+
+              <!-- Q3 -->
+              <fieldset class="checker__screen" data-screen="3" hidden>
+                <legend class="checker__q" tabindex="-1">Net worth and years in operation</legend>
+                <div class="checker__sub">
+                  <span class="checker__sub-label" id="networth-label">Net worth</span>
+                  <div class="choice-grid choice-grid--2" role="radiogroup" aria-labelledby="networth-label" aria-describedby="networth-error">
+                    <label class="choice"><input class="choice__input" type="radio" name="networth" value="positive"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Positive</span></label>
+                    <label class="choice"><input class="choice__input" type="radio" name="networth" value="negative"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Negative</span></label>
+                  </div>
+                  <p class="field__error" id="networth-error" aria-live="polite"></p>
+                </div>
+                <div class="checker__sub">
+                  <span class="checker__sub-label" id="years-label">Years in operation</span>
+                  <div class="choice-grid choice-grid--2" role="radiogroup" aria-labelledby="years-label" aria-describedby="years-error">
+                    <label class="choice"><input class="choice__input" type="radio" name="years" value="under-3"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Under 3 years</span></label>
+                    <label class="choice"><input class="choice__input" type="radio" name="years" value="3-plus"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">3 years or more</span></label>
+                  </div>
+                  <p class="field__error" id="years-error" aria-live="polite"></p>
+                </div>
+              </fieldset>
+
+              <!-- Q4 -->
+              <fieldset class="checker__screen" data-screen="4" hidden>
+                <legend class="checker__q" tabindex="-1">Why are you considering an IPO?</legend>
+                <div class="choice-grid" role="radiogroup" aria-describedby="motive-error">
+                  <label class="choice"><input class="choice__input" type="radio" name="motive" value="growth"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Growth capital</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="motive" value="debt"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Debt reduction</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="motive" value="brand"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Brand &amp; credibility</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="motive" value="exit"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Exit for early investors</span></label>
+                  <label class="choice"><input class="choice__input" type="radio" name="motive" value="exploring"><span class="choice__box" aria-hidden="true"></span><span class="choice__text">Just exploring</span></label>
+                </div>
+                <p class="field__error" id="motive-error" aria-live="polite"></p>
+              </fieldset>
+
+              <!-- Q5 -->
+              <fieldset class="checker__screen" data-screen="5" hidden>
+                <legend class="checker__q" tabindex="-1">Where should we send your result?</legend>
+                <div class="checker__fields">
+                  <div class="field">
+                    <label for="ck-name">Your name</label>
+                    <input class="input" id="ck-name" name="name" type="text" autocomplete="name" required aria-describedby="ck-name-error" placeholder="Full name">
+                    <span class="field__error" id="ck-name-error" aria-live="polite"></span>
+                  </div>
+                  <div class="field">
+                    <label for="ck-company">Company name</label>
+                    <input class="input" id="ck-company" name="company" type="text" autocomplete="organization" required aria-describedby="ck-company-error" placeholder="Registered company name">
+                    <span class="field__error" id="ck-company-error" aria-live="polite"></span>
+                  </div>
+                  <div class="checker__row">
+                    <div class="field">
+                      <label for="ck-city">City</label>
+                      <input class="input" id="ck-city" name="city" type="text" autocomplete="address-level2" required aria-describedby="ck-city-error" placeholder="e.g. Surat">
+                      <span class="field__error" id="ck-city-error" aria-live="polite"></span>
+                    </div>
+                    <div class="field">
+                      <label for="ck-mobile">Mobile / WhatsApp</label>
+                      <input class="input" id="ck-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" required aria-describedby="ck-mobile-error" placeholder="10-digit number">
+                      <span class="field__error" id="ck-mobile-error" aria-live="polite"></span>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="ck-email">Email <span class="field__opt">(optional)</span></label>
+                    <input class="input" id="ck-email" name="email" type="email" autocomplete="email" aria-describedby="ck-email-error" placeholder="you@company.com">
+                    <span class="field__error" id="ck-email-error" aria-live="polite"></span>
+                  </div>
+                </div>
+                <input type="hidden" name="page" value="">
+                <input type="hidden" name="score" value="">
+                <input type="hidden" name="state" value="">
+              </fieldset>
+
+              <div class="checker__nav">
+                <button class="checker__back" type="button" data-checker-back hidden>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                  Back
+                </button>
+                <button class="btn btn--accent" type="button" data-checker-next>
+                  Continue
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+                <button class="btn btn--accent" type="submit" data-checker-submit hidden>
+                  Show my result
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+              </div>
+
+              <p class="checker__note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+                Indicative only. Your details stay with Shikhar Capital.
+              </p>
+
+              <noscript>
+                <p class="note">The checker needs JavaScript. <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20an%20eligibility%20check." target="_blank" rel="noopener">WhatsApp us</a> your revenue, profitable years and years in operation and we will read it for you.</p>
+              </noscript>
+            </form>
+
+            <div class="result" tabindex="-1" hidden></div>
+
+            <!-- Result screens, cloned by initChecker() -->
+            <template data-result="ready">
+              <span class="result__badge">IPO-ready</span>
+              <h2 class="result__title">You appear IPO-ready</h2>
+              <p class="result__sub">All four signals are in place. The next step is a 20-minute readiness call — we reply within 15 minutes on working days.</p>
+              <p class="result__sub" data-note-over-250 hidden>Above ₹250 Cr in revenue, a mainboard listing may also be open to you. We cover both routes on the call.</p>
+              <div class="result__meter">
+                <div class="result__meter-row"><span>Signals met</span><b data-result-score>4 / 4</b></div>
+                <div class="result__meter-bars"><i></i><i></i><i></i><i></i></div>
+              </div>
+              <ul class="result__criteria">
+                <li data-criterion="revenue">Revenue in the band we work with</li>
+                <li data-criterion="profit">Profitable in 2 of the last 3 years</li>
+                <li data-criterion="networth">Positive net worth</li>
+                <li data-criterion="years">3+ years in operation</li>
+              </ul>
+              <h3>Your next three steps</h3>
+              <ol class="result__steps">
+                <li>Book a 20-minute readiness call — eligibility, cost band and platform view.</li>
+                <li>We prepare a readiness assessment with every gap written down. You keep it either way.</li>
+                <li>If you go ahead, we appoint and coordinate the intermediaries on one plan.</li>
+              </ol>
+              <div class="btn-row">
+                <a class="btn btn--accent" href="#book" data-book>Book a readiness call</a>
+                <a class="btn btn--outline" data-result-wa target="_blank" rel="noopener">WhatsApp us</a>
+              </div>
+              <p class="note">Indicative result based on your answers — not an eligibility opinion. <button class="link" type="button" data-checker-restart>Start again</button></p>
+            </template>
+
+            <template data-result="nearly">
+              <span class="result__badge">Nearly ready</span>
+              <h2 class="result__title">You may qualify in 12–18 months</h2>
+              <p class="result__sub">Three of the four signals are in place. One gap stands between you and a credible filing — and it is usually fixable.</p>
+              <div class="result__meter">
+                <div class="result__meter-row"><span>Signals met</span><b data-result-score>3 / 4</b></div>
+                <div class="result__meter-bars"><i></i><i></i><i></i><i></i></div>
+              </div>
+              <ul class="result__criteria">
+                <li data-criterion="revenue">Revenue in the band we work with</li>
+                <li data-criterion="profit">Profitable in 2 of the last 3 years</li>
+                <li data-criterion="networth">Positive net worth</li>
+                <li data-criterion="years">3+ years in operation</li>
+              </ul>
+              <h3>Your next three steps</h3>
+              <ol class="result__steps">
+                <li>Close the gap: <span data-gap>the criterion you are short on</span>.</li>
+                <li>Book a readiness call — we map the gap and tell you what would have to be true to file.</li>
+                <li>Start the housekeeping now: clean audits, board constitution, related-party items.</li>
+              </ol>
+              <div class="btn-row">
+                <a class="btn btn--accent" href="#book" data-book>Book a readiness call</a>
+                <a class="btn btn--outline" data-result-wa target="_blank" rel="noopener">WhatsApp us</a>
+              </div>
+              <p class="note">Indicative result based on your answers — not an eligibility opinion. <button class="link" type="button" data-checker-restart>Start again</button></p>
+            </template>
+
+            <template data-result="not-yet">
+              <span class="result__badge">Not yet</span>
+              <h2 class="result__title">Not yet — but here is the path</h2>
+              <p class="result__sub">On these answers a listing is some way off. That is worth knowing now rather than after spending on advisors.</p>
+              <div class="result__meter">
+                <div class="result__meter-row"><span>Signals met</span><b data-result-score>0 / 4</b></div>
+                <div class="result__meter-bars"><i></i><i></i><i></i><i></i></div>
+              </div>
+              <ul class="result__criteria">
+                <li data-criterion="revenue">Revenue in the band we work with</li>
+                <li data-criterion="profit">Profitable in 2 of the last 3 years</li>
+                <li data-criterion="networth">Positive net worth</li>
+                <li data-criterion="years">3+ years in operation</li>
+              </ul>
+              <h3>Your next three steps</h3>
+              <ol class="result__steps">
+                <li>Read the guides on eligibility and what a listing actually costs.</li>
+                <li>Work on the two signals you are furthest from — usually profitability and track record.</li>
+                <li>Re-check in six months. Nothing here is permanent.</li>
+              </ol>
+              <div class="btn-row">
+                <a class="btn btn--accent" href="resources.html">Browse the guides</a>
+                <a class="btn btn--outline" data-result-wa target="_blank" rel="noopener">WhatsApp us</a>
+              </div>
+              <p class="note">Prefer to talk anyway? <a class="link" href="#book" data-book>Book a call</a> · <button class="link" type="button" data-checker-restart>Start again</button></p>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ WHAT WE LOOK AT ============================ -->
+    <section class="section qualify" id="criteria" aria-labelledby="criteria-title">
+      <div class="container">
+        <div class="section__head">
+          <span class="eyebrow">What the check looks at</span>
+          <h2 id="criteria-title">The four signals behind your result</h2>
+          <p class="lead">These are the criteria NSE Emerge and BSE SME test first. Meet all four and you are a strong candidate today.</p>
+        </div>
+
+        <div class="signal-grid">
+          <article class="signal" data-reveal>
+            <span class="signal__index" aria-hidden="true">01</span>
+            <div class="signal__top">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 16V9M10 16V5M14 16v-6M18 16V7"/></svg>
+              </div>
+              <span class="signal__tag">Revenue</span>
+            </div>
+            <h3>
+              <span class="signal__value"><span class="rupee">₹</span>70–250 <small>Cr</small></span>
+              <span class="signal__label">annual revenue</span>
+            </h3>
+            <p class="signal__desc">The band where an SME listing raises meaningful capital (₹10–50 Cr) without over-diluting promoters.</p>
+            <p class="signal__foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Typical raise: ₹10–50 Cr
+            </p>
+          </article>
+
+          <article class="signal" data-reveal style="--reveal-delay: 100ms">
+            <span class="signal__index" aria-hidden="true">02</span>
+            <div class="signal__top">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-8"/><path d="M14 8h6v6"/></svg>
+              </div>
+              <span class="signal__tag">Profitability</span>
+            </div>
+            <h3>
+              <span class="signal__value">2 <small>of 3</small></span>
+              <span class="signal__label">years profitable</span>
+            </h3>
+            <p class="signal__desc">Exchanges look for consistent operating profit in two of the last three years; steady EBITDA also drives your valuation.</p>
+            <p class="signal__foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Operating profit, not one-off gains
+            </p>
+          </article>
+
+          <article class="signal" data-reveal style="--reveal-delay: 200ms">
+            <span class="signal__index" aria-hidden="true">03</span>
+            <div class="signal__top">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <span class="signal__tag">Track record</span>
+            </div>
+            <h3>
+              <span class="signal__value">3<small>+ yrs</small></span>
+              <span class="signal__label">in operation</span>
+            </h3>
+            <p class="signal__desc">A track record with positive net worth is the base criterion on both NSE Emerge and BSE SME.</p>
+            <p class="signal__foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>
+              Positive net worth required
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FAQ ============================ -->
+    <section class="section section--paper" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+        <div class="section__head">
+          <span class="eyebrow">FAQ</span>
+          <h2 id="faq-title">About this check</h2>
+        </div>
+
+        <div class="faq" data-accordion="single">
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" id="eq1" aria-expanded="true" aria-controls="ea1">Is this a formal eligibility opinion?<span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+            <div class="faq__a is-open" id="ea1" role="region" aria-labelledby="eq1"><div><p>No. It is a first read based on four answers. Formal eligibility is determined by the exchange against SEBI (ICDR) Regulations and its own listing norms, on the strength of your audited financials and documents. A readiness assessment is the step between the two.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" id="eq2" aria-expanded="false" aria-controls="ea2">What happens after I submit?<span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+            <div class="faq__a" id="ea2" role="region" aria-labelledby="eq2" hidden><div><p>Your result appears on screen straight away. If it shows you are ready or nearly ready, an advisor calls or messages you within 15 minutes on working days to walk through it. If it shows not yet, we send the guides and leave you alone until you get in touch.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" id="eq3" aria-expanded="false" aria-controls="ea3">Do I need documents to complete it?<span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button></h3>
+            <div class="faq__a" id="ea3" role="region" aria-labelledby="eq3" hidden><div><p>None. You only need to know your revenue band, how many of the last three years were profitable, whether net worth is positive and how long the company has been operating. Documents come later, and only if you decide to proceed.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FINAL CTA ============================ -->
+    <section class="section section--navy final-cta" aria-labelledby="cta-title">
+      <!-- IMAGE: images/cta-bg.webp — client's night skyline -->
+      <img class="final-cta__bg" src="images/cta-bg.webp" alt="" width="1920" height="800" loading="lazy" decoding="async">
+      <div class="container">
+        <div class="section__head">
+          <h2 id="cta-title">Prefer to talk it through?</h2>
+          <p class="lead">Twenty minutes with an advisor, no pitch. Free assessment, no obligation, reply within 15 minutes on working days.</p>
+          <div class="btn-row">
+            <a class="btn btn--accent btn--lg" href="#book" data-book>Book a readiness call</a>
+            <a class="btn btn--outline-light btn--lg" href="sme-ipo-cost-timeline.html">See what it costs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================================================================
+       SHARED: SITE FOOTER — copy verbatim to every page.
+       Keep in sync across all v1/*.html pages.
+       ================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a class="brand" href="index.html" aria-label="Shikhar Capital — home">
+            <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <rect width="48" height="48" rx="10" fill="#122B4D"/>
+              <path d="M8 34 L19 16 L26 27 L31 20 L40 34 Z" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M8 34 L19 16 L26 27" fill="none" stroke="#E0FF57" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M30 12 L40 12 L40 22" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M40 12 L32 20" fill="none" stroke="#D4FF1F" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span class="brand__name">Shikhar <em>Capital</em></span>
+          </a>
+          <p class="footer__blurb">SME IPO advisory for ₹70–250 Cr revenue companies listing on NSE Emerge and BSE SME.</p>
+          <!-- SAMPLE DATA: office address -->
+          <address class="footer__addr">
+            <span data-placeholder>1204, Peninsula Business Park, Lower Parel</span><br>
+            <span data-placeholder>Mumbai, Maharashtra – 400013</span>
+          </address>
+        </div>
+
+        <div>
+          <h2 class="footer__title">Pages</h2>
+          <ul class="footer__links">
+            <li><a href="sme-ipo-eligibility.html">Eligibility checker</a></li>
+            <li><a href="sme-ipo-cost-timeline.html">Cost &amp; timeline</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="nse-emerge-vs-bse-sme.html">NSE Emerge vs BSE SME</a></li>
+            <li><a href="about.html">Why us</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="#book" data-book>Book a call</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer__title">Legal</h2>
+          <ul class="footer__links">
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="terms.html">Terms of use</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer__title">Talk to us</h2>
+          <div class="footer__contact">
+            <!-- SAMPLE DATA: phone, email -->
+            <a href="tel:+919820012345"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span data-placeholder>+91 98200 12345</span></a>
+            <a href="mailto:hello@shikharcapital.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-placeholder>hello@shikharcapital.com</span></a>
+            <a href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp us</a>
+            <span>Mon–Sat · 10am–7pm IST</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <!-- SAMPLE DATA: disclaimer wording for legal review; must align with Google financial-services ad policy -->
+        <p><strong>Disclaimer.</strong> Shikhar Capital is an IPO advisory firm. It is not a SEBI-registered merchant banker; IPO execution is carried out through SEBI-registered intermediaries appointed for each mandate. Information on this site is for general guidance and is not investment advice. NSE Emerge and BSE SME are platforms of the National Stock Exchange of India Ltd and BSE Ltd respectively; references are for identification only. Eligibility criteria are subject to SEBI (ICDR) Regulations and exchange rules as amended.</p>
+        <div class="footer__copy">
+          <span>© <span data-year>2026</span> Shikhar Capital. All rights reserved.</span>
+          <span>Website by <a href="https://webspidersolutions.com" rel="noopener" target="_blank">WebSpider Solutions</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /SHARED: SITE FOOTER -->
+
+  <!-- ==================================================================
+       SHARED: ALWAYS-ON WIDGETS — copy verbatim to every page.
+       Mobile bottom bar + "Book a call" split-screen dialog (opened by any [data-book] link;
+       replaces the former book.html page). WhatsApp float + callback widget removed by the client.
+       ================================================================== -->
+  <dialog class="book" id="book" aria-labelledby="book-title">
+    <div class="book__panel">
+      <button class="book__close" type="button" data-book-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <!-- Left: what the call is -->
+      <aside class="book__aside">
+        <span class="book__handle" aria-hidden="true"></span>
+        <img class="book__bg" src="images/cta-bg.webp" alt="" width="1920" height="800" loading="lazy" decoding="async">
+        <div class="book__aside-body">
+          <span class="book__eyebrow">Readiness call · 20 minutes</span>
+          <h2 class="book__title" id="book-title">Twenty minutes with an advisor. No pitch.</h2>
+          <p class="book__sub">We look at your numbers, tell you honestly where you stand, and what the next two steps would be.</p>
+          <ul class="book__list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>A first read on NSE Emerge / BSE SME eligibility</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>A realistic cost band for your issue size</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Your next two steps, in writing, the same day</li>
+          </ul>
+          <!-- SAMPLE DATA: advisor name -->
+          <div class="book__advisor">
+            <img src="images/founder.webp" alt="" width="800" height="1000" loading="lazy" decoding="async">
+            <span><b><span data-placeholder>Vikram Mehta</span></b><small>Founder · takes every readiness call</small></span>
+          </div>
+          <p class="book__trust">Free · No obligation · Mon–Sat, 10am–7pm IST</p>
+        </div>
+      </aside>
+
+      <!-- Right: the form -->
+      <div class="book__main">
+        <form class="book-form" id="book-form" novalidate aria-label="Book a readiness call">
+          <div class="book-form__head">
+            <h3>Book your call</h3>
+            <p>Fill this in and we confirm a slot on WhatsApp within 15 minutes on working days.</p>
+          </div>
+          <div class="book-form__fields">
+            <div class="book-form__row">
+              <div class="field">
+                <label for="bk-name">Your name</label>
+                <input class="input" id="bk-name" name="name" type="text" autocomplete="name" required aria-describedby="bk-name-error" placeholder="Your name">
+                <span class="field__error" id="bk-name-error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="bk-company">Company name</label>
+                <input class="input" id="bk-company" name="company" type="text" autocomplete="organization" required aria-describedby="bk-company-error" placeholder="Company name">
+                <span class="field__error" id="bk-company-error" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="book-form__row">
+              <div class="field">
+                <label for="bk-mobile">Mobile / WhatsApp</label>
+                <input class="input" id="bk-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" required aria-describedby="bk-mobile-error" placeholder="Mobile / WhatsApp (10 digits)">
+                <span class="field__error" id="bk-mobile-error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="bk-email">Email <span class="field__opt">(optional)</span></label>
+                <input class="input" id="bk-email" name="email" type="email" autocomplete="email" aria-describedby="bk-email-error" placeholder="Email (optional)">
+                <span class="field__error" id="bk-email-error" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="book-form__row">
+              <div class="field">
+                <label for="bk-revenue">Annual revenue (last FY)</label>
+                <select class="input input--select" id="bk-revenue" name="revenue" required aria-describedby="bk-revenue-error">
+                  <option value="" selected disabled>Annual revenue (last FY)</option>
+                  <option value="under-70">Under ₹70 Cr</option>
+                  <option value="70-150">₹70–150 Cr</option>
+                  <option value="150-250">₹150–250 Cr</option>
+                  <option value="over-250">Over ₹250 Cr</option>
+                </select>
+                <span class="field__error" id="bk-revenue-error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="bk-slot">Preferred time</label>
+                <select class="input input--select" id="bk-slot" name="slot" required aria-describedby="bk-slot-error">
+                  <option value="" selected disabled>Preferred time window</option>
+                  <option value="morning">Morning · 10am–1pm</option>
+                  <option value="afternoon">Afternoon · 1pm–4pm</option>
+                  <option value="evening">Evening · 4pm–7pm</option>
+                </select>
+                <span class="field__error" id="bk-slot-error" aria-live="polite"></span>
+              </div>
+            </div>
+            <input type="hidden" name="page" value="">
+            <button class="btn btn--accent btn--block" type="submit">
+              Book my readiness call
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="book-form__note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+              Your details stay with Shikhar Capital.
+            </p>
+          </div>
+          <div class="book-form__success" tabindex="-1" hidden>
+            <span class="book-form__success-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            </span>
+            <h3>You're booked in.</h3>
+            <p>We'll confirm your slot on WhatsApp within 15 minutes (Mon–Sat, 10am–7pm IST). Want to jump the queue? <a class="link" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%20just%20booked%20a%20readiness%20call." target="_blank" rel="noopener">Message us now</a>.</p>
+            <button class="btn btn--outline btn--sm" type="button" data-book-close>Done</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <nav class="mobile-bar" aria-label="Quick actions">
+    <a class="mobile-bar__cta" href="tel:+919820012345"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Call us</a>
+    <a class="mobile-bar__cta" href="https://wa.me/919820012345?text=Hi%20Shikhar%20Capital%2C%20I%27d%20like%20to%20check%20if%20my%20company%20is%20SME%20IPO-ready.%20Company%3A%20___%20%7C%20Revenue%20(FY)%3A%20___%20%7C%20City%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
+  </nav>
+  <!-- /SHARED: ALWAYS-ON WIDGETS -->
+
+</body>
+</html>

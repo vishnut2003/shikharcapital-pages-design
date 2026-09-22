@@ -25,7 +25,30 @@ SLOTS = [
     ('client-logo-5.webp',       240,   80, 'Client / listed-company logo'),
     ('cta-bg.webp',             1920,  800, 'City skyline at night / exchange facade (used at ~20% opacity)'),
     ('og-home.jpg',             1200,  630, 'Social share image: logo + headline on navy'),
+    # Per-page social share images (inner pages)
+    ('og-eligibility.jpg',      1200,  630, 'Social share: "Is your company SME IPO-ready?" on navy'),
+    ('og-cost-timeline.jpg',    1200,  630, 'Social share: cost & timeline headline on navy'),
+    ('og-services.jpg',         1200,  630, 'Social share: services headline on navy'),
+    ('og-nse-vs-bse.jpg',       1200,  630, 'Social share: NSE Emerge vs BSE SME on navy'),
+    ('og-about.jpg',            1200,  630, 'Social share: founder / why us on navy'),
+    ('og-resources.jpg',        1200,  630, 'Social share: promoter guides on navy'),
+    # Intermediary partner logos (about.html)
+    ('partner-logo-1.webp',      240,   80, 'SEBI-registered merchant banker logo'),
+    ('partner-logo-2.webp',      240,   80, 'Legal counsel logo'),
+    ('partner-logo-3.webp',      240,   80, 'Peer-reviewed auditor logo'),
+    ('partner-logo-4.webp',      240,   80, 'Registrar and transfer agent logo'),
+    ('partner-logo-5.webp',      240,   80, 'Market maker logo'),
+    ('partner-logo-6.webp',      240,   80, 'Depository participant logo'),
 ]
+
+# Files the client has already supplied — never regenerate over a real photo.
+REAL = {
+    'hero-bg.webp',
+    'cta-bg.webp',
+    'service-pre-ipo.webp',
+    'service-execution.webp',
+    'service-post-listing.webp',
+}
 
 def font(size, bold=False):
     for name in (['arialbd.ttf', 'arial.ttf'] if bold else ['arial.ttf']):
@@ -93,4 +116,7 @@ def make(name, w, h, hint):
     print(f'{name:28} {w}×{h}  {os.path.getsize(path)/1024:.1f} KB')
 
 for slot in SLOTS:
+    if slot[0] in REAL and os.path.exists(os.path.join(OUT, slot[0])):
+        print(f'{slot[0]:28} skipped — client-supplied image')
+        continue
     make(*slot)
