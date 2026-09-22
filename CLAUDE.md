@@ -231,7 +231,11 @@ the Organization JSON-LD):
 ```
 
 Do not edit them per page — `main.js` sets `aria-current="page"` on the matching nav link
-automatically. One exception: **remove the `site-header--overlay` class** from the header on
+automatically. The mobile menu (<1024) is a **navy full-screen panel**: each link is a tile with
+a lime icon, label + one-line `.site-nav__desc`, chevron, staggered entrance; `.site-nav__foot`
+holds the Book CTA, Call / WhatsApp buttons and a contact line (SAMPLE DATA email). Desktop hides
+`.site-nav__icon/.site-nav__desc/.site-nav__foot` and shows plain text links. Descriptions are
+dropped under 700px viewport height so the footer still fits. One exception: **remove the `site-header--overlay` class** from the header on
 inner pages (it is only for the full-height hero on the home page).
 
 Gotcha: never give `.site-header` a `backdrop-filter` while the mobile menu is open — it makes
