@@ -49,9 +49,9 @@ Everything below is invented. Please confirm or correct each one.
 
 | Item | Currently a placeholder | Needed from you |
 |---|---|---|
-| Founder name | "Vikram Mehta" | Real name |
+| Founder name | "Ajay" — your first name, as given | **Surname**, and how you want it shown (e.g. "Ajay Sharma"). The pages currently show the first name alone |
 | Founder title | "Founder, Shikhar Capital · Chartered Accountant · 18 years in capital markets" | Real title and qualifications |
-| Founder photo | Grey placeholder image | A real portrait photo, plain background, head and shoulders (portrait orientation, at least 800 × 1000 px) |
+| Founder photo | **Received** — your portrait is now on the home page, the "Why us" page and the booking popup | Nothing, unless you'd like a different shot |
 | Founder biography | Three paragraphs we wrote (twelve years in merchant banks, 40+ SME listings, cities covered) | 4–6 sentences in your own words: background, why you started the firm, what you personally do on a mandate |
 | Founder quote | "Too many good companies lose months — and control of their story — to eight uncoordinated intermediaries…" | Either approve this wording or give us your own |
 | Logo | A temporary "summit" mark we designed | Your real logo (SVG or PNG with transparent background). Also used as the browser tab icon |

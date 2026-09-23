@@ -61,7 +61,8 @@ frameworks.** Only external request is Google Fonts (Poppins + Inter).
    the nearby HTML comment says `SAMPLE DATA`. To list what still needs real values:
    `grep -rn "data-placeholder\|SAMPLE DATA\|TODO" v1/*.html`. Current sample values:
    40+ mandates · ₹620 Cr raised · 15+ years · 25+ partners · cost band 7–10% · merchant-banker
-   fees ₹30–60 L · founder "Vikram Mehta, 18 years" + bio · three promoter quotes (Deshmukh
+   fees ₹30–60 L · founder "Ajay, 18 years" (first name is the client's, **surname still
+   outstanding** — the pages show the first name alone) + bio · three promoter quotes (Deshmukh
    Polymers, Coastal Agro Foods, Agarwal Precision Tools) · five client-logo names · phone
    +91 98200 12345 / WhatsApp 919820012345 · hello@shikharcapital.com · office at Peninsula
    Business Park, Lower Parel, Mumbai 400013 (also in the JSON-LD). Inner pages add: the
@@ -394,7 +395,7 @@ auto-advancing, contact validation, Book from the result, restart).
 
 ## Outstanding inputs from the client
 
-Brand logo · founder photo + 4–5 line bio · mandate / capital-raised / partner numbers ·
+Brand logo · founder **surname** + 4–5 line bio (photo supplied) · mandate / capital-raised / partner numbers ·
 phone, WhatsApp number, email, office address · production domain · cost band % and
 merchant-banker fee range + share of each cost head · promoter testimonials (logo row dropped) ·
 founder figures (years, listings) + a real quote · confirmation of roadmap
@@ -489,3 +490,12 @@ logos · whether "Below ₹25 Cr" revenue should force a "not yet" checker resul
   in the hero is now a **compact summary** (`.page-hero .estimate`: descriptors hidden, the six
   cost heads in two columns, tighter padding) since the table below already carries the detail.
   Hero 957 → 551px at 1440, card 813 → 407px; one column again under 480px.
+- **2026-09-23 (founder photo + name)** — Client supplied the founder portrait
+  (`user-uploads/founder-image.png`, 1122×1402, already 4:5) → `founder.webp` at 1200×1500; the
+  13 `<img>` tags now declare the real intrinsic size (same ratio, no layout shift). The booking
+  dialog's 44px avatar uses a **separate `founder-face.webp` (400×400)**: `object-fit: cover` on a
+  4:5 source can only crop to its top 80%, which left the face too small in the circle, and CSS
+  cannot zoom further without adding a wrapper to all 11 pages. Both files added to the `REAL`
+  guard in `make_placeholders.py`. Founder name changed from the sample "Vikram Mehta" to the
+  client's **"Ajay"** (19 occurrences incl. alt text, the about `Person` JSON-LD and "Book a call
+  with Ajay"); **the surname is still outstanding**, so the pages show a first name alone.
