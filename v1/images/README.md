@@ -12,7 +12,8 @@ Keep roughly the same aspect ratio; WebP preferred (brief: fast load, WebP, no h
 | `service-pre-ipo.webp` | 1600×1000 | Services card 1 | **Supplied** — readiness review on a boardroom table (source: `user-uploads/service-pre-ipo.png`) |
 | `service-execution.webp` | 1600×1000 | Services card 2 | **Supplied** — listing bell + prospectus (source: `user-uploads/service-execution.png`) |
 | `service-post-listing.webp` | 1600×1000 | Services card 3 | **Supplied** — share-price screen in a meeting room (source: `user-uploads/service-post-listing.png`) |
-| `founder.webp` | 800×1000 | "Your advisor" block (Why us) | Founder's real portrait, plain background, top-aligned |
+| `founder.webp` | 1200×1500 (4:5) | "Your advisor" block (home) and the founder block (about) | **Supplied** — founder portrait, suit on a soft office background (source: `user-uploads/founder-image.png`) |
+| `founder-face.webp` | 400×400 (1:1) | 44px avatar circle in the booking dialog | **Supplied** — tight head-and-shoulders crop of the same photo. A 4:5 portrait can only be `cover`-cropped to its top 80%, which left the face too small in the circle — hence a separate square file |
 | `testimonial-1.webp` … `-3.webp` | 200×200 | Testimonial headshots (shown as 48px circles) | Promoter headshots, square crop |
 | `client-logo-1.webp` … `-5.webp` | 240×80 | Logo row under testimonials (shown greyscale, colour on hover) | Client / listed-company logos on transparent or white |
 | `cta-bg.webp` | 1920×800 | Final CTA background, the `.page-hero` on every inner page, and the booking dialog | **Supplied** — night skyline (source: `user-uploads/cta-section-bg-image.png`) |
@@ -27,5 +28,5 @@ Keep as-is:
 
 Regenerate the placeholders (if sizes change) with `python scripts/make_placeholders.py`
 from the project root (needs Pillow) — only the filenames matter. The script **skips the
-client-supplied photos** listed in its `REAL` set (`hero-bg`, `cta-bg`, `service-*`), so running
+client-supplied photos** listed in its `REAL` set (`hero-bg`, `cta-bg`, `service-*`, `founder`), so running
 it can never overwrite a real image. Add a new slot by appending to `SLOTS`.

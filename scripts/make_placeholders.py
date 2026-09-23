@@ -14,7 +14,8 @@ SLOTS = [
     ('service-pre-ipo.webp',     800,  500, 'Financial review: documents, charts, boardroom (no handshakes)'),
     ('service-execution.webp',   800,  500, 'Exchange floor / bell ceremony / DRHP paperwork'),
     ('service-post-listing.webp',800,  500, 'Ticker board / investor meeting / growth chart'),
-    ('founder.webp',             800, 1000, "Founder's real photo, portrait, plain background"),
+    ('founder.webp',            1200, 1500, "Founder's real photo, portrait, plain background"),
+    ('founder-face.webp',        400,  400, "Founder's headshot, square crop for the 44px avatar"),
     ('testimonial-1.webp',       200,  200, 'Promoter headshot (square)'),
     ('testimonial-2.webp',       200,  200, 'Promoter headshot (square)'),
     ('testimonial-3.webp',       200,  200, 'Promoter headshot (square)'),
@@ -48,6 +49,8 @@ REAL = {
     'service-pre-ipo.webp',
     'service-execution.webp',
     'service-post-listing.webp',
+    'founder.webp',
+    'founder-face.webp',
 }
 
 def font(size, bold=False):
